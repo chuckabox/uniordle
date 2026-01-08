@@ -96,5 +96,13 @@ class _WordleScreenState extends State<WordleScreen> {
         }
       });
     }
-}
+  }
+
+  void _checkIfWinOrLoss() {
+    if (_currentWord!.wordString == _solution.wordString) {
+      _gameStatus = GameStatus.won;
+    } else if (_currentWordIndex + 1 >= _board.length) {
+      _gameStatus = GameStatus.lost;
+    }
+  }
 }
