@@ -11,6 +11,10 @@ class Word extends Equatable {
     
   String get wordString => letters.map((e) => e.val).join();
 
-  
-
+  void addLetter(String val) {
+    final currentIndex = letters.indexWhere((e) => e.val.isEmpty);
+    if (currentIndex != -1) {
+      letters[currentIndex] = Letter(val: val);
+    }
+  }
 }
