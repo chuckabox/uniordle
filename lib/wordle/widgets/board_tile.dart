@@ -21,6 +21,7 @@ class BoardTile extends StatelessWidget {
         border: Border.all(color: letter.borderColor),
         borderRadius: BorderRadius.circular(4),
       ),
+      // display letter values
       child: Text(
         letter.val,
         style: const TextStyle(
