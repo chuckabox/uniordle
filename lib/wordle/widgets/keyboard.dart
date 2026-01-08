@@ -22,8 +22,16 @@ class Keyboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: _qwerty
+          .map(
+            (keyRow) => Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children:
+            ),
+          )
+          .toList(),
     );
   }
 }
