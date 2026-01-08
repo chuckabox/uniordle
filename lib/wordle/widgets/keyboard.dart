@@ -59,6 +59,27 @@ class _KeyboardButton extends StatelessWidget {
     required this.letter,
     }): super(key: key);
 
+    // del and enter keys are special sizes
+    factory _KeyboardButton.delete({ 
+      required VoidCallback onTap 
+    }) =>
+      _KeyboardButton(
+        width: 56,
+        onTap: onTap,
+        backgroundColor: Colors.grey,
+        letter: 'DEL',
+      );
+
+    factory _KeyboardButton.enter({ 
+      required VoidCallback onTap,
+    }) =>
+      _KeyboardButton(
+        width: 56,
+        onTap: onTap,
+        backgroundColor: Colors.grey,
+        letter: 'ENTER',
+      );
+
     final double height;
 
     final double width;
