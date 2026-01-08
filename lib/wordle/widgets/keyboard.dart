@@ -7,7 +7,18 @@ const _qwerty = [
 ];
 
 class Keyboard extends StatelessWidget {
-  const Keyboard({ Key? key }): super(key: key);
+  const Keyboard({ 
+    Key? key,
+    required this.onKeyTapped,
+    required this.OnDeleteTapped,
+    required this.onEnterTapped,
+  }): super(key: key);
+
+  final void Function(String) onKeyTapped;
+
+  final VoidCallback OnDeleteTapped;
+
+  final VoidCallback onEnterTapped;
 
   @override
   Widget build(BuildContext context) {
