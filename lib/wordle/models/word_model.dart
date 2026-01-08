@@ -9,6 +9,8 @@ class Word extends Equatable {
 
   final List<Letter> letters;
     
+  String get wordString => letters.map((e) => e.val).join();
 
+  
 
 }
