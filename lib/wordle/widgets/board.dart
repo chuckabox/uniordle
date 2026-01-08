@@ -11,6 +11,7 @@ class Board extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // six rows and column
     return Column(
       children: board
             .map(
