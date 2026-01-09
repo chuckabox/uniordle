@@ -136,6 +136,9 @@ class _WordleScreenState extends State<WordleScreen> {
             ),
           ),
         );
+    } else {
+      _gameStatus = GameStatus.playing;
     }
+    _currentWordIndex += 1;
   }
 }
