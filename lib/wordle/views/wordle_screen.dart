@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_wordle/app/app_colors.dart';
+import 'package:flutter_wordle/wordle/data/word_list.dart';
 import 'package:flutter_wordle/wordle/wordle.dart';
 import 'dart:math';
 
@@ -140,5 +141,23 @@ class _WordleScreenState extends State<WordleScreen> {
       _gameStatus = GameStatus.playing;
     }
     _currentWordIndex += 1;
+  }
+
+  void _restart() {
+    setState(() {
+      _gameStatus = GameStatus.playing;
+      _currentWordIndex = 0;
+      _board
+        ..clear()
+        ..addAll(
+          List.generate(
+            6,
+            (_) => Word(letters: List.generate(5, (_) => Letter.empty())),
+          ),
+        );
+      _solution = Word.fromString(
+        fiveLetterWords[Random().nextInt(fiveLetterWords.length)].toUpperCase(),
+      );
+    });
   }
 }
