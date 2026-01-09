@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_wordle/app/app_colors.dart';
 import 'package:flutter_wordle/wordle/wordle.dart';
 import 'dart:math';
 
@@ -101,6 +102,22 @@ class _WordleScreenState extends State<WordleScreen> {
   void _checkIfWinOrLoss() {
     if (_currentWord!.wordString == _solution.wordString) {
       _gameStatus = GameStatus.won;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          dismissDirection: DismissDirection.none,
+          duration: const Duration(days: 1),
+          backgroundColor: correctColor,
+          content: const Text (
+            'You Won!',
+            style: TextStyle(color: Colors.white),
+            ),
+            action: SnackBarAction(
+              onPressed: _restart,
+              textColor: Colors.white,
+              label: 'New Game',
+            ),
+          ),
+        );
     } else if (_currentWordIndex + 1 >= _board.length) {
       _gameStatus = GameStatus.lost;
     }
