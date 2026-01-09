@@ -1,3 +1,4 @@
+import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_wordle/app/app_colors.dart';
 import 'package:flutter_wordle/wordle/data/word_list.dart';
@@ -21,6 +22,11 @@ class _WordleScreenState extends State<WordleScreen> {
     (_) => Word(letters: List.generate(5, (_) => Letter.empty())),
   );
   
+  final List<List<GlobalKey<FlipCardState>>> _flipCardKeys = List.generate(
+    6,
+    (_) => List.generate(5, (_) => GlobalKey<FlipCardState>()),
+  );
+
   int _currentWordIndex = 0;
 
   Word? get _currentWord =>
@@ -51,7 +57,7 @@ class _WordleScreenState extends State<WordleScreen> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Board(board: _board),
+          Board(board: _board, flipCardKeys: _flipCardKeys),
           const SizedBox(height: 80),
           Keyboard(
             onKeyTapped: _onKeyTapped,
