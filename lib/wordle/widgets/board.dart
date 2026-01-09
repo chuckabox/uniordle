@@ -5,7 +5,7 @@ import 'package:flutter_wordle/wordle/wordle.dart';
 class Board extends StatelessWidget {
   const Board({ 
     Key? key, 
-    required this.board
+    required this.board,
     required this.flipCardKeys,
   }) : super(key: key);
 
