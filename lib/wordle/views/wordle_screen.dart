@@ -129,7 +129,7 @@ void _checkIfWinOrLoss() {
     _gameStatus = GameStatus.won;
     _showEndDialog(
       title: 'YOU WON',
-      message: 'PLAY AGAIN?',
+      message: 'NUMBER OF ATTEMPTS: ${_currentWordIndex + 1}',
     );
   } else if (_currentWordIndex + 1 >= _board.length) {
     _gameStatus = GameStatus.lost;
