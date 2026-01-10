@@ -124,48 +124,50 @@ class _WordleScreenState extends State<WordleScreen> {
     }
   }
 
-  void _checkIfWinOrLoss() {
-    if (_currentWord!.wordString == _solution.wordString) {
-      _gameStatus = GameStatus.won;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          dismissDirection: DismissDirection.none,
-          duration: const Duration(days: 1),
-          backgroundColor: correctColor,
-          content: const Text (
-            'You Won!',
-            style: TextStyle(color: Colors.white),
-            ),
-            action: SnackBarAction(
-              onPressed: _restart,
-              textColor: Colors.white,
-              label: 'New Game',
-            ),
-          ),
-        );
-    } else if (_currentWordIndex + 1 >= _board.length) {
-      _gameStatus = GameStatus.lost;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          dismissDirection: DismissDirection.none,
-          duration: const Duration(days: 1),
-          backgroundColor: Colors.redAccent[200],
-          content: Text (
-            'You Lost! Solution: ${_solution.wordString}',
-            style: TextStyle(color: Colors.white),
-          ),
-          action: SnackBarAction(
-            onPressed: _restart,
-            textColor: Colors.white,
-            label: 'New Game',
-          ),
-        ),
-      );
-    } else {
-      _gameStatus = GameStatus.playing;
-    }
+void _checkIfWinOrLoss() {
+  if (_currentWord!.wordString == _solution.wordString) {
+    _gameStatus = GameStatus.won;
+    _showEndDialog(
+      title: 'YOU WON',
+      message: 'PLAY AGAIN?',
+    );
+  } else if (_currentWordIndex + 1 >= _board.length) {
+    _gameStatus = GameStatus.lost;
+    _showEndDialog(
+      title: 'YOU LOST',
+      message: 'CORRECT WORD: ${_solution.wordString}',
+    );
+  } else {
+    _gameStatus = GameStatus.playing;
     _currentWordIndex += 1;
   }
+}
+
+void _showEndDialog({
+  required String title,
+  required String message,
+}) {
+  showDialog(
+    context: context,
+    barrierDismissible: false,
+    builder: (context) {
+      return AlertDialog(
+        title: Text(title),
+        content: Text(message),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+              _restart();
+            },
+            child: const Text('NEW GAME'),
+          ),
+        ],
+      );
+    },
+  );
+}
+
 
   void _restart() {
     setState(() {
