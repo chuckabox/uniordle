@@ -19,7 +19,7 @@ class BoardTile extends StatelessWidget {
       decoration: BoxDecoration(
         color: letter.backgroundColor,
         border: Border.all(color: letter.borderColor),
-        borderRadius: BorderRadius.circular(4),
+        borderRadius: BorderRadius.zero,
       ),
       // display letter values
       child: Text(
