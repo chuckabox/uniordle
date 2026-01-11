@@ -27,14 +27,13 @@ class BoardTile extends StatelessWidget {
         borderRadius: BorderRadius.zero,
       ),
       // display letter values
-      child: Center(
+      child: Align(
         child: Text(
           letter.val,
           textAlign: TextAlign.center,
           style: const TextStyle(
             fontSize: 32,
             fontWeight: FontWeight.bold,
-            height: -0.15, // ensures vertical centering
           ),
         ),
       ),

@@ -90,7 +90,7 @@ class _KeyboardButton extends StatelessWidget {
         child: const Icon(
           Icons.backspace_outlined, 
           color: Colors.white, 
-          size: 16
+          size: 20
         ),
       );
 
@@ -102,6 +102,14 @@ class _KeyboardButton extends StatelessWidget {
         onTap: onTap,
         backgroundColor: Color(0xFF818384),
         letter: 'ENTER',
+        child: Text(
+          'ENTER',
+          style: TextStyle(
+            fontSize: 12,  // Change this to your desired size
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
       );
 
     final double height;
