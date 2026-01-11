@@ -130,7 +130,10 @@ class _KeyboardButtonState extends State<_KeyboardButton> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(2.5),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 2.0, 
+        vertical: 3.5,
+      ),
       child: GestureDetector(
         onTapDown: (_) => setState(() => _isPressed = true),
         onTapUp: (_) => setState(() => _isPressed = false),
