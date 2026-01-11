@@ -45,14 +45,18 @@ class _WordleScreenState extends State<WordleScreen> {
         centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: const Text(
-          'WORDLE',
-          style: TextStyle(
-            fontSize: 36,
-            fontWeight: FontWeight.bold,
-            letterSpacing: 4,
+        title: const Padding(
+          padding: EdgeInsets.only(top: 20),
+          child: Text(
+            'WORDLE',
+            style: TextStyle(
+              fontSize: 36,
+              fontFamily: 'Roboto',
+              fontWeight: FontWeight.bold,
+              letterSpacing: 4,
+            ),
           ),
-        )
+        ),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
