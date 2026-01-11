@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_wordle/wordle/wordle.dart';
 
 const _qwerty = [
+  ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'],
   ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
   ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'],
   ['ENTER', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', 'DEL'],
@@ -100,7 +101,7 @@ class _KeyboardButton extends StatefulWidget {
         onTap: onTap,
         backgroundColor: Color(0xFF818384),
         child: Transform.translate(
-          offset: const Offset(0, _keyboardTextOffset),
+          offset: const Offset(0, _keyboardTextOffset + 1.5),
           child: const Icon(
             Icons.backspace_outlined, 
             color: Colors.white, 
