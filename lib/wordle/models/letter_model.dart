@@ -33,7 +33,7 @@ class Letter extends Equatable {
     Color get borderColor {
     switch (status) {
       case LetterStatus.initial:
-        return Colors.grey;
+        return const Color(0xFF565758);
       default:
       return Colors.transparent;
     }
