@@ -48,7 +48,7 @@ class _WordleScreenState extends State<WordleScreen> {
         title: const Padding(
           padding: EdgeInsets.only(top: 20),
           child: Text(
-            'UNIWORDLE',
+            'UNIORDLE',
             style: TextStyle(
               fontSize: 36,
               fontFamily: 'Roboto',
