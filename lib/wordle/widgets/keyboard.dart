@@ -131,7 +131,7 @@ class _KeyboardButton extends StatelessWidget {
               style: const TextStyle(
                 fontSize: 12,
                 fontFamily: 'FranklinGothic',
-                fontWeight: FontWeight.w600,
+                fontWeight: FontWeight.w200,
                 color: Colors.white,
               ),
             ),
