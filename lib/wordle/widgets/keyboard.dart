@@ -14,7 +14,12 @@ const _numpad = [
   ['0', '.', 'DEL'],
 ];
 
+const double _keyboardTextOffset = -2.0;
+
+const double _darkenIntensity = 0.4;
+
 class Keyboard extends StatelessWidget {
+  
   const Keyboard({ 
     Key? key,
     required this.onKeyTapped,
@@ -95,7 +100,7 @@ class _KeyboardButton extends StatefulWidget {
         onTap: onTap,
         backgroundColor: Color(0xFF818384),
         child: Transform.translate(
-          offset: const Offset(0, -2),
+          offset: const Offset(0, _keyboardTextOffset),
           child: const Icon(
             Icons.backspace_outlined, 
             color: Colors.white, 
@@ -114,7 +119,7 @@ class _KeyboardButton extends StatefulWidget {
         backgroundColor: Color(0xFF818384),
         letter: 'ENTER',
         child: Transform.translate(
-          offset: const Offset(0, -2),
+          offset: const Offset(0, _keyboardTextOffset),
           child: const Text(
             'ENTER',
             style: TextStyle(
@@ -152,12 +157,12 @@ class _KeyboardButtonState extends State<_KeyboardButton> {
             alignment: Alignment.center,
             decoration: BoxDecoration(
               color: _isPressed
-                  ? Color.alphaBlend(Colors.black.withValues(alpha: 0.5), widget.backgroundColor)
+                  ? Color.alphaBlend(Colors.black.withValues(alpha: _darkenIntensity), widget.backgroundColor)
                   : widget.backgroundColor,
               borderRadius: BorderRadius.circular(4),
             ),
           child: widget.child ?? Transform.translate(
-            offset: const Offset(0, -2),
+            offset: const Offset(0, _keyboardTextOffset),
             child: widget.child ?? Text(
               widget.letter ?? '',
               textAlign: TextAlign.center,
