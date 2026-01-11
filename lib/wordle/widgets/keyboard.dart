@@ -72,7 +72,7 @@ class _KeyboardButton extends StatelessWidget {
   const _KeyboardButton({ 
     Key? key, 
     this.height = 58,
-    this.width = 43.59,
+    this.width = 43,
     required this.onTap,
     required this.backgroundColor,
     this.letter,
@@ -128,9 +128,8 @@ class _KeyboardButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        vertical: 3.0,
-        horizontal: 2.0,
+      padding: const EdgeInsets.all(
+        2.5
       ),
       child: Material(
         color: backgroundColor,
@@ -144,6 +143,7 @@ class _KeyboardButton extends StatelessWidget {
             alignment: Alignment.center,
             child: child ?? Text(
               letter ?? '',
+              textAlign: TextAlign.center,
               style: const TextStyle(
                 fontSize: 20,
                 fontFamily: 'franklin',
