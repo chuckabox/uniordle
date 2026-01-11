@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_wordle/wordle/wordle.dart';
 
-class BoardTile extends StatelessWidget {
+class BoardTile extends StatefulWidget {
   const BoardTile({
     Key? key,
     required this.letter,
@@ -10,6 +10,30 @@ class BoardTile extends StatelessWidget {
 
   final Letter letter;
   final Color initialBorderColor;
+
+  @override
+  State<BoardTile> createState() => _BoardTileState();
+}
+
+class _BoardTileState extends State<BoardTile> with SingleTickerProviderStateMixin{
+  late AnimationController _controller;
+  late Animation<double> _animation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      duration: const Duration(milliseconds: 100),
+      vsync: this,
+    );
+
+    _animation = TweenSequence<double>([
+      TweenSquenceItem(tween: Tween(begin: 1.0, end: 1.15), weight: 50),
+      TweenSquenceItem(tween: Tween(begin: 1.15, end: 1.0), weight: 50),
+    ]).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
