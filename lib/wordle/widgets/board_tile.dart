@@ -51,27 +51,30 @@ class _BoardTileState extends State<BoardTile> with SingleTickerProviderStateMix
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(3),
-      height: 62,
-      width: 62,
-      alignment: Alignment.center,
-      decoration: BoxDecoration(
-        color: letter.backgroundColor,
-        border: Border.all(
-          color: letter.val.isEmpty ? initialBorderColor : letter.borderColor,
-          width: 2,
+    return ScaleTransition(
+      scale: _animation,
+      child: Container(
+        margin: const EdgeInsets.all(3),
+        height: 62,
+        width: 62,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: widget.letter.backgroundColor,
+          border: Border.all(
+            color: widget.letter.val.isEmpty ? widget.initialBorderColor : widget.letter.borderColor,
+            width: 2,
+          ),
+          borderRadius: BorderRadius.zero,
         ),
-        borderRadius: BorderRadius.zero,
-      ),
-      // display letter values
-      child: Align(
-        child: Text(
-          letter.val,
-          textAlign: TextAlign.center,
-          style: const TextStyle(
-            fontSize: 32,
-            fontWeight: FontWeight.bold,
+        // display letter values
+        child: Align(
+          child: Text(
+            widget.letter.val,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontSize: 32,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
       ),
