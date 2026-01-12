@@ -48,8 +48,9 @@ class _WordleScreenState extends State<WordleScreen> {
         centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0,
+        toolbarHeight: 100,
         title: const Padding(
-          padding: EdgeInsets.all(50),
+          padding: EdgeInsets.symmetric(vertical: 24),
           child: Text(
             'Uniordle',
             style: TextStyle(
@@ -65,7 +66,8 @@ class _WordleScreenState extends State<WordleScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Board(board: _board, flipCardKeys: _flipCardKeys),
-          const SizedBox(height: 15),
+          // distance between boxs and keyboard
+          const SizedBox(height: 25),
           Keyboard(
             onKeyTapped: _onKeyTapped,
             onDeleteTapped: _onDeleteTapped,

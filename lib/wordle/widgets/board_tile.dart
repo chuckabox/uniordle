@@ -64,7 +64,7 @@ class _BoardTileState extends State<BoardTile> with SingleTickerProviderStateMix
             color: widget.letter.val.isEmpty ? widget.initialBorderColor : widget.letter.borderColor,
             width: 2,
           ),
-          borderRadius: BorderRadius.circular(3),
+          borderRadius: BorderRadius.circular(10),
         ),
         // display letter values
         child: Align(
