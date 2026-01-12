@@ -10,8 +10,9 @@ const _qwerty = [
 ];
 
 const double _keyboardTextOffset = -2.0;
-const double _darkenIntensity = 0.3;
-const int _darkenSpeed = 10;
+const double _darkenIntensity = 0.1;
+const int _darkenSpeed = 5;
+const int _pressSpeed = 500;
 
 class Keyboard extends StatelessWidget {
   
@@ -140,16 +141,13 @@ class _KeyboardButtonState extends State<_KeyboardButton> with SingleTickerProvi
     _controller = AnimationController(
       duration: const Duration(milliseconds: 120),
       vsync: this,
+      lowerBound: 0.95,
+      upperBound: 1.0,
+      value: 1.0,
+
     );
 
-    _animation = Tween<double>(begin: 1.0, end: 0.95).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeOut)
-    );
-    _controller.addStatusListener((status) {
-      if (status == AnimationStatus.completed) {
-        _controller.reverse();
-      }
-    });
+    _animation = _controller.drive(Tween<double>(begin: 1.0, end: 0.95));
   }
 
   @override
@@ -159,8 +157,16 @@ class _KeyboardButtonState extends State<_KeyboardButton> with SingleTickerProvi
   }
 
   void _handleTap() {
-    _controller.forward(from: 0.0);
     widget.onTap();
+  }
+
+  void _updatePressed(bool pressed) {
+    setState(() => _isPressed = pressed);
+    _controller.animateTo(
+      pressed ? 0.95 : 1.0,
+      duration: const Duration(milliseconds: _pressSpeed),
+      curve: Curves.easeInOut,
+    );
   }
 
   @override
@@ -172,38 +178,43 @@ class _KeyboardButtonState extends State<_KeyboardButton> with SingleTickerProvi
       ),
       child: GestureDetector(
         onTapDown: (_) => setState(() => _isPressed = true),
-        onTapUp: (_) => setState(() => _isPressed = false),
+        onTapUp: (_) {
+          _updatePressed(false);
+          _handleTap();
+        },
         onTapCancel: () => setState(() => _isPressed = false),
-        onTap: _handleTap,
-        child: ScaleTransition(
-          scale: _animation,
-            child: AnimatedContainer(
-              duration: const Duration(milliseconds: _darkenSpeed),
-              height: widget.height,
-              width: widget.width,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: _isPressed
-                    ? Color.alphaBlend(
-                      Colors.black.withValues(alpha: _darkenIntensity), 
-                        widget.backgroundColor
-                      )
-                    : widget.backgroundColor,
-                borderRadius: BorderRadius.circular(4),
-              ),
-            child: widget.child ?? Transform.translate(
+        child: AnimatedScale(
+          scale: _isPressed ? 0.95 : 1.0,
+          duration: const Duration(milliseconds: 80),
+          curve: Curves.easeOut,
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: _darkenSpeed),
+            height: widget.height,
+            width: widget.width,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: _isPressed
+                  ? Color.alphaBlend(
+                    Colors.black.withValues(alpha: _darkenIntensity), 
+                      widget.backgroundColor
+                    )
+                  : widget.backgroundColor,
+              borderRadius: BorderRadius.circular(4),
+            ),
+            child: widget.child ?? 
+              Transform.translate(
               offset: const Offset(0, _keyboardTextOffset),
-              child: widget.child ?? Text(
-                widget.letter ?? '',
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontSize: 24,
-                  fontFamily: 'dm-sans',
-                  fontWeight: FontWeight.w900,
-                  color: Colors.white,
+                child: widget.child ?? Text(
+                  widget.letter ?? '',
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontSize: 24,
+                    fontFamily: 'dm-sans',
+                    fontWeight: FontWeight.w900,
+                    color: Colors.white,
+                  ),
                 ),
               ),
-            ),
           ),
         ),
       ),
