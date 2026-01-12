@@ -162,17 +162,14 @@ class _KeyboardButtonState extends State<_KeyboardButton> {
                   : widget.backgroundColor,
               borderRadius: BorderRadius.circular(4),
             ),
-          child: widget.child ?? Transform.translate(
-            offset: const Offset(0, _keyboardTextOffset),
-            child: widget.child ?? Text(
-              widget.letter ?? '',
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontSize: 24,
-                fontFamily: 'dm-sans',
-                fontWeight: FontWeight.w900,
-                color: Colors.white,
-              ),
+          child: widget.child ?? Text(
+            widget.letter ?? '',
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontSize: 24,
+              fontFamily: 'dm-sans',
+              fontWeight: FontWeight.w900,
+              color: Colors.white,
             ),
           ),
         ),

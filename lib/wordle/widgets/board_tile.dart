@@ -25,13 +25,13 @@ class _BoardTileState extends State<BoardTile> with SingleTickerProviderStateMix
   void initState() {
     super.initState();
     _controller = AnimationController(
-      duration: const Duration(milliseconds: 200),
+      duration: const Duration(milliseconds: 160),
       vsync: this,
     );
 
     // scale up animation
-    _animation = Tween<double>(begin: 1.0, end: 1.02).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeIn)
+    _animation = Tween<double>(begin: 1.0, end: 1.1).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.easeOut)
     );
 
     // reverse automatically after forward
@@ -45,7 +45,7 @@ class _BoardTileState extends State<BoardTile> with SingleTickerProviderStateMix
   @override
   void didUpdateWidget(covariant BoardTile oldWidget) {
     super.didUpdateWidget(oldWidget);
-    
+
     // plays pump effect when added letter or removed
     if (oldWidget.letter.val != widget.letter.val) {
       _controller.forward(from: 0.0);
