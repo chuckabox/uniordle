@@ -175,9 +175,9 @@ class _WordleScreenState extends State<WordleScreen> {
           ),
           child: Container(
             padding: const EdgeInsets.all(24),
-            width: 400
+            width: 400,
             child: Column(
-              mainAxisAlignment: MainAxisSize.min,
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
                   title,
@@ -193,52 +193,53 @@ class _WordleScreenState extends State<WordleScreen> {
                   padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
                     color: Colors.pink,
-                    border: BorderRadius.circular(5),
+                    borderRadius: BorderRadius.circular(5),
                   ),
                   child: Column(
                     children: [
                       const Text(
                         'The word was',
                         style: TextStyle(
-                          fontSize: 18
-                        ),
-                        const SizedBox(height: 8),
-                        Text(
-                          message.split(': ').last // solution word
-                          style: const TextStyle(
-                            fontSize: 36,
-                              fontFamily: 'dm-sans',
-                            fontWeight: FontWeight.w900,
-                            letterSpacing: 2,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 24),
-                  SizedBox(
-                    width: double.infinity // button fills box width
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                        _restart();
-                      },
-                      style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(vertical: 16),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(6),
+                          fontSize: 18,
                         ),
                       ),
-                      child: const Text(
-                        'NEW GAME',
-                        style: TextStyle(
-                          fontSize: 20,
+                      const SizedBox(height: 8),
+                      Text(
+                        message.split(': ').last, // solution word
+                        style: const TextStyle(
+                          fontSize: 36,
                           fontFamily: 'dm-sans',
                           fontWeight: FontWeight.w900,
+                          letterSpacing: 2,
                         ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 24),
+                SizedBox(
+                  width: double.infinity, // button fills box width
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                      _restart();
+                    },
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(6),
+                      ),
+                    ),
+                    child: const Text(
+                      'NEW GAME',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontFamily: 'dm-sans',
+                        fontWeight: FontWeight.w900,
                       ),
                     ),
                   ),
+                ),
               ],
             ),
           ),
