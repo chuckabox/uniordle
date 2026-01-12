@@ -68,7 +68,7 @@ class _WordleScreenState extends State<WordleScreen> {
         children: [
           Board(board: _board, flipCardKeys: _flipCardKeys),
           // distance between boxs and keyboard
-          const SizedBox(height: 25),
+          const SizedBox(height: 12),
           Keyboard(
             onKeyTapped: _onKeyTapped,
             onDeleteTapped: _onDeleteTapped,

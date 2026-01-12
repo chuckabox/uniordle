@@ -25,23 +25,27 @@ class _BoardTileState extends State<BoardTile> with SingleTickerProviderStateMix
   void initState() {
     super.initState();
     _controller = AnimationController(
-      duration: const Duration(milliseconds: 320),
+      duration: const Duration(milliseconds: 200),
       vsync: this,
     );
 
-    // pump effect
-    _animation = TweenSequence<double>([
-      TweenSequenceItem(tween: Tween(begin: 1.0, end: 1.02), weight: 60),
-      TweenSequenceItem(tween: Tween(begin: 1.02, end: 1.0), weight: 40),
-    ]).animate(
-      CurvedAnimation(
-        parent: _controller, 
-        curve: Curves.bounceInOut));
+    // scale up animation
+    _animation = Tween<double>(begin: 1.0, end: 1.02).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.easeIn)
+    );
+
+    // reverse automatically after forward
+    _controller.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        _controller.reverse();
+      }
+    });
   }
 
   @override
   void didUpdateWidget(covariant BoardTile oldWidget) {
     super.didUpdateWidget(oldWidget);
+    
     // plays pump effect when added letter or removed
     if (oldWidget.letter.val != widget.letter.val) {
       _controller.forward(from: 0.0);
@@ -59,9 +63,9 @@ class _BoardTileState extends State<BoardTile> with SingleTickerProviderStateMix
     return ScaleTransition(
       scale: _animation,
       child: Container(
-        margin: const EdgeInsets.all(3),
-        height: 62,
-        width: 62,
+        margin: const EdgeInsets.all(4),
+        height: 64,
+        width: 64,
         alignment: Alignment.center,
         decoration: BoxDecoration(
           color: widget.letter.val.isEmpty
@@ -73,7 +77,7 @@ class _BoardTileState extends State<BoardTile> with SingleTickerProviderStateMix
             : widget.letter.borderColor,
             width: 2,
           ),
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(5),
         ),
         // display letter values
         child: Align(
