@@ -133,14 +133,10 @@ class _WordleScreenState extends State<WordleScreen> {
       // trigger flip
       _flipCardKeys[_currentWordIndex][i].currentState?.toggleCard();
 
-      // wait between flips except last
-      if (i < _currentWord!.letters.length - 1) {
-      await Future.delayed(_flipDelay); // wait for flip
-      }
+      // wait for this flip to finish then next
+      await Future.delayed(_flipDuration + _flipDelay);
+      
     }
-
-    // wait for the last flip to finish visually
-    await Future.delayed(_flipDuration);
       
     _checkIfWinOrLoss();
   }
