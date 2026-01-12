@@ -5,7 +5,6 @@ import 'package:flutter_wordle/wordle/data/word_list.dart';
 import 'package:flutter_wordle/wordle/wordle.dart';
 import 'dart:math';
 
-const Duration _flipDelay = Duration(milliseconds: 100);
 const Duration _flipDuration = Duration(milliseconds: 100);
 final int wordLength = 5;
 final int maxAttempts = 1;
@@ -133,10 +132,11 @@ class _WordleScreenState extends State<WordleScreen> {
       // trigger flip
       _flipCardKeys[_currentWordIndex][i].currentState?.toggleCard();
 
-      // wait for this flip to finish then next
-      await Future.delayed(_flipDuration + _flipDelay);
-      
+      // flips slightly overlap
+      await Future.delayed(_flipDuration * 0.7);
     }
+
+    await Future.delayed(_flipDuration * 0.3);
       
     _checkIfWinOrLoss();
   }
