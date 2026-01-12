@@ -101,7 +101,6 @@ class _WordleScreenState extends State<WordleScreen> {
   Future<void> _onEnterTapped() async {
     if (_gameStatus != GameStatus.playing || _currentWord == null) return;
     if (_currentWord!.letters.contains(Letter.empty())) return;
-    
     _gameStatus = GameStatus.submitting;
 
     // flip all letters with delay
@@ -139,11 +138,11 @@ class _WordleScreenState extends State<WordleScreen> {
       await Future.delayed(_flipDelay); // wait for flip
       }
     }
+
     // wait for the last flip to finish visually
     await Future.delayed(_flipDuration);
       
     _checkIfWinOrLoss();
-    }
   }
 
   void _checkIfWinOrLoss() {
