@@ -7,6 +7,8 @@ import 'dart:math';
 
 const Duration _flipDelay = Duration(milliseconds: 100);
 const Duration _flipDuration = Duration(milliseconds: 100);
+final int wordLength = 5;
+final int maxAttempts = 6;
 
 enum GameStatus { playing, submitting, won, lost }
 
@@ -21,13 +23,13 @@ class _WordleScreenState extends State<WordleScreen> {
   GameStatus _gameStatus = GameStatus.playing;
 
   final List<Word> _board = List.generate(
-    6,
-    (_) => Word(letters: List.generate(5, (_) => Letter.empty())),
+    maxAttempts,
+    (_) => Word(letters: List.generate(wordLength, (_) => Letter.empty())),
   );
   
   final List<List<GlobalKey<FlipCardState>>> _flipCardKeys = List.generate(
-    6,
-    (_) => List.generate(5, (_) => GlobalKey<FlipCardState>()),
+    maxAttempts,
+    (_) => List.generate(wordLength, (_) => GlobalKey<FlipCardState>()),
   );
 
   int _currentWordIndex = 0;
@@ -187,8 +189,8 @@ class _WordleScreenState extends State<WordleScreen> {
         ..clear()
         ..addAll(
           List.generate(
-            6,
-            (_) => Word(letters: List.generate(5, (_) => Letter.empty())),
+            maxAttempts,
+            (_) => Word(letters: List.generate(wordLength, (_) => Letter.empty())),
           ),
         );
       _solution = Word.fromString(
@@ -198,8 +200,8 @@ class _WordleScreenState extends State<WordleScreen> {
         ..clear()
         ..addAll(
           List.generate(
-            6,
-            (_) => List.generate(5, (_) => GlobalKey<FlipCardState>()),
+            maxAttempts,
+            (_) => List.generate(wordLength, (_) => GlobalKey<FlipCardState>()),
           ),
         );
       _keyboardLetters.clear();
