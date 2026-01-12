@@ -104,6 +104,7 @@ class _WordleScreenState extends State<WordleScreen> {
         !_currentWord!.letters.contains(Letter.empty())) {
       _gameStatus = GameStatus.submitting;
 
+      // flip all letters with delay
       for (var i = 0; i < _currentWord!.letters.length; i++) {
         final currentWordLetter = _currentWord!.letters[i];
         final currentSolutionLetter = _solution.letters[i];
@@ -130,10 +131,16 @@ class _WordleScreenState extends State<WordleScreen> {
           _keyboardLetters.add(_currentWord!.letters[i]);
         }
 
+        // trigger flip
         _flipCardKeys[_currentWordIndex][i].currentState?.toggleCard();
-        await Future.delayed(_flipDelay);
+
+        // wait between flips except last
+        if (i < _currentWord!.letters.length - 1) {
+        await Future.delayed(_flipDelay); // wait for flip
+        }
       }
 
+      // wait for the last flip to finish visually
       await Future.delayed(_flipDuration);
         
       _checkIfWinOrLoss();

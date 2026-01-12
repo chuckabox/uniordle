@@ -8,7 +8,6 @@ class Word extends Equatable {
     Word(letters: word.split('').map((e) => Letter(val: e)).toList());
 
   final List<Letter> letters;
-    
   String get wordString => letters.map((e) => e.val).join();
 
   void addLetter(String val) {

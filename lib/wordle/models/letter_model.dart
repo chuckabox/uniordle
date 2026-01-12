@@ -11,9 +11,7 @@ class Letter extends Equatable {
   });
 
   factory Letter.empty() => const Letter(val: ''); // populate initial state of board
-
   final String val;
-
   final LetterStatus status;
 
   // background colour based on letter status
