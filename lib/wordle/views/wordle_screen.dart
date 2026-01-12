@@ -99,51 +99,50 @@ class _WordleScreenState extends State<WordleScreen> {
   }
 
   Future<void> _onEnterTapped() async {
-    if (_gameStatus == GameStatus.playing &&
-        _currentWord != null && 
-        !_currentWord!.letters.contains(Letter.empty())) {
-      _gameStatus = GameStatus.submitting;
+    if (_gameStatus != GameStatus.playing || _currentWord == null) return;
+    if (_currentWord!.letters.contains(Letter.empty())) return;
+    
+    _gameStatus = GameStatus.submitting;
 
-      // flip all letters with delay
-      for (var i = 0; i < _currentWord!.letters.length; i++) {
-        final currentWordLetter = _currentWord!.letters[i];
-        final currentSolutionLetter = _solution.letters[i];
+    // flip all letters with delay
+    for (var i = 0; i < _currentWord!.letters.length; i++) {
+      final currentWordLetter = _currentWord!.letters[i];
+      final currentSolutionLetter = _solution.letters[i];
 
-        setState(() {
-          if (currentWordLetter == currentSolutionLetter) {
-            _currentWord!.letters[i] =
-                currentWordLetter.copyWith(status: LetterStatus.correct);
-          } else if (_solution.letters.contains(currentWordLetter)) {
-            _currentWord!.letters[i] =
-                currentWordLetter.copyWith(status: LetterStatus.inWord);
-          } else {
-            _currentWord!.letters[i] =  
-                currentWordLetter.copyWith(status: LetterStatus.notInWord);
-          }
-        });
-
-        final letter = _keyboardLetters.firstWhere(
-          (e) => e.val == currentWordLetter.val,
-          orElse: () => Letter.empty(),
-        );
-        if (letter.status != LetterStatus.correct) {
-          _keyboardLetters.removeWhere((e) => e.val == currentWordLetter.val);
-          _keyboardLetters.add(_currentWord!.letters[i]);
+      setState(() {
+        if (currentWordLetter == currentSolutionLetter) {
+          _currentWord!.letters[i] =
+              currentWordLetter.copyWith(status: LetterStatus.correct);
+        } else if (_solution.letters.contains(currentWordLetter)) {
+          _currentWord!.letters[i] =
+              currentWordLetter.copyWith(status: LetterStatus.inWord);
+        } else {
+          _currentWord!.letters[i] =  
+              currentWordLetter.copyWith(status: LetterStatus.notInWord);
         }
+      });
 
-        // trigger flip
-        _flipCardKeys[_currentWordIndex][i].currentState?.toggleCard();
-
-        // wait between flips except last
-        if (i < _currentWord!.letters.length - 1) {
-        await Future.delayed(_flipDelay); // wait for flip
-        }
+      final letter = _keyboardLetters.firstWhere(
+        (e) => e.val == currentWordLetter.val,
+        orElse: () => Letter.empty(),
+      );
+      if (letter.status != LetterStatus.correct) {
+        _keyboardLetters.removeWhere((e) => e.val == currentWordLetter.val);
+        _keyboardLetters.add(_currentWord!.letters[i]);
       }
 
-      // wait for the last flip to finish visually
-      await Future.delayed(_flipDuration);
-        
-      _checkIfWinOrLoss();
+      // trigger flip
+      _flipCardKeys[_currentWordIndex][i].currentState?.toggleCard();
+
+      // wait between flips except last
+      if (i < _currentWord!.letters.length - 1) {
+      await Future.delayed(_flipDelay); // wait for flip
+      }
+    }
+    // wait for the last flip to finish visually
+    await Future.delayed(_flipDuration);
+      
+    _checkIfWinOrLoss();
     }
   }
 
