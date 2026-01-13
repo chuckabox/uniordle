@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_wordle/app/app_colors.dart';
 import 'package:flutter_wordle/wordle/wordle.dart';
+import 'package:flutter/services.dart';
 
 const _qwerty = [
   ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'],
@@ -44,37 +45,46 @@ class Keyboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: _qwerty
-          .map(
-            (keyRow) => Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: keyRow.map(
-                (letter) {
-                  if (letter == 'DEL') {
-                    return _KeyboardButton.delete(onTap: onDeleteTapped);
-                  } else if (letter == 'ENTER') {
-                    return _KeyboardButton.enter(onTap: onEnterTapped);
-                  }
+    return Focus(
+      autofocus: true,
+      onKeyEvent: (node, event) {
+        if (event is KeyDownEvent) {
+          _handlePhysicalKey(event.logicalKey.keyLabel);
+        }
+        return KeyEventResult.handled;
+      },
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: _qwerty
+            .map(
+              (keyRow) => Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: keyRow.map(
+                  (letter) {
+                    if (letter == 'DEL') {
+                      return _KeyboardButton.delete(onTap: onDeleteTapped);
+                    } else if (letter == 'ENTER') {
+                      return _KeyboardButton.enter(onTap: onEnterTapped);
+                    }
 
-                  final letterKey = letters.firstWhere(
-                    (e) => e.val == letter,
-                    orElse: () => Letter.empty(),
-                  );
+                    final letterKey = letters.firstWhere(
+                      (e) => e.val == letter,
+                      orElse: () => Letter.empty(),
+                    );
 
-                  return _KeyboardButton(
-                    onTap: () => onKeyTapped(letter),
-                    letter: letter,
-                    backgroundColor: letterKey != Letter.empty()
-                        ? letterKey.backgroundColor
-                        : keyBackground,
-                  );
-                },
-              ).toList(),
-            ),
-          )
-          .toList(),
+                    return _KeyboardButton(
+                      onTap: () => onKeyTapped(letter),
+                      letter: letter,
+                      backgroundColor: letterKey != Letter.empty()
+                          ? letterKey.backgroundColor
+                          : keyBackground,
+                    );
+                  },
+                ).toList(),
+              ),
+            )
+            .toList(),
+      ),
     );
   }
 }
