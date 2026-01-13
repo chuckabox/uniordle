@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_wordle/app/home_screen.dart';
 import 'package:flutter_wordle/wordle/views/wordle_screen.dart';
 
 
@@ -11,7 +12,7 @@ class App extends StatelessWidget {
       title: 'Uniordle',
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark().copyWith(scaffoldBackgroundColor: Colors.black),
-      home: const WordleScreen(),
+      home: HomeScreen(),
     );
   }
 }
