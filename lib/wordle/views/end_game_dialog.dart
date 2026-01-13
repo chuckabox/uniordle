@@ -1,24 +1,23 @@
 import 'package:flutter/material.dart';
 
-const double _outerBoxWidth = 24;
-const double _outerBoxCornerRounding = 12;
+// Outer box
+const double outerBoxWidth = 24;
+const double outerBoxCorner = 12;
 
-const double _topColourBarHeight = 14;
-const double _topColourBarCornerRounding = 12;
+// Top bar
+const double topBarHeight = 14;
+const double topBarCorner = 12;
+const Color topBarWinColor = Color(0xFF55B725);
+const Color topBarLoseColor = Color(0xFFC62121);
 
-const double _innerBoxWidthPadding = 16;
+// Stats box
+const double statsHeight = 22;
+const double statsCorner = 12;
+const double textToStatPadding = 6;
 
-const double _letterLengthLabelWidth = 8;
-const double _letterLengthLabelHeight = 4;
-const double _letterLengthLabelCornerRounding = 10;
-
-const double _innerBoxBackgroundHeight = 16;
-
-const double _statsHeight = 22;
-const double _statsCornerRounding = 12;
-const double _textFontSize = 12;
-const double _statFontSize = 28;
-const double _textToStatPadding = 6;
+// Button
+const double buttonCorner = 4;
+const Color buttonColor = topBarWinColor;
 
 class EndGameDialog extends StatelessWidget {
   final bool won;
@@ -37,7 +36,7 @@ class EndGameDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return Dialog(
       insetPadding: const EdgeInsets.symmetric(horizontal: _outerBoxWidth),
-      backgroundColor: Colors.white,
+      backgroundColor: Color(0xFF1E2021),
       shape: RoundedRectangleBorder(
       // bottom of dialog corners
         borderRadius: BorderRadius.circular(_outerBoxCornerRounding),
@@ -49,24 +48,25 @@ class EndGameDialog extends StatelessWidget {
             width: double.infinity,
             padding: const EdgeInsets.symmetric(vertical: _topColourBarHeight),
             decoration: BoxDecoration(
-              color: won ? Colors.green : Colors.red,
+              color: won ? Color(0xFF55B725) : Color(0xFFC62121),
               borderRadius: const BorderRadius.vertical(
               top: Radius.circular(_topColourBarCornerRounding),
               ),
             ),
             child: Text(
-              won ? 'YOU WON' : 'YOU LOST',
+              won ? 'You Won!' : 'Game Over',
               textAlign: TextAlign.center,
               style: const TextStyle(
                 color: Colors.white,
-                fontSize: 20,
+                fontSize: 30,
+                fontFamily: 'clashdisplay',
                 fontWeight: FontWeight.w600,
               ),
             ),
           ),
           // content
           Padding(
-            padding: const EdgeInsets.all(_innerBoxWidthPadding),
+            padding: const EdgeInsets.all(_innerBoxesWidthPadding),
             child: Column(
               children: [
                 // top left label
@@ -85,7 +85,7 @@ class EndGameDialog extends StatelessWidget {
                       '${solution.length} letters',
                       style: const TextStyle(
                         color: Colors.white70,
-                        fontSize: 12,
+                        fontSize: _letterLengthFontSize,
                       ),
                     ),
                   ),
@@ -100,7 +100,7 @@ class EndGameDialog extends StatelessWidget {
                         value: solution,
                       ),
                     ),
-                    const SizedBox(width: 12),
+                    const SizedBox(width: _paddingBetweenTwoBoxes),
                     Expanded(
                       child: _StatBox(
                         title: 'ATTEMPTS', 
@@ -109,13 +109,27 @@ class EndGameDialog extends StatelessWidget {
                     ),
                   ],
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: _paddingBetweenTwoBoxesToBottomBox),
                 // button
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: onRestart,
-                    child: const Text('NEW GAME'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color(0xFF55B725),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(4),
+                      )
+                    ),
+                    child: Text(
+                      'New Game',
+                      style: const TextStyle(
+                        fontSize: 14,
+                        color: Colors.white,
+                        fontFamily: 'clashdisplay',
+                        fontWeight: FontWeight.w400
+                      ),
+                    ),
                   ),
                 ),
               ],
@@ -152,7 +166,7 @@ class _StatBox extends StatelessWidget {
             title,
             style: const TextStyle(
               color: Colors.white60,
-              fontSize: _textFontSize,
+              fontSize: 16,
             ),
           ),
           const SizedBox(height: _textToStatPadding),
@@ -160,7 +174,7 @@ class _StatBox extends StatelessWidget {
           value,
             style: const TextStyle(
               color: Colors.white,
-              fontSize: _statFontSize,
+              fontSize: 36,
               fontWeight: FontWeight.w600,
             ),
           ),
