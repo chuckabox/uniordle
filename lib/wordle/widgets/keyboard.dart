@@ -9,6 +9,13 @@ const _qwerty = [
   ['ENTER', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', 'DEL'],
 ];
 
+const double _keyboardButtonHeight = 64;
+const double _keyboardButtonWidth = 44;
+const double _keyboardSpecialButtonWidth = 66;
+const double _keyboardButtonPadding = 4;
+const double _keyboardSpecialButtonOffset = -3;
+const double _keyboardIconSize = 22;
+
 class Keyboard extends StatelessWidget {
   
   const Keyboard({ 
@@ -67,8 +74,8 @@ class Keyboard extends StatelessWidget {
 class _KeyboardButton extends StatefulWidget {
   const _KeyboardButton({ 
     Key? key, 
-    this.height = 64,
-    this.width = 44,
+    this.height = _keyboardButtonHeight,
+    this.width = _keyboardButtonWidth,
     required this.onTap,
     required this.backgroundColor,
     this.letter,
@@ -87,15 +94,15 @@ class _KeyboardButton extends StatefulWidget {
       required VoidCallback onTap 
     }) =>
       _KeyboardButton(
-        width: 66,
+        width: _keyboardSpecialButtonWidth,
         onTap: onTap,
         backgroundColor: keyBackground,
         child: Transform.translate(
-          offset: const Offset(0, -3),
+          offset: const Offset(0, _keyboardSpecialButtonOffset),
           child: const Icon(
             Icons.backspace, 
             color: Colors.white, 
-            size: 22
+            size: _keyboardIconSize,
           ),
         ),
       );
@@ -104,15 +111,16 @@ class _KeyboardButton extends StatefulWidget {
       required VoidCallback onTap,
     }) =>
       _KeyboardButton(
-        width: 66,
+        width: _keyboardSpecialButtonWidth,
         onTap: onTap,
         backgroundColor: keyBackground,
         letter: 'ENTER',
         child: Transform.translate(
-          offset: const Offset(0, -3),
+          offset: const Offset(0, _keyboardSpecialButtonOffset),
           child: const Text(
             'ENTER',
             style: TextStyle(
+              // smaller text for enter
               fontSize: 14,
               fontWeight: FontWeight.bold,
               color: Colors.white,
@@ -126,20 +134,20 @@ class _KeyboardButton extends StatefulWidget {
 }
 
 class _KeyboardButtonState extends State<_KeyboardButton> with SingleTickerProviderStateMixin{
+  
   bool _isPressed = false;
   bool _isTapped = false;
 
-  static const int _pressSpeed = 80; // ms
-  static const int _tapSpeed = 80; // ms for full animation
+  static const Duration _pressSpeed = Duration(milliseconds: 80);
+  static const Duration _tapSpeed = Duration(milliseconds: 80); // ms for full animation
   static const int _darkenSpeed = 10; // ms
   static const double _darkenIntensity = 0.2;
   static const double _keyboardTextOffset = -2.0;
 
-
   void _handleTap() {
     // trigger tap animation
     setState(() => _isTapped = true);
-    Future.delayed(const Duration(milliseconds: _tapSpeed), () {
+    Future.delayed(_tapSpeed, () {
       if (mounted) setState(() => _isTapped = false);
     });
 
@@ -154,9 +162,8 @@ class _KeyboardButtonState extends State<_KeyboardButton> with SingleTickerProvi
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 4.0, 
-        vertical: 4.0,
+      padding: const EdgeInsets.all(
+        _keyboardButtonPadding,
       ),
       child: GestureDetector(
         onTapDown: (_) => setState(() => _isPressed = true),
@@ -168,8 +175,8 @@ class _KeyboardButtonState extends State<_KeyboardButton> with SingleTickerProvi
         child: TweenAnimationBuilder<double>(
           tween: Tween<double>(begin: 1.0, end: _currentScale),
           duration: _isTapped
-              ? const Duration(milliseconds: _tapSpeed)
-              : const Duration(milliseconds: _pressSpeed),
+              ? _tapSpeed
+              : _pressSpeed,
           curve: Curves.easeInOut,
           builder: (context, scale, child) => Transform.scale(
             scale: scale,

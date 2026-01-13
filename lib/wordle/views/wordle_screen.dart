@@ -5,7 +5,9 @@ import 'package:flutter_wordle/wordle/data/word_list.dart';
 import 'package:flutter_wordle/wordle/wordle.dart';
 import 'dart:math';
 
-const Duration _flipDuration = Duration(milliseconds: 100);
+const Duration _tileFlipDuration = Duration(milliseconds: 100);
+const double _bottomBoardPadding = 12;
+
 final int wordLength = 5;
 final int maxAttempts = 1;
 
@@ -72,7 +74,7 @@ class _WordleScreenState extends State<WordleScreen> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(bottom: 12),
+            padding: const EdgeInsets.only(bottom: _bottomBoardPadding),
             child: Keyboard(
               onKeyTapped: _onKeyTapped,
               onDeleteTapped: _onDeleteTapped,
@@ -133,10 +135,10 @@ class _WordleScreenState extends State<WordleScreen> {
       _flipCardKeys[_currentWordIndex][i].currentState?.toggleCard();
 
       // flips slightly overlap
-      await Future.delayed(_flipDuration * 0.7);
+      await Future.delayed(_tileFlipDuration * 0.7);
     }
 
-    await Future.delayed(_flipDuration * 0.3);
+    await Future.delayed(_tileFlipDuration * 0.3);
       
     _checkIfWinOrLoss();
   }

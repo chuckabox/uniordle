@@ -7,6 +7,7 @@ const double _boardTileSize = 64;
 const double _boardTileGapPadding = 4;
 const double _boardTileCornerRounding = 5;
 const double _boardBorderWidth = 2;
+
 const Duration _pumpDuration = Duration(milliseconds: 80);
 const double _pumpBeginScale = 1.0;
 const double _pumpEndScale = 1.05;
