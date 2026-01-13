@@ -19,51 +19,33 @@ class BoardTile extends StatefulWidget {
 
 class _BoardTileState extends State<BoardTile> with SingleTickerProviderStateMixin{
   late AnimationController _controller;
-  late Animation<double> _animation;
-  late Animation<double> _fontSize;
-
-  static const double _baseFont = 32;
+  late Animation<double> _scale;
 
   @override
   void initState() {
     super.initState();
 
     _controller = AnimationController(
-      duration: const Duration(milliseconds: 120),
+      duration: const Duration(milliseconds: 12000),
       vsync: this,
     );
 
-    // scale up animation
-    _animation = Tween<double>(
-      begin: 1.0, 
-      end: 1.05
-      ).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeOut)
-    );
-
-    _fontSize = Tween<double>(
-      begin: _baseFont,
-      end: _baseFont + 4,
+    _scale = Tween<double>(
+      begin: 1.0,
+      end: 5,
     ).animate(
       CurvedAnimation(parent: _controller, curve: Curves.easeOut),
     );
 
-    // reverse automatically after forward
     _controller.addStatusListener((status) {
-      if (status == AnimationStatus.completed) {
-        _controller.reverse();
-      }
+      if (status == AnimationStatus.completed) _controller.reverse();
     });
   }
 
   @override
   void didUpdateWidget(covariant BoardTile oldWidget) {
     super.didUpdateWidget(oldWidget);
-
-    // plays pump effect when added letter or removed
-    if (oldWidget.letter.val != widget.letter.val) {
-      _controller.forward(from: 0.0);
-    }
+    if (oldWidget.letter.val != widget.letter.val) _controller.forward(from: 0.0);
   }
 
   @override
@@ -75,7 +57,7 @@ class _BoardTileState extends State<BoardTile> with SingleTickerProviderStateMix
   @override
   Widget build(BuildContext context) {
     return ScaleTransition(
-      scale: _animation,
+      scale: _scale,
       child: Container(
         margin: const EdgeInsets.all(4),
         height: 64,
@@ -83,27 +65,21 @@ class _BoardTileState extends State<BoardTile> with SingleTickerProviderStateMix
         alignment: Alignment.center,
         decoration: BoxDecoration(
           color: widget.letter.val.isEmpty
-          ? tileBackground
-          : widget.letter.backgroundColor,
+              ? tileBackground
+              : widget.letter.backgroundColor,
           border: Border.all(
             color: widget.letter.backgroundColor,
             width: 2,
           ),
           borderRadius: BorderRadius.circular(5),
         ),
-        // display letter values
-        child: AnimatedBuilder(
-          animation: _controller,
-          builder: (context, _) {
-            return Text(
-              widget.letter.val,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: _fontSize.value.roundToDouble(),
-                fontWeight: FontWeight.bold,
-              ),
-            );
-          }
+        child: Text(
+          widget.letter.val,
+          textAlign: TextAlign.center,
+          style: const TextStyle(
+            fontSize: 32,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
     );
