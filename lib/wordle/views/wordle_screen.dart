@@ -169,7 +169,8 @@ class _WordleScreenState extends State<WordleScreen> {
           insetPadding: const EdgeInsets.symmetric(horizontal: 24),
           backgroundColor: Colors.white,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(5),
+            // bottom of dialog corners
+            borderRadius: BorderRadius.circular(6),
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -293,6 +294,7 @@ class _WordleScreenState extends State<WordleScreen> {
   }
 }
 
+// two centre buttons
 class _StatBox extends StatelessWidget {
   final String title;
   final String value;
@@ -308,7 +310,7 @@ class _StatBox extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 16),
       decoration: BoxDecoration(
         color: const Color(0XFF2A2A2A),
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(12),
         border: Border.all(color: Colors.white12),
       ),
       child: Column(

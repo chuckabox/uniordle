@@ -20,18 +20,32 @@ class BoardTile extends StatefulWidget {
 class _BoardTileState extends State<BoardTile> with SingleTickerProviderStateMixin{
   late AnimationController _controller;
   late Animation<double> _animation;
+  late Animation<double> _fontSize;
+
+  static const double _baseFont = 32;
 
   @override
   void initState() {
     super.initState();
+
     _controller = AnimationController(
       duration: const Duration(milliseconds: 120),
       vsync: this,
     );
 
     // scale up animation
-    _animation = Tween<double>(begin: 1.0, end: 1.05).animate(
+    _animation = Tween<double>(
+      begin: 1.0, 
+      end: 1.05
+      ).animate(
       CurvedAnimation(parent: _controller, curve: Curves.easeOut)
+    );
+
+    _fontSize = Tween<double>(
+      begin: _baseFont,
+      end: _baseFont + 4,
+    ).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.easeOut),
     );
 
     // reverse automatically after forward
@@ -78,15 +92,18 @@ class _BoardTileState extends State<BoardTile> with SingleTickerProviderStateMix
           borderRadius: BorderRadius.circular(5),
         ),
         // display letter values
-        child: Align(
-          child: Text(
-            widget.letter.val,
-            textAlign: TextAlign.center,
-            style: const TextStyle(
-              fontSize: 32,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
+        child: AnimatedBuilder(
+          animation: _controller,
+          builder: (context, _) {
+            return Text(
+              widget.letter.val,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: _fontSize.value.roundToDouble(),
+                fontWeight: FontWeight.bold,
+              ),
+            );
+          }
         ),
       ),
     );
