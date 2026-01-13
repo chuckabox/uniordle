@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 // outer box
-const double _outerBoxWidth = 24;
+const double _outerBoxWidth = 36;
 const double _outerBoxCorner = 12;
 
 // top bar
-const double _topBarHeight = 14;
+const double _topBarHeight = 8;
 const double _topBarCorner = 12;
 const Color _topBarWinColor = Color(0xFF55B725);
 const Color _topBarLoseColor = Color(0xFFC62121);
@@ -13,7 +13,7 @@ const Color _topBarLoseColor = Color(0xFFC62121);
 // small label
 const double _smallLabelWidth = 8;
 const double _smallLabelHeight = 4;
-const double _smallLabelCorner = 10;
+const double _smallLabelCorner = 12;
 
 // stats box
 const double _statsHeight = 22;
@@ -39,22 +39,24 @@ class EndGameDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      insetPadding: const EdgeInsets.symmetric(horizontal: _outerBoxWidth),
+      insetPadding: const EdgeInsets.symmetric(
+        horizontal: _outerBoxWidth,
+      ),
       backgroundColor: Color(0xFF1E2021),
       shape: RoundedRectangleBorder(
-      // bottom of dialog corners
         borderRadius: BorderRadius.circular(_outerBoxCorner),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
+          // top bar
           Container(
-            width: double.infinity,
+            width: double.infinity, // expands dialog box width
             padding: const EdgeInsets.symmetric(vertical: _topBarHeight),
             decoration: BoxDecoration(
               color: won ? _topBarWinColor : _topBarLoseColor,
               borderRadius: const BorderRadius.vertical(
-              top: Radius.circular(_topBarCorner),
+              top: Radius.circular(_outerBoxCorner),
               ),
             ),
             child: Text(
@@ -70,7 +72,10 @@ class EndGameDialog extends StatelessWidget {
           ),
           // content
           Padding(
-            padding: const EdgeInsets.all(16), // _inner boxes width padding
+            padding: const EdgeInsets.symmetric(
+              horizontal: 20, 
+              vertical: 20
+            ), // inner boxes width padding
             child: Column(
               children: [
                 // top left label
@@ -86,15 +91,17 @@ class EndGameDialog extends StatelessWidget {
                       borderRadius: BorderRadius.circular(_smallLabelCorner),
                     ),
                     child: Text(
-                      '${solution.length} letters',
+                      '${solution.length} Letters',
                       style: const TextStyle(
-                        color: Colors.white70,
-                        fontSize: 12,
+                        color: Color(0xFFB0B4B7),
+                        fontSize: 14,
+                        fontFamily: 'dm-sans',
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                   ),
                 ),
-                const SizedBox(height: 16), // inner box background height
+                const SizedBox(height: 18), // inner box background height
                 // two boxes
                 Row(
                   children: [
@@ -104,7 +111,7 @@ class EndGameDialog extends StatelessWidget {
                         value: solution,
                       ),
                     ),
-                    const SizedBox(width: 12), // padding between two boxes
+                    const SizedBox(width: 18), // padding between two boxes
                     Expanded(
                       child: _StatBox(
                         title: 'ATTEMPTS', 
@@ -113,7 +120,7 @@ class EndGameDialog extends StatelessWidget {
                     ),
                   ],
                 ),
-                const SizedBox(height: 20), // padding between two boxes to bottom box 
+                const SizedBox(height: 18), // padding between two boxes to bottom box 
                 // button
                 SizedBox(
                   width: double.infinity,
@@ -122,7 +129,7 @@ class EndGameDialog extends StatelessWidget {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: _nextGameButtonColour,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(4),
+                        borderRadius: BorderRadius.circular(_statsCorner),
                       )
                     ),
                     child: Text(
@@ -160,17 +167,19 @@ class _StatBox extends StatelessWidget {
     return Container( 
       padding: const EdgeInsets.symmetric(vertical: _statsHeight),
       decoration: BoxDecoration(
-        color: const Color(0XFF2A2A2A),
+        color: const Color(0xFF1E2021),
         borderRadius: BorderRadius.circular(_statsCorner),
-        border: Border.all(color: Colors.white12),
+        border: Border.all(color: Color(0xFF303436)),
       ),
       child: Column(
         children: [
           Text(
             title,
             style: const TextStyle(
-              color: Colors.white60,
+              color: Color(0xFF8E9599),
               fontSize: 16,
+              fontFamily: 'dm-sans',
+              fontWeight: FontWeight.w500
             ),
           ),
           const SizedBox(height: _textToStatPadding),
@@ -179,7 +188,8 @@ class _StatBox extends StatelessWidget {
             style: const TextStyle(
               color: Colors.white,
               fontSize: 36,
-              fontWeight: FontWeight.w600,
+              fontFamily: 'clashdisplay',
+              fontWeight: FontWeight.w500,
             ),
           ),
         ],

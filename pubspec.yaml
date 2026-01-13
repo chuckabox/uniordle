@@ -120,3 +120,5 @@ flutter:
     fonts:
       - asset: assets/fonts/dm-sans/DMSans_24pt-Black.ttf
         weight: 900
+      - asset: assets/fonts/dm-sans/DMSans-Medium.ttf
+        weight: 500
