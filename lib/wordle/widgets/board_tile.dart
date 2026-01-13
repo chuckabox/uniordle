@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_wordle/wordle/wordle.dart';
 import 'package:flutter_wordle/app/app_colors.dart';
 
-const double _boardTileFontSize = 32;
+const double _boardTileFontSize = 36;
 const double _boardTileSize = 64;
 const double _boardTileGapPadding = 4;
 const double _boardTileCornerRounding = 5;
@@ -88,7 +88,8 @@ class _BoardTileState extends State<BoardTile> with SingleTickerProviderStateMix
           textAlign: TextAlign.center,
           style: const TextStyle(
             fontSize: _boardTileFontSize,
-            fontWeight: FontWeight.bold,
+            fontFamily: 'dm-sans',
+            fontWeight: FontWeight.w500,
           ),
         ),
       ),

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_wordle/wordle/wordle.dart';
 
 const int _flipSpeed = 600;
-const double _titleToBoardPadding = 10;
+const double _titleToBoardPadding = 38;
 
 class Board extends StatelessWidget {
   const Board({ 

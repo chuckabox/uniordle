@@ -7,12 +7,12 @@ import 'package:flutter_wordle/wordle/views/end_game_dialog.dart';
 import 'dart:math';
 
 const Duration _tileFlipDuration = Duration(milliseconds: 100);
-const double _boardToKeyboardPadding = 4;
-const double _toolBarToTitlePadding = 100;
-const double _titleFontSize = 64;
+const double _bottomKeyboardPadding = 72;
+const double _topTitlePadding = 86;
+const double _titleFontSize = 62;
 
-final int wordLength = 5;
-final int maxAttempts = 1;
+final int wordLength = 8;
+final int maxAttempts = 2;
 
 enum GameStatus { playing, submitting, won, lost }
 
@@ -55,7 +55,7 @@ class _WordleScreenState extends State<WordleScreen> {
         centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0,
-        toolbarHeight: _toolBarToTitlePadding,
+        toolbarHeight: _topTitlePadding,
         title: const Text(
             'Uniordle',
             style: TextStyle(
@@ -73,7 +73,7 @@ class _WordleScreenState extends State<WordleScreen> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(bottom: _boardToKeyboardPadding),
+            padding: const EdgeInsets.only(bottom: _bottomKeyboardPadding),
             child: Keyboard(
               onKeyTapped: _onKeyTapped,
               onDeleteTapped: _onDeleteTapped,
