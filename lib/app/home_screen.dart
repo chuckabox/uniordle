@@ -67,6 +67,36 @@ class HomeScreen extends StatelessWidget {
   }
 
   void _showSettingsDialog(BuildContext context) {
-
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Settings'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              children: const [
+                Text('Option 1'),
+                Spacer(),
+                Switch(value: false, onChanged: null),
+              ],
+            ),
+            Row(
+              children: const [
+                Text('Option 2'),
+                Spacer(),
+                Switch(value: true, onChanged: null),
+              ],
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Close'),
+          ),
+        ],
+      ),
+    );
   }
 }
