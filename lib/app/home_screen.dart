@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uniordle/app/app_colors.dart';
+import 'package:uniordle/app/app_layout.dart';
 
 /// The first screen the user sees on opening application
 class HomeScreen extends StatelessWidget {
@@ -42,7 +43,7 @@ class HomeScreen extends StatelessWidget {
             children: [
               LayoutBuilder(
                 builder: (context, constraints) {
-                  final double maxWidth = constraints.maxWidth.clamp(0, 540);
+                  final double maxWidth = constraints.maxWidth.clamp(AppLayout.minWidth, AppLayout.minWidth);
                   return SizedBox(
                     width: maxWidth,
                     child: GridView.count(
