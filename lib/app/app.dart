@@ -17,7 +17,6 @@ class App extends StatelessWidget {
       title: 'Uniordle',
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark().copyWith(scaffoldBackgroundColor: Colors.black),
-      home: HomeScreen(),
       /// Initial home screen displayed
       initialRoute: '/',
       /// Named routes for navication
