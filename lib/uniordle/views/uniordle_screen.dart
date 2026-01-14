@@ -198,7 +198,7 @@ class _UniordleScreenState extends State<UniordleScreen> {
         _scrollController.position.maxScrollExtent + 100,
         duration: _scrollDuration,
         curve: Curves.easeOut,
-      )
+      );
     }
   }
 
