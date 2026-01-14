@@ -5,6 +5,10 @@ import 'package:uniordle/uniordle/wordle.dart';
 const int _flipSpeed = 600;
 const double _titleToBoardPadding = 38;
 
+/// Displays the Uniordle game board
+/// 
+/// Renders each guessed [World] as a row of tiles and
+/// controls flip animations using [FlipCard]
 class Board extends StatelessWidget {
   const Board({ 
     super.key,
@@ -12,8 +16,10 @@ class Board extends StatelessWidget {
     required this.flipCardKeys,
   });
 
+  /// List of words for the current board state
   final List<Word> board;
 
+  /// Keys to control flip animations for each tile
   final List<List<GlobalKey<FlipCardState>>> flipCardKeys;
 
 @override
