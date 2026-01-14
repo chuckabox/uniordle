@@ -11,27 +11,25 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: homeScreenBackground,
-      body: SafeArea(
-        child: Column(
-          children: [
-            Center(
-              child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 40),
-                child: Text(
-                'Uniordle',
-                style: TextStyle(
-                  fontSize: 48,
-                  fontFamily: 'crashdisplay',
-                  fontWeight: FontWeight.w600,
-                  color: Colors.white),
-                ),
-              ),
+      appBar: AppBar(
+        centerTitle: true,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        toolbarHeight: 128,
+        title: const Text(
+            'Uniordle',
+            style: TextStyle(
+              fontSize: 72,
+              fontFamily: 'clashdisplay',
+              fontWeight: FontWeight.w600,
             ),
-
-            const Spacer(),
-          ],
         ),
       ),
+      body: Center(
+        child: GestureDetector(
+          onTap: 
+        )
+      )
     );
   }
 }
