@@ -19,7 +19,7 @@ class App extends StatelessWidget {
       routes: {
         '/': (context) => const HomeScreen(),
         '/uniordle': (context) => const UniordleScreen(),
-      }
+      },
     );
   }
 }
