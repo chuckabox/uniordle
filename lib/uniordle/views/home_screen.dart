@@ -170,8 +170,38 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _navItem() {
-    
+  Widget _navItem({
+    required String id,
+    required String label,
+    required IconData icon,
+  }) {
+    final bool isActive = _activeTab == id;
+    final Color color = isActive ? AppColors.selectedIcon : AppColors.nonSelectedIcon;
+
+    return InkWell(
+      borderRadius: BorderRadius.circular(16),
+      onTap: () => setState(() => _activeTab = id),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(
+            icon,
+            size: 24,
+            color: color,
+          ),
+          const SizedBox(height: 4),
+          Text(
+            label.toUpperCase(),
+            style: TextStyle(
+              fontSize: 9,
+              fontWeight: FontWeight.bold,
+              letterSpacing: 1.4,
+              color: color,
+            )
+          )
+        ]
+      )
+    )
   }
 
   void _showPlayDialog(BuildContext context, String universityName) {

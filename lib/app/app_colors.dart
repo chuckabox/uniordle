@@ -15,7 +15,8 @@ class AppColors {
   static const Color keyBackground = Color(0xFF707070);
 
   // UI Elements
-
+  static const Color selectedIcon = Colors.blue;
+  static const Color nonSelectedIcon = Colors.grey;
   // Branding
 
   // Game End States
