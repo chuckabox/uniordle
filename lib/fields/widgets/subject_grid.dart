@@ -32,4 +32,13 @@ class SubjectGrid extends StatelessWidget {
       },
     );
   }
+
+  IconData _getIcon(String name) {
+    switch (name) {
+      case 'category':
+        return LucideIcons.layoutGrid;
+      default:
+        return LucideIcons.bookOpen;
+    }
+  }
 }
