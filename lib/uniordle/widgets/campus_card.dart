@@ -16,33 +16,36 @@ class CampusCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-    onTap: onTap,
-    child: ConstrainedBox(
-      constraints: const BoxConstraints(
-        maxWidth: 540,
-        maxHeight: 960,
-      ),
-        child: Container(
-          decoration: BoxDecoration(
-            color: matteColor,
-            borderRadius: BorderRadius.circular(24),
-            border: Border.all(
-              color: Colors.white.withValues(alpha: 0.1)
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withValues(alpha: 0.2),
-                blurRadius: 10,
-                offset: const Offset(0, 4),
-              ),
-            ],
+      onTap: onTap,
+      child: Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(
+            maxWidth: 540,
+            maxHeight: 960,
           ),
-          clipBehavior: Clip.antiAlias, // keeps image inside rounded corners
-          child: Column(
-            children: [
-              _buildImageHeader(),
-              _buildCardFooter(),
-            ],
+          child: Container(
+            decoration: BoxDecoration(
+              color: matteColor,
+              borderRadius: BorderRadius.circular(24),
+              border: Border.all(
+                color: Colors.white.withValues(alpha: 0.1)
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withValues(alpha: 0.2),
+                  blurRadius: 10,
+                  offset: const Offset(0, 4),
+                ),
+              ],
+            ),
+            clipBehavior: Clip.antiAlias, // keeps image inside rounded corners
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                _buildImageHeader(),
+                _buildCardFooter(),
+              ],
+            ),
           ),
         ),
       ),
