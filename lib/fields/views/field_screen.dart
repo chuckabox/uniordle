@@ -13,7 +13,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  String _activeTab = 'campus';
+  String _activeTab = 'fields';
 
 @override
   Widget build(BuildContext context) {
@@ -125,7 +125,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return const Column(
       children: [
         Text(
-          'Campuses',
+          'Select Course',
           style: TextStyle(
             fontSize: 40,
             fontWeight: FontWeight.w900,
@@ -135,7 +135,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         SizedBox(height: 8),
         Text(
-          'Select a University to begin.',
+          'Master your academic vocabulary.',
           textAlign: TextAlign.center,
           style: TextStyle(
             color: Colors.blueGrey,
