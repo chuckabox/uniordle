@@ -158,37 +158,43 @@ class _StatBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container( 
-      padding: const EdgeInsets.symmetric(vertical: 24),
-      decoration: BoxDecoration(
-        color: const Color(0xFF1E2021),
-        borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: Color(0xFF303436)),
+    return Dialog( 
+      insetPadding: const EdgeInsets.symmetric(
+        horizontal: 20,
+        vertical: 24,
       ),
-      child: Column(
-        children: [
-          Align(
-            child: Text(
-            title,
-            style: const TextStyle(
-              color: Color(0xFF8E9599),
-              fontSize: 16,
-              fontFamily: 'dm-sans',
-              fontWeight: FontWeight.w500
+      backgroundColor: const Color (0xFF1E2021),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 450),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Align(
+              child: Text(
+              title,
+              style: const TextStyle(
+                color: Color(0xFF8E9599),
+                fontSize: 16,
+                fontFamily: 'dm-sans',
+                fontWeight: FontWeight.w500
+                ),
               ),
             ),
-          ),
-          const SizedBox(height: 8),
-          Text(
-          value,
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 36,
-              fontFamily: 'clashdisplay',
-              fontWeight: FontWeight.w500,
+            const SizedBox(height: 8),
+            Text(
+            value,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 36,
+                fontFamily: 'clashdisplay',
+                fontWeight: FontWeight.w500,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
