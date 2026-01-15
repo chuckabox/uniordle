@@ -146,7 +146,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return GestureDetector(
       onTap: () => _showSettingsDialog(context, logo['name']!),
       child: ClipRRect(
-        borderRadius: BorderRadiusGeometry.circular(20),
+        borderRadius: BorderRadius.circular(20),
         child: Container(
           decoration: BoxDecoration(
             color: const Color(0xFF1A1F2B),
@@ -167,12 +167,13 @@ class _HomeScreenState extends State<HomeScreen> {
                           begin: Alignment.topCenter,
                           end: Alignment.bottomCenter,
                           colors: [Colors.black, Colors.transparent],
+                          stops: [0.6, 1.0],
                         ).createShader(Rect.fromLTRB(0, 0, rect.width, rect.height));
                       },
                       blendMode: BlendMode.dstIn,
                       child: Image.asset(
-                        logo['path'],
-                        fit: BoxFit.contain,
+                        logo['path']!,
+                        fit: BoxFit.cover,
                       ),
                     ),
                   ],
@@ -187,6 +188,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
+                        // takes out last word
                         logo['name']!.split(' ').last,
                         style: const TextStyle(
                           color: Colors.white,
