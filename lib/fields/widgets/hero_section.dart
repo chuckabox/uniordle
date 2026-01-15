@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lucide_icons/lucide_icons.dart';
-import 'package:uniordle/app/app_colors.dart';
 
 class HeroSection extends StatelessWidget {
   const HeroSection({super.key});
@@ -10,7 +8,7 @@ class HeroSection extends StatelessWidget {
     return const Column(
       children: [
         Text(
-          'Select Course',
+          'Select Discipline',
           style: TextStyle(
             fontSize: 40,
             fontWeight: FontWeight.w900,

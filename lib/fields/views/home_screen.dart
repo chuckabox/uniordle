@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:uniordle/app/app_colors.dart';
-import 'package:lucide_icons/lucide_icons.dart';
 import 'package:uniordle/fields/widgets/footer.dart';
 import 'package:uniordle/fields/widgets/header.dart';
 import 'package:uniordle/fields/widgets/hero_section.dart';
