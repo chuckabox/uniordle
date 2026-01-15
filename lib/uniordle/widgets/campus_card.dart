@@ -5,6 +5,8 @@ class CampusCard extends StatelessWidget {
   final University university;
   final VoidCallback onTap;
 
+  static const Color matteColor = Color(0xFF1A1F2B);
+
   const CampusCard({
     super.key,
     required this.university,
@@ -15,41 +17,61 @@ class CampusCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
     onTap: onTap,
-    child: ClipRRect(
-      borderRadius: BorderRadius.circular(20),
       child: Container(
         decoration: BoxDecoration(
-          color: const Color(0xFF1A1F2B),
-          border: Border.all(color: Colors.white.withValues(alpha: 0.1)),
+          color: matteColor,
+          borderRadius: BorderRadius.circular(24),
+          border: Border.all(
+            color: Colors.white.withValues(alpha: 0.1)
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.2),
+              blurRadius: 10,
+              offset: const Offset(0, 4),
+            ),
+          ],
         ),
+        clipBehavior: Clip.antiAlias, // keeps image inside rounded corners
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _buildImageHeader(),
             _buildCardFooter(),
           ],
         ),
       ),
-    ),
-  );
+    );
   }
 
   Widget _buildImageHeader() {
     return Expanded(
-      flex: 3,
-      child: ShaderMask(
-        shaderCallback: (rect) => const LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [Colors.black, Colors.transparent],
-            stops: [0.6, 1.0],
-          ).createShader(rect),
-        blendMode: BlendMode.dstIn,
-        child: Image.asset(
-          university.path,
-          fit: BoxFit.cover,
-        ),
-      ),
+      child: Stack(
+        fit: StackFit.expand,
+        children: [
+          Image.asset(
+            university.path,
+            fit: BoxFit.cover,
+          ),
+
+          Positioned.fill(
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Colors.transparent,
+                    matteColor.withValues(alpha: 0.4),
+                    matteColor.withValues(alpha: 0.9),
+                    matteColor,
+                  ],
+                  stops: const [0.5, 0.8, 0.95, 1.0], // fade starts halfway down
+                ),
+              ),
+            ),
+          ),
+        ],
+      )
     );
   }
 
