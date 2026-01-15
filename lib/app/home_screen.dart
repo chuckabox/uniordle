@@ -123,9 +123,9 @@ class _HomeScreenState extends State<HomeScreen> {
         crossAxisCount: 2,
         crossAxisSpacing: 16,
         mainAxisSpacing: 16,
-        childAspectRatio: 0.72,  
+        childAspectRatio: 0.7,  
       ),
-      itemCount: logos.length,
+      itemCount: universities.length,
       itemBuilder: (context, index) {
         return CampusCard(
           university: universities[index],
