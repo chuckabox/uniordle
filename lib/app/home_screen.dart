@@ -31,13 +31,13 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: gameBackground,
+      backgroundColor: AppColors.gameBackground,
       body: Stack(
         children: [
           Container(
             height: MediaQuery.of(context).size.height * 0.4,
             decoration: BoxDecoration(
-              color: gameBackground,
+              color: AppColors.gameBackground,
             ),
           ),
           SafeArea(

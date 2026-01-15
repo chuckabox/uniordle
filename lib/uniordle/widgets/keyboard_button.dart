@@ -35,7 +35,7 @@ class KeyboardButton extends StatefulWidget {
       KeyboardButton(
         width: _specialButtonWidth,
         onTap: onTap,
-        backgroundColor: keyBackground,
+        backgroundColor: AppColors.keyBackground,
         child: Transform.translate(
           offset: const Offset(0, -2),
           child: const Icon(
@@ -53,7 +53,7 @@ class KeyboardButton extends StatefulWidget {
       KeyboardButton(
         width: _specialButtonWidth,
         onTap: onTap,
-        backgroundColor: keyBackground,
+        backgroundColor: AppColors.keyBackground,
         letter: 'ENTER',
         child: Transform.translate(
           offset: const Offset(0, -3),

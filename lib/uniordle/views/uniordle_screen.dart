@@ -64,7 +64,7 @@ class _UniordleScreenState extends State<UniordleScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: gameBackground,
+      backgroundColor: AppColors.gameBackground,
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: Colors.transparent,
