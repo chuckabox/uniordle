@@ -3,6 +3,8 @@ import 'package:uniordle/app/app_colors.dart';
 import 'package:uniordle/home/widgets/footer.dart';
 import 'package:uniordle/home/widgets/header.dart';
 import 'package:uniordle/home/widgets/hero_section.dart';
+import 'package:uniordle/home/widgets/subject_grid.dart';
+import 'package:uniordle/home/models/subject.dart';
 
 /// The first screen the user sees on opening application
 class HomeScreen extends StatefulWidget {
@@ -16,6 +18,17 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   String _activeTab = 'fields';
+
+    final List<Subject> subjects = [
+    Subject(id: '1', name: 'Engineering', icon: 'category', color: Colors.blue),
+    Subject(id: '2', name: 'CS', icon: 'history', color: Colors.red),
+    Subject(id: '3', name: 'Medicine', icon: 'account_circle', tag: 'DONE'),
+    Subject(id: '4', name: 'Law', icon: 'category', count: 12),
+  ];
+
+  void _onSubjectTap(Subject sub) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Selected ${sub.name}')));
+  }
 
   void _onTabChange(String tabId) => setState(() => _activeTab = tabId);
 
@@ -35,6 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   const SizedBox(height: 24),
                   const HeroSection(),
                   const SizedBox(height: 32),
+                  SubjectGrid(subjects: subjects, onSubjectTap: _onSubjectTap),
                 ]),
               ),
             ),
