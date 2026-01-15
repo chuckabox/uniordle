@@ -4,7 +4,7 @@ import 'package:lucide_icons/lucide_icons.dart';
 import 'package:uniordle/app/app_layout.dart';
 
 /// The first screen the user sees on opening application
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({
     super.key
   });
@@ -63,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
       },
 ];
     return Scaffold(
-      backgroundColor: homeScreenBackground,
+      backgroundColor: Color(0xFF0A0E17),
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: Colors.transparent,
