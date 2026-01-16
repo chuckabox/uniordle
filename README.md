@@ -95,3 +95,4 @@ Latest release:
 * Make subtexts and highlight be same colour as category
 * Change transition between screens
 * Add dialog when clicking help icon
+* Organise imports

@@ -17,16 +17,28 @@ late UniordleController _controller;
   bool _isInitialized = false;
 
 @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
+void didChangeDependencies() {
+  super.didChangeDependencies();
+
   if (!_isInitialized) {
     final args = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>?;
     
     final discipline = args?['discipline'] as Discipline?;
+
+    final difficulty = args?['difficulty'] ?? 1;
+
+    int attempts;
+    switch (difficulty) {
+      case 4: attempts = 4; break; // Postgrad (Hardest)
+      case 3: attempts = 5; break; // 3rd year
+      case 2: attempts = 6; break; // 2nd year (Standard)
+      case 1:
+      default: attempts = 8; break; // 1st year (Easiest)
+    }
     
     _controller = UniordleController(
       wordLength: args?['wordLength'] ?? 5,
-      maxAttempts: 6,
+      maxAttempts: attempts,
       disciplineId: discipline?.id ?? 'engineering',
       onGameEnd: (won) => _showEndDialog(won),
     );

@@ -5,7 +5,6 @@ import 'dart:math';
 enum GameStatus { playing, submitting, won, lost }
 
 class UniordleController extends ChangeNotifier {
-
   final int wordLength;
   final int maxAttempts;
   final String disciplineId;
@@ -28,8 +27,15 @@ class UniordleController extends ChangeNotifier {
   final Set<Letter> keyboardLetters = {};
 
   void _initGame() {
-    board = List.generate(maxAttempts, (_) => Word(letters: List.generate(wordLength, (_) => Letter.empty())));
-    flipCardKeys = List.generate(maxAttempts, (_) => List.generate(wordLength, (_) => GlobalKey<FlipCardState>()));
+    board = List.generate(
+      maxAttempts, 
+      (_) => Word(letters: List.generate(wordLength, (_) => Letter.empty()))
+    );
+    
+    flipCardKeys = List.generate(
+      maxAttempts, 
+      (_) => List.generate(wordLength, (_) => GlobalKey<FlipCardState>())
+    );
     
     final disciplineLibrary = categorizedWords[disciplineId.toLowerCase()] ?? categorizedWords['engineering']!;
     final library = disciplineLibrary[wordLength] ?? disciplineLibrary[5]!;
