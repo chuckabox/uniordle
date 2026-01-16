@@ -31,17 +31,17 @@ class KeyBoardConstants {
   static const double keyHeight = 64;
   static const double keyWidth = 44;
   static const double keyRounding = 4;
-  static const double gapPadding = 3;
+  static const double keyFontSize = 24;
+  static const double gapPadding = 4;
   static const double specialKeyWidth = 70;
 }
-
 
 class BoardTileConstants {
   static const Color tileBackground = Color(0xFF303436);
   static const double fontSize = 36;
   static const double tileSize = 64;
-  static const double gapPadding = 3;
-  static const double cornerRounding = 5;
+  static const double gapPadding = 4;
+  static const double cornerRounding = 6;
   static const double borderWidth = 2;
 
   static const Duration pumpDuration = Duration(milliseconds: 80);

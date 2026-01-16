@@ -7,6 +7,6 @@ export '../features/game_setup/widgets/game_setup_footer.dart';
 export '../features/game_setup/widgets/game_setup_header.dart';
 export '../features/game_setup/widgets/game_setup_play_button.dart';
 export '../features/game_setup/widgets/word_length_selector.dart';
-export '../core/constants.dart';
+export '../core/app_constants.dart';
 export 'package:flutter/material.dart';
 export 'package:lucide_icons/lucide_icons.dart';

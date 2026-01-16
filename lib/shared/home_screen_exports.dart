@@ -7,5 +7,5 @@ export '../features/home/widgets/home_footer_section.dart';
 export '../features/home/widgets/home_header_section.dart';
 export '../features/home/widgets/home_hero_section.dart';
 export 'package:lucide_icons/lucide_icons.dart';
-export '../core/constants.dart';
+export '../core/app_constants.dart';
 export 'package:flutter/material.dart';

@@ -38,7 +38,11 @@ class KeyboardButton extends StatelessWidget {
         letter: 'ENTER',
         child: const Text(
           'ENTER',
-          style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.white),
+          style: TextStyle(
+            fontSize: 14, 
+            fontWeight: FontWeight.bold, 
+            color: Colors.white
+          ),
         ),
       );
 
@@ -58,7 +62,7 @@ class KeyboardButton extends StatelessWidget {
             child: child ?? Text(
               letter ?? '',
               style: const TextStyle(
-                fontSize: 24,
+                fontSize: KeyBoardConstants.keyFontSize,
                 fontFamily: 'dm-sans',
                 fontWeight: FontWeight.w900,
                 color: Colors.white,

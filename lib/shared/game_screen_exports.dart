@@ -8,5 +8,5 @@ export '../features/game/controller/uniordle_controller.dart';
 export '../features/game/widgets/game_header.dart';
 export '../features/game/data/word_list.dart';
 export '../features/game/widgets/keyboard_button.dart';
-export '../core/constants.dart';
+export '../core/app_constants.dart';
 export 'package:flutter/material.dart';
