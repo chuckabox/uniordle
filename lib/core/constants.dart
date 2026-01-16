@@ -33,13 +33,8 @@ class KeyBoardConstants {
   static const double keyRounding = 4;
   static const double gapPadding = 3;
   static const double specialKeyWidth = 70;
-  static const double textOffset = 0;
-
-  static const Duration pressSpeed = Duration(milliseconds: 80);
-  static const Duration tapSpeed = Duration(milliseconds: 80);
-  static const int darkenSpeed = 10; // ms
-  static const double darkenIntensity = 0.2;
 }
+
 
 class BoardTileConstants {
   static const Color tileBackground = Color(0xFF303436);

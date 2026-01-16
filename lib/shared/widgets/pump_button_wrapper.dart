@@ -1,5 +1,8 @@
 import 'package:uniordle/shared/home_screen_exports.dart';
 
+ const Duration pumpDuration = Duration(milliseconds: 100);
+ const Duration darkenDuration = Duration(milliseconds: 100);
+
 /// Scale effect and Darken Effect on Click
 class PumpButtonWrapper extends StatefulWidget {
   final Widget child;
@@ -14,7 +17,7 @@ class PumpButtonWrapper extends StatefulWidget {
     super.key,
     required this.child,
     this.onTap,
-    this.pressScale = 0.96,
+    this.pressScale = 0.95,
     this.enableDarken = false,
     this.baseColor,
     this.darkenIntensity = 0.15,
@@ -54,10 +57,10 @@ class _PumpButtonWrapperState extends State<PumpButtonWrapper> {
       onTapCancel: () => _updateState(1.0, false),
       child: AnimatedScale(
         scale: _scale,
-        duration: const Duration(milliseconds: 100),
+        duration: pumpDuration,
         curve: Curves.easeOut,
         child: AnimatedContainer(
-          duration: const Duration(milliseconds: 100),
+          duration: darkenDuration,
           decoration: BoxDecoration(
             color: backgroundColor,
             borderRadius: BorderRadius.circular(KeyBoardConstants.keyRounding),
