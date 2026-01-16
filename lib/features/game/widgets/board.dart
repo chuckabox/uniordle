@@ -1,8 +1,6 @@
 import 'package:flip_card/flip_card.dart';
 import 'package:uniordle/shared/game_screen_exports.dart';
 
-const int _flipSpeed = 600;
-
 /// Displays the Uniordle game board
 /// 
 /// Renders each guessed [World] as a row of tiles and
@@ -44,7 +42,7 @@ Widget build(BuildContext context) {
                           key: flipCardKeys[i][j],
                           flipOnTouch: false,
                           direction: FlipDirection.VERTICAL,
-                          speed: _flipSpeed,
+                          speed: BoardTileConstants.flipSpeed,
                           front: BoardTile(
                             letter: Letter(
                               val: letter.val,

@@ -5,7 +5,7 @@ export '../features/game/widgets/board.dart';
 export '../features/game/widgets/board_tile.dart';
 export '../features/game/widgets/keyboard.dart';
 export '../features/game/controller/uniordle_controller.dart';
-export '../features/game/components/game_header_section.dart';
+export '../features/game/widgets/game_header.dart';
 export '../features/game/data/word_list.dart';
 export '../features/game/widgets/keyboard_button.dart';
 export '../core/constants.dart';

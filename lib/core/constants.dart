@@ -14,7 +14,16 @@ class GameConstants {
 }
 
 class GameHeaderConstants {
-  
+  static const double iconEdgePadding = 8;
+  static const double preferredSizeHeight = 64;
+  static const double borderSideWidth = 1;
+  static const double borderSideAlpha = 0.1;
+  static const double titleFontSize = 24;
+}
+
+class GameScreenConstants {
+  static const double boardVerticalPadding = 24;
+  static const double keyboardBottomPadding = 24;
 }
 
 class KeyBoardConstants {
@@ -25,6 +34,11 @@ class KeyBoardConstants {
   static const double gapPadding = 3;
   static const double specialKeyWidth = 70;
   static const double textOffset = 0;
+
+  static const Duration pressSpeed = Duration(milliseconds: 80);
+  static const Duration tapSpeed = Duration(milliseconds: 80);
+  static const int darkenSpeed = 10; // ms
+  static const double darkenIntensity = 0.2;
 }
 
 class BoardTileConstants {
@@ -34,4 +48,10 @@ class BoardTileConstants {
   static const double gapPadding = 3;
   static const double cornerRounding = 5;
   static const double borderWidth = 2;
+
+  static const Duration pumpDuration = Duration(milliseconds: 80);
+  static const double pumpBeginScale = 1.0;
+  static const double pumpEndScale = 1.05;
+
+  static const int flipSpeed = 600;
 }

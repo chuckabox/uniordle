@@ -24,7 +24,7 @@ void didChangeDependencies() {
     
     final discipline = args?['discipline'] as Discipline?;
 
-    final dynamic rawDifficulty = args?['difficulty'] ?? 1;
+    final dynamic rawDifficulty = args?['difficulty'] ?? 1; // 1 is default difficulty
     final int difficulty = rawDifficulty is double ? rawDifficulty.round() : rawDifficulty as int;
 
     int attempts;
@@ -76,7 +76,7 @@ void didChangeDependencies() {
           Expanded(
             child: Center(
               child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 24.0),
+                padding: const EdgeInsets.symmetric(vertical: GameScreenConstants.boardVerticalPadding),
                 child: Board(
                   board: _controller.board, 
                   flipCardKeys: _controller.flipCardKeys
@@ -87,7 +87,7 @@ void didChangeDependencies() {
           SafeArea(
             top: false,
             child: Padding(
-              padding: const EdgeInsets.only(bottom: 20),
+              padding: const EdgeInsets.only(bottom: GameScreenConstants.keyboardBottomPadding),
               child: Keyboard(
                 onKeyTapped: _controller.addLetter,
                 onDeleteTapped: _controller.removeLetter,

@@ -71,15 +71,10 @@ class _KeyboardButtonState extends State<KeyboardButton> with SingleTickerProvid
   bool _isPressed = false;
   bool _isTapped = false;
 
-  static const Duration _pressSpeed = Duration(milliseconds: 80);
-  static const Duration _tapSpeed = Duration(milliseconds: 80);
-  static const int _darkenSpeed = 10; // ms
-  static const double _darkenIntensity = 0.2;
-
   /// Handles tap animation and calls [widget.onTap]
   void _handleTap() {
     setState(() => _isTapped = true);
-    Future.delayed(_tapSpeed, () {
+    Future.delayed(KeyBoardConstants.tapSpeed, () {
       if (mounted) setState(() => _isTapped = false);
     });
 
@@ -110,20 +105,20 @@ class _KeyboardButtonState extends State<KeyboardButton> with SingleTickerProvid
         child: TweenAnimationBuilder<double>(
           tween: Tween<double>(begin: 1.0, end: _currentScale),
           duration: _isTapped
-              ? _tapSpeed
-              : _pressSpeed,
+              ? KeyBoardConstants.tapSpeed
+              : KeyBoardConstants.pressSpeed,
           curve: Curves.easeInOut,
           builder: (context, scale, child) => Transform.scale(
             scale: scale,
             child: AnimatedContainer(
-              duration: const Duration(milliseconds: _darkenSpeed),
+              duration: const Duration(milliseconds: KeyBoardConstants.darkenSpeed),
               height: widget.height,
               width: widget.width,
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 color: _isPressed || _isTapped
                     ? Color.alphaBlend(
-                      Colors.black.withValues(alpha: _darkenIntensity), 
+                      Colors.black.withValues(alpha: KeyBoardConstants.darkenIntensity), 
                         widget.backgroundColor
                       )
                     : widget.backgroundColor,

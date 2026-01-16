@@ -11,7 +11,7 @@ class GameHeader extends StatelessWidget implements PreferredSizeWidget {
   });
 
   @override
-  Size get preferredSize => const Size.fromHeight(64);
+  Size get preferredSize => const Size.fromHeight(GameHeaderConstants.preferredSizeHeight);
 
   @override
   Widget build(BuildContext context) {
@@ -20,14 +20,14 @@ class GameHeader extends StatelessWidget implements PreferredSizeWidget {
         color: AppColors.mainBackground,
         border: Border(
           bottom: BorderSide(
-            color: Colors.white.withValues(alpha: 0.1),
-            width: 1,
+            color: Colors.white.withValues(alpha: GameHeaderConstants.borderSideAlpha),
+            width: GameHeaderConstants.borderSideWidth,
           ),
         ),
       ),
       child: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8),
+          padding: const EdgeInsets.symmetric(horizontal: GameHeaderConstants.iconEdgePadding),
           child: Stack(
             alignment: Alignment.center,
             children: [
@@ -42,7 +42,7 @@ class GameHeader extends StatelessWidget implements PreferredSizeWidget {
                 'Uniordle',
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 24,
+                  fontSize: GameHeaderConstants.titleFontSize,
                   fontFamily: 'clashdisplay',
                   fontWeight: FontWeight.w600,
                 ),

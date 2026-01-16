@@ -1,10 +1,5 @@
 import 'package:uniordle/shared/game_screen_exports.dart';
 
-/// Pump Animation
-const Duration _pumpDuration = Duration(milliseconds: 80);
-const double _pumpBeginScale = 1.0;
-const double _pumpEndScale = 1.05;
-
 /// A single tile displayed on the Uniordle board
 /// 
 /// Shows a letter, background colour based on [LetterStatus],
@@ -35,13 +30,13 @@ class _BoardTileState extends State<BoardTile> with SingleTickerProviderStateMix
     super.initState();
 
     _controller = AnimationController(
-      duration: _pumpDuration,
+      duration: BoardTileConstants.pumpDuration,
       vsync: this,
     );
 
     _scale = Tween<double>(
-      begin: _pumpBeginScale,
-      end: _pumpEndScale,
+      begin: BoardTileConstants.pumpBeginScale,
+      end: BoardTileConstants.pumpEndScale,
     ).animate(
       CurvedAnimation(parent: _controller, curve: Curves.easeOut),
     );
