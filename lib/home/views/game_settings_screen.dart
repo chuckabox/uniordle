@@ -44,30 +44,18 @@ class _GameSettingsScreenState extends State<GameSettingsScreen> {
           ),
           child: Column(
             children: [
-            SettingsHeader(
-              discipline: widget.discipline,
-            ),
+            SettingsHeader(discipline: widget.discipline),
             Expanded(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  WordLengthSelector(
-                    value: _wordLength, 
-                    onChanged: (v) => setState(() => _wordLength = v)
-                  ),
+                  WordLengthSelector(value: _wordLength, onChanged: (v) => setState(() => _wordLength = v)),
                   const SizedBox(height: 48),
-                  DifficultySelector(
-                    value: _difficulty, 
-                    onChanged: (v) => setState(() => _difficulty = v)
-                  ),
+                  DifficultySelector(value: _difficulty, onChanged: (v) => setState(() => _difficulty = v)),
                 ],
               ),
             ),
-            SettingsFooter(
-              isLoading: _isLoading,
-              onPlay: _play,
-              onClose: () => Navigator.pop(context),
-              ),
+            SettingsFooter(isLoading: _isLoading, onPlay: _play, onClose: () => Navigator.pop(context)),
             ],
           ),
         ),

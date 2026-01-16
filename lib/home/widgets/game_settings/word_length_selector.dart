@@ -24,7 +24,7 @@ class WordLengthSelector extends StatelessWidget {
             color: Colors.blueGrey,
             fontSize: 11,
             fontWeight: FontWeight.bold,
-            letterSpacing: 2,
+            letterSpacing: 0.15 * 11,
           ),
         ),
         const SizedBox(height: 16),
@@ -32,36 +32,48 @@ class WordLengthSelector extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [5, 6, 7].map((len) {
             final active = value == len;
-            return GestureDetector(
-              onTap: () => onChanged(len),
-              child: Container(
-                width: 88,
-                height: 88,
-                decoration: BoxDecoration(
-                  color: active ? Colors.blue : Colors.white.withValues(alpha: 0.05),
-                  borderRadius: BorderRadius.circular(20),
-                  border: Border.all(color: active ? Colors.blue : Colors.white10),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      '$len',
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 28,
-                        fontWeight: FontWeight.bold,
+            return Expanded(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                child: GestureDetector(
+                  onTap: () => onChanged(len),
+                  child: AspectRatio(
+                    aspectRatio: 1,
+                    child: AnimatedContainer(
+                      duration: const Duration(milliseconds: 200),
+                      curve: Curves.easeInOut,
+                      decoration: BoxDecoration(
+                        color: active ? _activeColor : _inactiveBg,
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(
+                          color: active ? _activeColor : _inactiveBorder,
+                          width: 1,
+                        ),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            '$len',
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 36,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const SizedBox(height: 2),
+                          const Text(
+                            'LETTERS',
+                            style: TextStyle(
+                              fontSize: 9,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white70,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                    const SizedBox(height: 4),
-                    const Text(
-                      'LETTERS',
-                      style: const TextStyle(
-                        fontSize: 9,
-                        color: Colors.white70,
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
               ),
             );

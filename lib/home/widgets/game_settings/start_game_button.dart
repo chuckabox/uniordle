@@ -2,8 +2,13 @@ import 'package:flutter/material.dart';
 
 class StartGameButton extends StatelessWidget {
   final VoidCallback onPressed;
+  final bool isLoading;
 
-  const StartGameButton({super.key, required this.onPressed});
+  const StartGameButton({
+    super.key, 
+    required this.onPressed,
+    this.isLoading = false,
+  });
 
   @override
   Widget build(BuildContext context) {
