@@ -1,0 +1,109 @@
+import 'package:flutter/material.dart';
+import 'package:uniordle/shared/game_screen_exports.dart';
+import 'package:uniordle/core/app_colors.dart';
+
+/// Board Tile
+const double _fontSize = 36;
+const double _size = 64;
+const double _gapPadding = 3;
+const double _cornerRounding = 5;
+const double _borderWidth = 2;
+
+/// Pump Animation
+const Duration _pumpDuration = Duration(milliseconds: 80);
+const double _pumpBeginScale = 1.0;
+const double _pumpEndScale = 1.05;
+
+/// A single tile displayed on the Uniordle board
+/// 
+/// Shows a letter, background colour based on [LetterStatus],
+/// and plays a brief pump animation when a letter changes
+class BoardTile extends StatefulWidget {
+  const BoardTile({
+    super.key,
+    required this.letter,
+    this.initialBorderColor = AppColors.tileBackground, 
+  });
+
+  final Letter letter;
+  final Color initialBorderColor;
+
+  @override
+  State<BoardTile> createState() => _BoardTileState();
+}
+
+class _BoardTileState extends State<BoardTile> with SingleTickerProviderStateMixin{
+  /// Controls the pump animation
+  late AnimationController _controller;
+
+  /// Scale animation applied to the tile
+  late Animation<double> _scale;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _controller = AnimationController(
+      duration: _pumpDuration,
+      vsync: this,
+    );
+
+    _scale = Tween<double>(
+      begin: _pumpBeginScale,
+      end: _pumpEndScale,
+    ).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.easeOut),
+    );
+
+    _controller.addStatusListener((status) {
+      if (status == AnimationStatus.completed) _controller.reverse();
+    });
+  }
+
+  @override
+  void didUpdateWidget(covariant BoardTile oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    /// Triggers the pump animation when the letter changes
+    if (oldWidget.letter.val != widget.letter.val) {
+      _controller.forward(from: 0.0);
+    }
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ScaleTransition(
+      scale: _scale,
+      child: Container(
+        margin: const EdgeInsets.all(_gapPadding),
+        height: _size,
+        width: _size,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: widget.letter.val.isEmpty
+              ? AppColors.tileBackground
+              : widget.letter.backgroundColor,
+          border: Border.all(
+            color: widget.letter.backgroundColor,
+            width: _borderWidth,
+          ),
+          borderRadius: BorderRadius.circular(_cornerRounding),
+        ),
+        child: Text(
+          widget.letter.val,
+          textAlign: TextAlign.center,
+          style: const TextStyle(
+            fontSize: _fontSize,
+            fontFamily: 'dm-sans',
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+      ),
+    );
+  }
+}

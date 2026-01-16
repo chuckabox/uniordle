@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:uniordle/app/app.dart';
+import 'package:uniordle/core/app.dart';
 import 'package:bitsdojo_window/bitsdojo_window.dart';
 
 const Size desktopMinSize = Size(540, 960);
