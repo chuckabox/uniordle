@@ -57,32 +57,42 @@ class _UniordleScreenState extends State<UniordleScreen> {
     }
   }
 
-  /// Game board containing all guessed words
-  final List<Word> _board = List.generate(
-    maxAttempts,
-    (_) => Word(letters: List.generate(wordLength, (_) => Letter.empty())),
-  );
-  
-  /// Keys used to trigger flip animations for each tile
-  final List<List<GlobalKey<FlipCardState>>> _flipCardKeys = List.generate(
-    maxAttempts,
-    (_) => List.generate(wordLength, (_) => GlobalKey<FlipCardState>()),
-  );
+  /// Sets up or resets the game board and solution
+  void _initGameState() {
+    _board = List.generate(
+      _maxAttempts,
+      (_) => Word(letters: List.generate(_wordLength, (_) => Letter.empty())),
+    );
+    
+    _flipCardKeys = List.generate(
+      _maxAttempts,
+      (_) => List.generate(_wordLength, (_) => GlobalKey<FlipCardState>()),
+    );
 
-  /// Currently active word being edited
+    List<String> library;
+    switch (_wordLength) {
+      case 4: library = fiveLetterWords; break;
+      case 6: library = fiveLetterWords; break;
+      case 5:
+      default:
+        library = fiveLetterWords;
+    }
+
+    _solution = Word.fromString(
+      library[Random().nextInt(library.length)].toUpperCase(),
+    );
+  }
+
   Word? get _currentWord =>
       _currentWordIndex < _board.length ? _board[_currentWordIndex] : null;
 
-  /// Correct solutiion word for the game
-  Word _solution = Word.fromString(
-    fiveLetterWords[Random().nextInt(fiveLetterWords.length)].toUpperCase(),
-  );
-
-  // Letters used to update keyboard colouring
-  final Set<Letter> _keyboardLetters = {};
-
   @override
   Widget build(BuildContext context) {
+
+    if (!_isInitialised) {
+      return const Scaffold(body: Center(child: CircularProgressIndicator()));
+    }
+
     return Scaffold(
       backgroundColor: AppColors.gameBackground,
       appBar: AppBar(
@@ -132,8 +142,6 @@ class _UniordleScreenState extends State<UniordleScreen> {
     }
   }
 
-  /// Submits the current word, checks letter states,
-  /// and triggers tile flip animations
   Future<void> _onEnterTapped() async {
     if (_gameStatus != GameStatus.playing || _currentWord == null) return;
     if (_currentWord!.letters.contains(Letter.empty())) return;
@@ -217,26 +225,8 @@ class _UniordleScreenState extends State<UniordleScreen> {
     setState(() {
       _gameStatus = GameStatus.playing;
       _currentWordIndex = 0;
-      _board
-        ..clear()
-        ..addAll(
-          List.generate(
-            maxAttempts,
-            (_) => Word(letters: List.generate(wordLength, (_) => Letter.empty())),
-          ),
-        );
-      _solution = Word.fromString(
-        fiveLetterWords[Random().nextInt(fiveLetterWords.length)].toUpperCase(),
-      );
-      _flipCardKeys
-        ..clear()
-        ..addAll(
-          List.generate(
-            maxAttempts,
-            (_) => List.generate(wordLength, (_) => GlobalKey<FlipCardState>()),
-          ),
-        );
       _keyboardLetters.clear();
+      _initGameState();
     });
   }
 }
