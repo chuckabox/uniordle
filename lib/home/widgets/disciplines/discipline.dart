@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:uniordle/home/models/subject.dart';
-import 'subject_tile.dart';
+import 'discipline_tile.dart';
 
-class SubjectGrid extends StatelessWidget {
+class DisciplineGrid extends StatelessWidget {
   final List<Subject> subjects;
   final void Function(Subject) onSubjectTap;
 
-  const SubjectGrid({super.key, required this.subjects, required this.onSubjectTap});
+  const DisciplineGrid({super.key, required this.subjects, required this.onSubjectTap});
 
   @override
   Widget build(BuildContext context) {

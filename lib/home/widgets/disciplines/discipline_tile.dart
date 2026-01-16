@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uniordle/home/models/subject.dart';
-import 'subject_icon.dart';
+import 'discipline_icon.dart';
 
 class SubjectTile extends StatefulWidget {
   final Subject subject;

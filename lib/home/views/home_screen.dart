@@ -3,7 +3,7 @@ import 'package:uniordle/app/app_colors.dart';
 import 'package:uniordle/home/widgets/footer.dart';
 import 'package:uniordle/home/widgets/header.dart';
 import 'package:uniordle/home/widgets/hero_section.dart';
-import 'package:uniordle/home/widgets/subject_grid.dart';
+import 'package:uniordle/home/widgets/disciplines/discipline.dart';
 import 'package:uniordle/home/models/subject.dart';
 
 /// The first screen the user sees on opening application
@@ -48,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   const SizedBox(height: 24),
                   const HeroSection(),
                   const SizedBox(height: 32),
-                  SubjectGrid(subjects: subjects, onSubjectTap: _onSubjectTap),
+                  DisciplineGrid(subjects: subjects, onSubjectTap: _onSubjectTap),
                 ]),
               ),
             ),
