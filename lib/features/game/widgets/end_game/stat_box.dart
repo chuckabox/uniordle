@@ -5,6 +5,7 @@ class StatBox extends StatelessWidget {
   final String value;
 
   const StatBox({
+    super.key,
     required this.title,
     required this.value,
   });

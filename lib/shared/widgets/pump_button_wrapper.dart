@@ -1,15 +1,23 @@
-import 'package:flutter/material.dart';
+import 'package:uniordle/shared/home_screen_exports.dart';
 
+/// Scale effect and Darken Effect on Click
 class PumpButtonWrapper extends StatefulWidget {
-  final Widget Function(bool isPressed) builder;
+  final Widget child;
   final VoidCallback? onTap;
-  final double pressScale; // how much it shrinks (e.g., 0.95)
+  final double pressScale;
+
+  final bool enableDarken;
+  final Color? baseColor;
+  final double darkenIntensity;
 
   const PumpButtonWrapper({
     super.key,
-    required this.builder,
+    required this.child,
     this.onTap,
     this.pressScale = 0.96,
+    this.enableDarken = false,
+    this.baseColor,
+    this.darkenIntensity = 0.15,
   });
 
   @override
@@ -31,6 +39,14 @@ class _PumpButtonWrapperState extends State<PumpButtonWrapper> {
 
   @override
   Widget build(BuildContext context) {
+    Color? backgroundColor = widget.baseColor;
+    if (widget.enableDarken && widget.baseColor != null && _isPressed) {
+      backgroundColor = Color.alphaBlend(
+        Colors.black.withValues(alpha: widget.darkenIntensity),
+        widget.baseColor!,
+      );
+    }
+
     return GestureDetector(
       onTap: widget.onTap,
       onTapDown: (_) => _updateState(widget.pressScale, true),
@@ -40,7 +56,14 @@ class _PumpButtonWrapperState extends State<PumpButtonWrapper> {
         scale: _scale,
         duration: const Duration(milliseconds: 100),
         curve: Curves.easeOut,
-        child: widget.builder(_isPressed),
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 100),
+          decoration: BoxDecoration(
+            color: backgroundColor,
+            borderRadius: BorderRadius.circular(KeyBoardConstants.keyRounding),
+          ),
+          child: widget.child,
+        ),
       ),
     );
   }

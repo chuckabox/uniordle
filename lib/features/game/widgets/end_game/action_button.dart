@@ -7,6 +7,7 @@ class ActionButton extends StatelessWidget {
   final bool hasBorder;
 
   const ActionButton({
+    super.key,
     required this.label,
     required this.onPressed,
     required this.color,
