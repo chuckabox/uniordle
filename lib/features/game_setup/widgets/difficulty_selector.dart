@@ -22,6 +22,8 @@ class DifficultySelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const double thumbRadius = 5.0;
+
     return Column(
       children: [
         Text(
@@ -52,6 +54,7 @@ class DifficultySelector extends StatelessWidget {
             inactiveTrackColor: Colors.white24,
             thumbColor: discipline.color,
             overlayColor: Colors.transparent,
+            thumbShape: const RoundSliderThumbShape(enabledThumbRadius: thumbRadius),
             tickMarkShape: const RoundSliderTickMarkShape(tickMarkRadius: 3),
             activeTickMarkColor: discipline.color,
             inactiveTickMarkColor: AppColors.sliderInactiveTickMark,
@@ -66,43 +69,68 @@ class DifficultySelector extends StatelessWidget {
         ),
         const SizedBox(height: 12),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: _labels.entries.map((e) {
-              final active = e.key == value;
-              return Column(
-                children: [
-                  Text(
-                    e.value.$1,
-                    style: active
-                        ? GameSetUpFonts.yearLabelActive
-                        : GameSetUpFonts.yearLabelBase,
-                  ),
-                  const SizedBox(height: 4),
-                  Row(
-                    children: [
-                      Text(
-                        e.value.$2,
-                        style: active
-                            ? GameSetUpFonts.attemptsActiveText(discipline.color)
-                            : GameSetUpFonts.attemptsInactiveText,
-                      ),
-                      const SizedBox(width: 2),
-                      Icon(
-                        GameSetUpFonts.attemptsIcon,
-                        size: 12,
-                        color: active
-                            ? discipline.color
-                            : AppColors.nonSelectedIcon,
-                      )
-                    ],
-                  )
-                ],
-              );
-            }).toList()
+          padding: const EdgeInsets.symmetric(horizontal: 22.0),
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+                return Row(
+                  children: _labels.entries.map((e) {
+                    final active = e.key == value;
+                    final isFirst = e.key == 1;
+                    final isLast = e.key == 4;
+                    return Expanded(
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                            right: e.key == 2 ? 30.0 : 0.0,
+                            left: e.key == 3 ? 42.0 : 0.0,
+                          ),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: isFirst 
+                              ? CrossAxisAlignment.start 
+                              : isLast 
+                                  ? CrossAxisAlignment.end 
+                                  : CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                e.value.$1,
+                                textAlign: TextAlign.center,
+                                style: active
+                                    ? GameSetUpFonts.yearLabelActive
+                                    : GameSetUpFonts.yearLabelBase,
+                              ),
+                              const SizedBox(height: 4),
+                              Row(
+                                mainAxisAlignment: isFirst 
+                                  ? MainAxisAlignment.start 
+                                  : isLast 
+                                      ? MainAxisAlignment.end 
+                                      : MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    e.value.$2,
+                                    style: active
+                                        ? GameSetUpFonts.attemptsActiveText(discipline.color)
+                                        : GameSetUpFonts.attemptsInactiveText,
+                                  ),
+                                  const SizedBox(width: 2),
+                                  Icon(
+                                    GameSetUpFonts.attemptsIcon,
+                                    size: 12,
+                                    color: active
+                                        ? discipline.color
+                                        : AppColors.nonSelectedIcon,
+                                  )
+                                ],
+                              )
+                            ],
+                          ),
+                        )
+                      );
+                  }).toList()
+                );
+            }
           ),
-        ),
+        )
       ],
     );
   }
