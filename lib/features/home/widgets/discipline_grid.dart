@@ -8,7 +8,6 @@ class DisciplineGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenHeight = MediaQuery.of(context).size.height;
     return Center(
       child: GridView.builder(
         shrinkWrap: true,
