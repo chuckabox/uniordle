@@ -28,7 +28,7 @@ class _DisciplineTileState extends State<DisciplineTile> {
           duration: const Duration(milliseconds: 150),
           padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
-            color: AppColors.disciplineTile,
+            color: AppColors.tileBackground,
             borderRadius: BorderRadius.circular(12),
             border: Border.all(
               color: _hovering ? sub.color : AppColors.disciplineTile.withValues(alpha: 0.4),

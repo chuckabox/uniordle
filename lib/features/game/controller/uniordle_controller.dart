@@ -62,33 +62,45 @@ class UniordleController extends ChangeNotifier {
   }
 
   Future<void> submitWord() async {
-    if (status != GameStatus.playing || currentWord == null) return;
-    if (currentWord!.letters.contains(Letter.empty())) return;
+  if (status != GameStatus.playing || currentWord == null) return;
+  if (currentWord!.letters.any((l) => l.val.isEmpty)) return;
 
-    status = GameStatus.submitting;
-    notifyListeners();
+  status = GameStatus.submitting;
+  notifyListeners();
 
-    for (var i = 0; i < currentWord!.letters.length; i++) {
-      final curLet = currentWord!.letters[i];
-      
-      LetterStatus finalStatus;
-      if (curLet.val == solution.letters[i].val) {
-        finalStatus = LetterStatus.correct;
-      } else if (solution.letters.any((l) => l.val == curLet.val)) {
-        finalStatus = LetterStatus.inWord;
-      } else {
-        finalStatus = LetterStatus.notInWord;
-      }
+  List<String> remainingLetters = solution.letters.map((l) => l.val).toList();
+  List<LetterStatus> statuses = List.filled(wordLength, LetterStatus.notInWord);
 
-      currentWord!.letters[i] = curLet.copyWith(status: finalStatus);
-      _updateKeyboard(currentWord!.letters[i]);
-
-      flipCardKeys[currentWordIndex][i].currentState?.toggleCard();
-      await Future.delayed(const Duration(milliseconds: 70));
+  for (int i = 0; i < wordLength; i++) {
+    if (currentWord!.letters[i].val == solution.letters[i].val) {
+      statuses[i] = LetterStatus.correct;
+      remainingLetters[i] = "";
     }
-
-    _checkResult();
   }
+
+  for (int i = 0; i < wordLength; i++) {
+    if (statuses[i] != LetterStatus.correct) {
+      int indexInRemaining = remainingLetters.indexOf(currentWord!.letters[i].val);
+      if (indexInRemaining != -1) {
+        statuses[i] = LetterStatus.inWord;
+        remainingLetters[indexInRemaining] = "";
+      }
+    }
+  }
+
+  for (int i = 0; i < wordLength; i++) {
+    currentWord!.letters[i] = currentWord!.letters[i].copyWith(status: statuses[i]);
+    _updateKeyboard(currentWord!.letters[i]);
+    
+    if (currentWordIndex < flipCardKeys.length && i < flipCardKeys[currentWordIndex].length) {
+       flipCardKeys[currentWordIndex][i].currentState?.toggleCard();
+    }
+    
+    await Future.delayed(const Duration(milliseconds: 70));
+  }
+
+  _checkResult();
+}
 
   void _updateKeyboard(Letter newLetter) {
     final existing = keyboardLetters.firstWhere((l) => l.val == newLetter.val, orElse: () => Letter.empty());

@@ -12,12 +12,12 @@ class AppColors {
   static const Color textOnAction = Colors.white;
 
   // Backgrounds
-  static const Color tileBackground = Color(0xFF303436);
-  static const Color mainBackground = Color(0xFF0A0E17);
+  static const Color tileBackground = Color(0xFF1E293B);
+  static const Color mainBackground = Color(0xFF00121f);
   static const Color backgroundBorder = Color(0xFF1E293B);
 
   // Keyboard
-  static const Color keyBackground = Color(0xFF707070);
+  static const Color keyBackground = tileBackground;
 
   // UI Elements
   static const Color selectedIcon = Colors.blue;
@@ -25,7 +25,7 @@ class AppColors {
   static const Color selectedButton = selectedIcon;
   static const Color nonSelectedButton = disciplineTile;
   static const Color nonSelectedButtonBorder = disciplineTile;
-  static const Color disciplineTile = Color(0xFF1A1F2B);
+  static const Color disciplineTile = tileBackground;
   static const Color loadingCircle = Color(0xFF0A0E17);
   static const Color shadow = Colors.black;
 
