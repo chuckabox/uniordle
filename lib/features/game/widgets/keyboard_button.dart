@@ -1,10 +1,6 @@
 import 'package:uniordle/shared/game_screen_exports.dart';
 import 'package:uniordle/shared/widgets/pump_button_wrapper.dart';
 
-const double _keyHeight = 64;
-const double _keyWidth = 44;
-const double _keyFontSize = 24;
-const double _gapPadding = 4;
 const double _specialKeyWidth = 70;
 
 /// A single key used on the keyboard
@@ -13,8 +9,8 @@ const double _specialKeyWidth = 70;
 class KeyboardButton extends StatelessWidget {
   const KeyboardButton({ 
     super.key,
-    this.height = _keyHeight,
-    this.width = _keyWidth,
+    this.height = 64,
+    this.width = 44,
     required this.onTap,
     required this.backgroundColor,
     this.letter,
@@ -55,7 +51,7 @@ class KeyboardButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(_gapPadding),
+      padding: const EdgeInsets.all(4),
       child: PumpButtonWrapper(
         onTap: onTap,
         pressScale: 0.95,
@@ -67,12 +63,7 @@ class KeyboardButton extends StatelessWidget {
           child: Center(
             child: child ?? Text(
               letter ?? '',
-              style: const TextStyle(
-                fontSize: _keyFontSize,
-                fontFamily: 'dm-sans',
-                fontWeight: FontWeight.w900,
-                color: Colors.white,
-              ),
+              style: GameFonts.keyText,
             ),
           ),
         )

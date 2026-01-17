@@ -1,10 +1,5 @@
 import 'package:uniordle/shared/game_screen_exports.dart';
 
-const double tileSize = 64;
-const double gapPadding = 4;
-const double cornerRounding = 6;
-const double borderWidth = 2;
-
 /// A single tile displayed on the Uniordle board
 /// 
 /// Shows a letter, background colour based on [LetterStatus],
@@ -75,9 +70,9 @@ class _BoardTileState extends State<BoardTile> with SingleTickerProviderStateMix
     return ScaleTransition(
       scale: _scale,
       child: Container(
-        margin: const EdgeInsets.all(gapPadding),
-        height: tileSize,
-        width: tileSize,
+        margin: const EdgeInsets.all(4),
+        height: 64,
+        width: 64,
         alignment: Alignment.center,
         decoration: BoxDecoration(
           color: widget.letter.val.isEmpty
@@ -85,9 +80,9 @@ class _BoardTileState extends State<BoardTile> with SingleTickerProviderStateMix
               : widget.letter.backgroundColor,
           border: Border.all(
             color: widget.letter.backgroundColor,
-            width: borderWidth,
+            width: 2,
           ),
-          borderRadius: BorderRadius.circular(cornerRounding),
+          borderRadius: BorderRadius.circular(6),
         ),
         child: Text(
           widget.letter.val,

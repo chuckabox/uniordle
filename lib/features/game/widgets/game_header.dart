@@ -20,7 +20,7 @@ class GameHeader extends StatelessWidget implements PreferredSizeWidget {
         color: AppColors.mainBackground,
         border: Border(
           bottom: BorderSide(
-            color: Colors.white.withValues(alpha: 0.1),
+            color: AppColors.backgroundBorder.withValues(alpha: 0.1),
             width: 1,
           ),
         ),

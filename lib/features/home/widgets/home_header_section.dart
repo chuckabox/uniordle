@@ -10,7 +10,10 @@ class HomeHeader extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.mainBackground.withValues(alpha: 0.8),
         border: const Border(
-          bottom: BorderSide(color: Color(0xFF1E293B), width: 0.5),
+          bottom: BorderSide(
+            color: AppColors.backgroundBorder, 
+            width: 0.5
+          ),
         ),
       ),
       child: Row(
@@ -48,7 +51,7 @@ class HomeHeader extends StatelessWidget {
         child: Icon(
           icon, 
           size: 24, 
-          color: Colors.grey
+          color: AppColors.nonSelectedIcon,
         ),
       ),
     );

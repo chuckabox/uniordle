@@ -32,7 +32,7 @@ class DifficultySelector extends StatelessWidget {
             Icon(
               GameSetUpFonts.attemptsIcon,
               size: 12,
-              color: AppColors.attemptsActiveColor,
+              color: AppColors.selectedIcon,
             ),
             const SizedBox(width: 8),
             Text(
@@ -47,11 +47,11 @@ class DifficultySelector extends StatelessWidget {
             trackHeight: 4,
             activeTrackColor: Colors.white24,
             inactiveTrackColor: Colors.white24,
-            thumbColor: Colors.white,
-            overlayColor: Colors.white.withValues(alpha: 0.1),
+            thumbColor: AppColors.sliderActiveTrack,
+            overlayColor: AppColors.sliderInactiveTrack.withValues(alpha: 0.1),
             tickMarkShape: const RoundSliderTickMarkShape(tickMarkRadius: 3),
-            activeTickMarkColor: Colors.white54,
-            inactiveTickMarkColor: Colors.white54,
+            activeTickMarkColor: AppColors.sliderActiveTickMark,
+            inactiveTickMarkColor: AppColors.sliderInactiveTickMark,
             thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 10),
           ),
           child: Slider(
@@ -91,8 +91,8 @@ class DifficultySelector extends StatelessWidget {
                         GameSetUpFonts.attemptsIcon,
                         size: 12,
                         color: active
-                            ? AppColors.attemptsActiveColor
-                            : AppColors.attemptsInactiveColor,
+                            ? AppColors.selectedIcon
+                            : AppColors.nonSelectedIcon,
                       )
                     ],
                   )

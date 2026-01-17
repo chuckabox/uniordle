@@ -4,10 +4,6 @@ class WordLengthSelector extends StatelessWidget {
   final int value;
   final ValueChanged<int> onChanged;
 
-  static const _activeColor = Color(0xFF38BDF8);
-  static const _inactiveBg = Color(0x0DFFFFFF);
-  static const _inactiveBorder = Color(0x1AFFFFFF);
-
   const WordLengthSelector({
     super.key, 
     required this.value, 
@@ -39,10 +35,10 @@ class WordLengthSelector extends StatelessWidget {
                       duration: const Duration(milliseconds: 200),
                       curve: Curves.easeInOut,
                       decoration: BoxDecoration(
-                        color: active ? _activeColor : _inactiveBg,
-                        borderRadius: BorderRadius.circular(20),
+                        color: active ? AppColors.selectedButton : AppColors.nonSelectedButton,
+                        borderRadius: BorderRadius.circular(36),
                         border: Border.all(
-                          color: active ? _activeColor : _inactiveBorder,
+                          color: active ? AppColors.selectedButton : AppColors.nonSelectedButtonBorder,
                           width: 1,
                         ),
                       ),

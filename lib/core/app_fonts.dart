@@ -12,6 +12,13 @@ class GameFonts {
     fontFamily: 'dm-sans',
     fontWeight: FontWeight.w600,
   );
+
+  static const TextStyle keyText = TextStyle(
+    fontSize: 24,
+    fontFamily: 'dm-sans',
+    fontWeight: FontWeight.w900,
+    color: Colors.white,
+  );
 }
 
 class GameSetUpFonts {
@@ -82,11 +89,18 @@ class GameSetUpFonts {
     fontWeight: FontWeight.w600,
     color: Colors.white70,
   );
+
+  static const disciplineText = TextStyle(
+    color: Colors.white,
+    fontSize: 32,
+    fontWeight: FontWeight.w800,
+  );
 }
 
 class HomeFonts {
   static const disciplineText = TextStyle(
     color: Colors.white,
+    fontSize: 16,
     fontWeight: FontWeight.w600,
   );
   static TextStyle tagText(Color color) => TextStyle(

@@ -19,7 +19,7 @@ class SettingsHeader extends StatelessWidget {
           decoration: BoxDecoration(
             color: Colors.white.withValues(alpha: 0.05),
             borderRadius: BorderRadius.circular(32),
-            border: Border.all(color: Colors.white10),
+            border: Border.all(color: AppColors.backgroundBorder),
           ),
           child: Icon(
             _icon(discipline.icon),
@@ -30,11 +30,7 @@ class SettingsHeader extends StatelessWidget {
         const SizedBox(height: 16),
         Text(
           discipline.name,
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 32,
-            fontWeight: FontWeight.w800,
-          ),
+          style: GameSetUpFonts.disciplineText,
         ),
         const SizedBox(height: 8),
         Text(

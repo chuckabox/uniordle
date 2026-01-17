@@ -15,7 +15,7 @@ class HomeFooter extends StatelessWidget {
   Widget build (BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: const Color(0xFF0A0E17).withValues(alpha: 0.95),
+        color: AppColors.mainBackground.withValues(alpha: 0.95),
         border: const Border(
           top: BorderSide(color: Colors.white10)
         ),

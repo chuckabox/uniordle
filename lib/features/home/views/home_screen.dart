@@ -1,7 +1,6 @@
 import 'package:uniordle/shared/home_screen_exports.dart';
 import 'package:uniordle/features/game_setup/views/game_setup_screen.dart';
 
-/// The first screen the user sees on opening application
 class HomeScreen extends StatefulWidget {
   const HomeScreen({
     super.key
@@ -72,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   const HomeHeader(),
                   const SizedBox(height: 24),
                   const HeroSection(),
-                  const SizedBox(height: 32),
+                  const SizedBox(height: 48),
                   DisciplineGrid(
                     disciplines: disciplines, 
                     onSubjectTap: _onDisciplineTap,

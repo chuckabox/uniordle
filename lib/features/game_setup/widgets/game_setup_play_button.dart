@@ -24,7 +24,7 @@ class PlayButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withValues(alpha: 0.3),
+              color: AppColors.shadow.withValues(alpha: 0.3),
               blurRadius: 20,
               offset: const Offset(0, 10),
             ),
@@ -37,7 +37,7 @@ class PlayButton extends StatelessWidget {
                   width: 24,
                   child: CircularProgressIndicator(
                     strokeWidth: 3,
-                    color: Color(0xFF0A0E17),
+                    color: AppColors.loadingCircle,
                   ),
                 )
               : const Row(

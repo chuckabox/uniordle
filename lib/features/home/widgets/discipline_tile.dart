@@ -28,10 +28,10 @@ class _DisciplineTileState extends State<DisciplineTile> {
           duration: const Duration(milliseconds: 150),
           padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
-            color: const Color(0xFF1A1F2B),
-            borderRadius: BorderRadius.circular(16),
+            color: AppColors.disciplineTile,
+            borderRadius: BorderRadius.circular(12),
             border: Border.all(
-              color: _hovering ? sub.color : Colors.grey.withValues(alpha: 0.4),
+              color: _hovering ? sub.color : AppColors.disciplineTile.withValues(alpha: 0.4),
               width: _hovering ? 1.5 : 0.5,
             ),
           ),
