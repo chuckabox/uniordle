@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:uniordle/core/app_colors.dart';
 import 'package:uniordle/features/home/views/home_screen.dart';
 import 'package:uniordle/features/game/views/game_screen.dart';
-import 'package:uniordle/core/app_fonts.dart';
 
 /// Root widget of Uniordle
 /// 
@@ -18,29 +17,11 @@ class App extends StatelessWidget {
       title: 'Uniordle',
       debugShowCheckedModeBanner: true,
       theme: ThemeData(
-        brightness: Brightness.dark,
-        fontFamily: AppTextStyles.uiFont,
-      ).copyWith(
         scaffoldBackgroundColor: AppColors.mainBackground,
-        textTheme: TextTheme(
-          displayLarge: AppTextStyles.tileNumber,
-          headlineMedium: AppTextStyles.gameTitle,
-          labelLarge: AppTextStyles.buttonText,
-          labelSmall: AppTextStyles.smallLabel,
-        ),
       ),
 
       builder: (context, child) {
-        return Material(
-          // This color will fill everything OUTSIDE the 540px
-          color: AppColors.mainBackground, 
-          child: Center(
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 540),
-              child: ClipRect(child: child!),
-            ),
-          ),
-        );
+        return ResponsiveWrapper(child: child!);
       },
 
       initialRoute: '/',
@@ -51,3 +32,20 @@ class App extends StatelessWidget {
     );
   }
 }
+
+class ResponsiveWrapper extends StatelessWidget {
+  final Widget child;
+  const ResponsiveWrapper({super.key, required this.child});
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: AppColors.mainBackground, 
+      child: Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 540),
+          child: ClipRect(child: child),
+        ),
+      ),
+    );
+  }

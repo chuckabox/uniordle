@@ -1,5 +1,6 @@
 import 'package:uniordle/shared/home_screen_exports.dart';
 import 'package:uniordle/features/game_setup/views/game_setup_screen.dart';
+import 'package:uniordle/shared/widgets/motion_blur_route.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({
@@ -117,9 +118,8 @@ class _HomeScreenState extends State<HomeScreen> {
   void _onDisciplineTap(Discipline sub) {
     Navigator.push(
       context,
-      MaterialPageRoute(
-        fullscreenDialog: true,
-        builder: (context) => GameSettingsScreen(discipline: sub),
+      MotionBlurRoute(
+        page: GameSettingsScreen(discipline: sub),
       ),
     );
   }

@@ -38,7 +38,7 @@ class _GameSettingsScreenState extends State<GameSettingsScreen> {
 
     if (mounted) {
     setState(() => _isLoading = false);
-  }
+    }
   }
 
   @override
