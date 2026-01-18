@@ -13,6 +13,7 @@ class KeyboardButton extends StatelessWidget {
   final Color backgroundColor;
   final String? letter;
   final Widget? child;
+  final SoundType soundType;
 
   const KeyboardButton({ 
     super.key,
@@ -22,23 +23,26 @@ class KeyboardButton extends StatelessWidget {
     required this.backgroundColor,
     this.letter,
     this.child,
+    this.soundType = SoundType.keyboard,
   });
 
 
-  factory KeyboardButton.delete({required VoidCallback onTap, String? soundPath}) =>
+  factory KeyboardButton.delete({required VoidCallback onTap}) =>
       KeyboardButton(
         width: _specialKeyWidth,
         onTap: onTap,
         backgroundColor: AppColors.keyBackground,
+        soundType: SoundType.delete,
         child: const Icon(Icons.backspace, color: Colors.white, size: 22),
       );
 
-  factory KeyboardButton.enter({required VoidCallback onTap, String? soundPath}) =>
+  factory KeyboardButton.enter({required VoidCallback onTap}) =>
       KeyboardButton(
         width: _specialKeyWidth,
         onTap: onTap,
         backgroundColor: AppColors.keyBackground,
         letter: 'ENTER',
+        soundType: SoundType.enter,
         child: const Text(
           'ENTER',
           style: TextStyle(
@@ -58,6 +62,7 @@ class KeyboardButton extends StatelessWidget {
         pressScale: 0.95,
         enableDarken: true,
         baseColor: backgroundColor,
+        soundType: soundType,
         child: SizedBox(
           height: height,
           width: width,

@@ -20,12 +20,16 @@ class _DisciplineTileState extends State<DisciplineTile> {
 
     return PumpButtonWrapper(
       onTap: widget.onTap,
+      soundType: SoundType.click,
       child: MouseRegion(
-        onEnter: (_) => setState(() => _hovering = true),
+        onEnter: (_) {
+          setState(() => _hovering = true);
+          SoundManager().play(SoundType.hover);
+        },
         onExit: (_) => setState(() => _hovering = false),
         cursor: SystemMouseCursors.click,
         child: AnimatedContainer(
-          duration: const Duration(milliseconds: 150),
+          duration: const Duration(milliseconds: 80),
           padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
             color: AppColors.tileBackground,

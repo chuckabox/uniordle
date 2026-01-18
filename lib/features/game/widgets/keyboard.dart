@@ -30,12 +30,15 @@ class Keyboard extends StatelessWidget {
   void _handlePhysicalKey(String key) {
     if (key == 'Enter') {
       onEnterTapped();
+      SoundManager().play(SoundType.enter);
     } else if (key == 'Backspace') {
       onDeleteTapped();
+      SoundManager().play(SoundType.delete);
     } else {
       final upper = key.toUpperCase();
       if (_qwerty.any((row) => row.contains(upper))) {
         onKeyTapped(upper);
+          SoundManager().play(SoundType.keyboard);
       }
     }
   }

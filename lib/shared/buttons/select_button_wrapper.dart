@@ -12,6 +12,7 @@ class PumpButtonWrapper extends StatefulWidget {
   final Color? baseColor;
   final double darkenIntensity;
   final BorderRadius? borderRadius;
+  final SoundType soundType;
 
   const PumpButtonWrapper({
     super.key,
@@ -22,6 +23,7 @@ class PumpButtonWrapper extends StatefulWidget {
     this.baseColor,
     this.darkenIntensity = 0.15,
     this.borderRadius,
+    this.soundType = SoundType.click,
   });
 
   @override
@@ -35,7 +37,7 @@ class _PumpButtonWrapperState extends State<PumpButtonWrapper> {
   void _updateState(double scale, bool pressed) {
     if (widget.onTap != null) {
       if (pressed) {
-        SoundManager().playClick(); 
+        SoundManager().play(widget.soundType);
       }
       setState(() {
         _scale = scale;
