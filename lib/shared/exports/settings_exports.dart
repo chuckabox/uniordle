@@ -3,3 +3,7 @@ export '../../core/app_colors.dart';
 export 'package:lucide_icons/lucide_icons.dart';
 export 'package:flutter/material.dart';
 export 'package:uniordle/core/sound_manager.dart';
+export 'package:uniordle/features/settings/widgets/settings_card.dart';
+export 'package:uniordle/features/settings/widgets/settings_header_section.dart';
+export 'package:uniordle/features/settings/widgets/settings_toggle_tile.dart';
+export 'package:uniordle/features/settings/models/settings_state.dart';
