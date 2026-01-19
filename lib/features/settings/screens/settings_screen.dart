@@ -1,4 +1,6 @@
 import 'package:uniordle/shared/exports/settings_exports.dart';
+import 'package:uniordle/shared/layout/base_header.dart';
+
 class SettingsScreen extends StatefulWidget {
   final VoidCallback onClose;
 
@@ -53,16 +55,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       ),
                     ],
                   ),
-
-                  const SettingsSectionHeader(title: 'SUPPORT & LEGAL'),
+                  const SettingsSectionHeader(title: 'SUPPORT'),
                   SettingsCard(
                     children: [
                       SettingsActionTile(
                         icon: Icons.info_outline_rounded,
                         label: 'About Uniordle',
                         value: 'v1.0.0',
-                        onTap: () {
-                        },
+                        onTap: () {},
                         isLast: true,
                       ),
                     ],
@@ -70,7 +70,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ],
               ),
             ),
-            _buildSignOutButton(),
+            SettingsSignOutButton(
+              onTap: () {},
+            ),
           ],
         ),
       ),
@@ -78,69 +80,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
   }
 
   Widget _buildHeader() {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-      decoration: BoxDecoration(
-        border: Border(bottom: BorderSide(color: AppColors.backgroundBorder.withValues(alpha: 0.5))),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          InkWell(
-            onTap: widget.onClose,
-            borderRadius: BorderRadius.circular(50),
-            child: Container(
-              width: 40,
-              height: 40,
-              alignment: Alignment.center,
-              child: const Icon(Icons.chevron_left, color: AppColors.textPrimary, size: 28),
-            ),
-          ),
-          const Text(
-            'Settings',
-            style: TextStyle(
-              color: AppColors.textPrimary,
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-              letterSpacing: -0.5,
-            ),
-          ),
-          const SizedBox(width: 40)
-        ],
-      ),
-    );
-  }
-
-  Widget _buildSignOutButton() {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 20, 16, 40),
-      child: Material(
-        color: Colors.red,
-        borderRadius: BorderRadius.circular(16),
-        child: InkWell(
-          onTap: () {},
-          borderRadius: BorderRadius.circular(16),
-          splashColor: Colors.red.withValues(alpha: 0.2),
-          highlightColor: Colors.red.withValues(alpha: 0.1),
-          child: Container(
-            width: double.infinity,
-            padding: const EdgeInsets.symmetric(vertical: 16),
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.red.withValues(alpha: 0.2)),
-              borderRadius: BorderRadius.circular(16),
-            ),
-            child: const Text(
-              'Sign Out',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Colors.red,
-                fontWeight: FontWeight.bold,
-                fontSize: 14,
-              ),
-            ),
-          ),
-        ),
-      ),
+    return BaseHeader(
+      title: 'Settings',
+      leftIcon: Icons.chevron_left, 
+      onLeftTap: widget.onClose,
     );
   }
 }

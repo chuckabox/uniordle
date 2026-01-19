@@ -1,5 +1,4 @@
 import 'package:uniordle/shared/exports/settings_exports.dart';
-import 'package:uniordle/shared/layout/base_header.dart';
 
 class SettingsSectionHeader extends StatelessWidget {
   final String title;
@@ -8,10 +7,17 @@ class SettingsSectionHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BaseHeader(
-      title: 'Settings', 
-      leftIcon: LucideIcons.chevronLeft, 
-      onLeftTap: () => Navigator.of(context).pop(),
+    return Padding(
+      padding: const EdgeInsets.only(left: 8, bottom: 8, top: 24),
+      child: Text(
+        title.toUpperCase(),
+        style: const TextStyle(
+          color: AppColors.textSecondary,
+          fontSize: 11,
+          fontWeight: FontWeight.bold,
+          letterSpacing: 1.5,
+        ),
+      ),
     );
   }
 }
