@@ -20,57 +20,13 @@ class GameInfoBar extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 12),
         child: Row(
           children: [
-            Expanded(
-              child: _InfoTag(
-                label: disciplineName, 
-                color: AppColors.keyBackground,
-              ),
-            ),
+            Expanded(child: InfoTag(label: disciplineName)),
             const SizedBox(width: 4),
-            Expanded(
-              child: _InfoTag(
-                label: '$wordLength LETTERS', 
-                color: AppColors.keyBackground,
-              ),
-            ),
+            Expanded(child: InfoTag(label: '$wordLength LETTERS')),
             const SizedBox(width: 4),
-            Expanded(
-              child: _InfoTag(
-                label: yearLevel, 
-                color: AppColors.keyBackground,
-              ),
-            ),
+            Expanded(child: InfoTag(label: yearLevel)),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class _InfoTag extends StatelessWidget {
-  final String label;
-  final Color color;
-
-  const _InfoTag({required this.label, required this.color});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 8),
-      decoration: BoxDecoration(
-        color: color.withValues(alpha: 0.1),
-        borderRadius: BorderRadius.circular(6),
-        border: Border.all(
-          color: color.withValues(alpha: 0.4),
-          width: 1,
-        ),
-      ),
-      child: Text(
-        label.toUpperCase(),
-        textAlign: TextAlign.center,
-        maxLines: 1,
-        overflow: TextOverflow.ellipsis,
-        style: GameFonts.infoBarText,
       ),
     );
   }
