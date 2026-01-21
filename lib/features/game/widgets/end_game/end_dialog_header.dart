@@ -16,7 +16,11 @@ class DialogHeader extends StatelessWidget {
             color: Color(0xFF1B2E1D),
             shape: BoxShape.circle,
           ),
-          child: const Icon(Icons.stars_rounded, color: Color(0xFF55B725), size: 60),
+          child: Icon(
+            won ? Icons.stars_rounded : Icons.close_rounded,
+            color: won ? Color(0xFF55B725) : Colors.red,
+            size: 60,
+          ),
         ),
         const SizedBox(height: 16),
         Text(
