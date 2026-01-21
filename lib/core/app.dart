@@ -20,6 +20,13 @@ class App extends StatelessWidget {
         brightness: Brightness.dark,
         fontFamily: AppTextStyles.uiFont,
       ).copyWith(
+        scaffoldBackgroundColor: AppColors.surface,
+        textTheme: TextTheme(
+          displayLarge: AppTextStyles.displayMedium,
+          headlineMedium: AppTextStyles.displayLarge,
+          labelLarge: AppTextStyles.labelLarge,
+          labelSmall: AppTextStyles.labelMedium,
+        ),
         scaffoldBackgroundColor: AppColors.mainBackground,
       ),
 
@@ -50,7 +57,7 @@ class ResponsiveWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: AppColors.mainBackground, 
+      color: AppColors.surface, 
       child: Center(
         child: ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 540),
