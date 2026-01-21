@@ -13,6 +13,7 @@ class EndGameDialog extends StatelessWidget {
   final bool won;
   final String solution;
   final int attempts;
+  final int maxAttempts;
   final Discipline discipline;
   final VoidCallback onRestart;
 
@@ -21,6 +22,7 @@ class EndGameDialog extends StatelessWidget {
     required this.won,
     required this.solution,
     required this.attempts,
+    required this.maxAttempts,
     required this.discipline,
     required this.onRestart,
   });
@@ -103,7 +105,7 @@ class EndGameDialog extends StatelessWidget {
                 ),
                 children: [
                   TextSpan(
-                    text: '$attempts/6 ',
+                    text: '$attempts/$maxAttempts ',
                   ),
                   const TextSpan(
                     text: 'Attempts',

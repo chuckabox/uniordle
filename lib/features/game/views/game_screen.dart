@@ -19,6 +19,7 @@ late UniordleController _controller;
   String _disciplineName = '';
   String _yearLevel = '';
   int _wordLength = 5;
+  int _maxAttempts = 6;
 
 @override
 void didChangeDependencies() {
@@ -52,6 +53,8 @@ void didChangeDependencies() {
         _yearLevel = '1st Year'; 
         break;
     }
+
+    _maxAttempts = attempts;
     
     _controller = UniordleController(
       wordLength: args?['wordLength'] ?? 5,
@@ -75,6 +78,7 @@ void didChangeDependencies() {
         won: won,
         solution: _controller.solution.wordString,
         attempts: _controller.currentWordIndex + 1,
+        maxAttempts: _maxAttempts,
         discipline: discipline,
         onRestart: () {
           Navigator.pop(context);
