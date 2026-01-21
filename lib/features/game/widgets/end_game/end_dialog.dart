@@ -1,10 +1,6 @@
 import 'package:uniordle/features/home/models/discipline.dart';
 import 'package:uniordle/shared/exports/game_screen_exports.dart';
 
-const Color _topBarWinColor = Color(0xFF55B725);
-const Color _topBarLoseColor = Color(0xFFC62121);
-const Color _nextGameButtonColour = _topBarWinColor;
-
 /// Dialog shown when game ends
 /// 
 /// Displays win or loss, solution world, attempt count,

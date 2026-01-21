@@ -4,7 +4,7 @@ class AppColors {
   // Game Logic
   static const Color correctColor = Color(0xFF538D4E);   // Success / Correct
   static const Color inWordColor = Color(0XFFDAC316); // Warning / In Word
-  static const Color notInWordColor = Color(0xFF3A3A3C);   // Gray / Not in Word
+  static const Color notInWordColor = Color(0xFF787C7E);   // Gray / Not in Word
   
   // Backgrounds
   static const Color surface = Color(0xFF00121f);   // Main dark background
