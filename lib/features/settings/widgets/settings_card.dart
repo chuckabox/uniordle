@@ -9,9 +9,9 @@ class SettingsCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: AppColors.surface,
+        color: AppColors.surfaceVariant,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: AppColors.outline.withValues(alpha: 0.6)),
+        border: Border.all(color: AppColors.surface.withValues(alpha: 0.6)),
       ),
       child: Column(
         children: children,

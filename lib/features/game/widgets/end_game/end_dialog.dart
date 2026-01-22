@@ -35,12 +35,12 @@ class EndGameDialog extends StatelessWidget {
       insetPadding: const EdgeInsets.symmetric(
         horizontal: 20,
       ),
-      backgroundColor: AppColors.surfaceVariant,
+      backgroundColor: AppColors.surface,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(32),
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 24),
+        padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 24),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -49,7 +49,7 @@ class EndGameDialog extends StatelessWidget {
             SolutionBox(solution: solution),
             const SizedBox(height: 24),
             AttemptsInfo(attempts: attempts, maxAttempts: maxAttempts),
-            const SizedBox(height: 20),
+            const SizedBox(height: 24),
             Row(
               children: [
                 Expanded(child: InfoTag(label: discipline.name)),

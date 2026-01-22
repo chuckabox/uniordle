@@ -32,20 +32,20 @@ class AppTextStyles {
         fontFamily: displayFont,
         fontSize: 16,
         fontWeight: FontWeight.w600,
-        color: Colors.white
+        color: AppColors.onSurface
   );
 
   static TextStyle get labelMedium => const TextStyle(
         fontFamily: displayFont,
         fontSize: 12,
         fontWeight: FontWeight.w500,
-        color: Colors.white70,
+        color: AppColors.onSurfaceVariant
   );
 
   static TextStyle get labelSmall => const TextStyle(
         fontFamily: displayFont,
         fontSize: 10,
         fontWeight: FontWeight.w600,
-        color: Colors.blueAccent,
+        color: AppColors.accent
   );
 }

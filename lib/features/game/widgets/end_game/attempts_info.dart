@@ -10,7 +10,6 @@ class AttemptsInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return RichText(
       text: TextSpan(
-        style: const TextStyle(fontSize: 20),
         children: [
           TextSpan(text: '$attempts/$maxAttempts ',
           style: AppTextStyles.displayMedium.copyWith(color: AppColors.correctColor)

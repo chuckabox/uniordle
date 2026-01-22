@@ -27,14 +27,10 @@ class SettingsSignOutButton extends StatelessWidget {
               border: Border.all(color: Colors.red.withValues(alpha: 0.2)),
               borderRadius: BorderRadius.circular(16),
             ),
-            child: const Text(
+            child: Text(
               'Sign Out',
               textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Colors.red,
-                fontWeight: FontWeight.bold,
-                fontSize: 14,
-              ),
+              style: AppTextStyles.labelMedium.copyWith(color: Colors.red)
             ),
           ),
         ),

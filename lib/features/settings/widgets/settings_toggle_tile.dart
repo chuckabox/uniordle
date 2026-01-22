@@ -21,11 +21,6 @@ class SettingsToggleTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        border: !isLast
-            ? Border(bottom: BorderSide(color: AppColors.outline.withValues(alpha: 0.4)))
-            : null,
-      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -35,11 +30,7 @@ class SettingsToggleTile extends StatelessWidget {
               const SizedBox(width: 12),
               Text(
                 label,
-                style: const TextStyle(
-                  color: AppColors.onSurface,
-                  fontSize: 15,
-                  fontWeight: FontWeight.w500,
-                ),
+                style: AppTextStyles.labelLarge
               ),
             ],
           ),

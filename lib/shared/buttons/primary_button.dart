@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uniordle/core/app_fonts.dart';
 import 'package:uniordle/shared/buttons/select_button_wrapper.dart';
 
 class PrimaryButton extends StatelessWidget {
@@ -75,12 +76,7 @@ class PrimaryButton extends StatelessWidget {
         ],
         Text(
           label.toUpperCase(),
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-            letterSpacing: 1.2,
-          ),
+          style: AppTextStyles.labelLarge
         ),
       ],
     );

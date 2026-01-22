@@ -32,7 +32,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
       body: SafeArea(
         child: Column(
           children: [
-            _buildHeader(),
+            BaseHeader(
+              title: 'Settings',
+              leftIcon: Icons.chevron_left, 
+              onLeftTap: widget.onClose,
+            ),
             Expanded(
               child: ListView(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -76,14 +80,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ],
         ),
       ),
-    );
-  }
-
-  Widget _buildHeader() {
-    return BaseHeader(
-      title: 'Settings',
-      leftIcon: Icons.chevron_left, 
-      onLeftTap: widget.onClose,
     );
   }
 }

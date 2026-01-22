@@ -78,7 +78,7 @@ void didChangeDependencies() {
       barrierDismissible: false,
       builder: (context) {
         return BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
+          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
           child: EndGameDialog(
             won: won,
             solution: _controller.solution.wordString,

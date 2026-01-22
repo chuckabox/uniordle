@@ -33,7 +33,11 @@ class KeyboardButton extends StatelessWidget {
         onTap: onTap,
         backgroundColor: AppColors.surfaceVariant,
         soundType: SoundType.delete,
-        child: const Icon(Icons.backspace, color: Colors.white, size: 22),
+        child: Icon(
+          Icons.backspace, 
+          color: Colors.white, 
+          size: 22
+        ),
       );
 
   factory KeyboardButton.enter({required VoidCallback onTap}) =>
@@ -43,13 +47,9 @@ class KeyboardButton extends StatelessWidget {
         backgroundColor: AppColors.surfaceVariant,
         letter: 'ENTER',
         soundType: SoundType.enter,
-        child: const Text(
+        child: Text(
           'ENTER',
-          style: TextStyle(
-            fontSize: 14, 
-            fontWeight: FontWeight.bold, 
-            color: Colors.white
-          ),
+          style: AppTextStyles.labelLarge
         ),
       );
 
