@@ -16,7 +16,7 @@ class SolutionBox extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Text('THE WORD WAS', style: GameFonts.infoBarText),
+          Text('THE WORD WAS'),
           const SizedBox(height: 12),
           Container(
             width: double.infinity,

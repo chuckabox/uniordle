@@ -8,6 +8,7 @@ class PrimaryButton extends StatelessWidget {
   final bool isLoading;
   final IconData? icon;
   final double height;
+  final double width;
   final double borderRadius;
   final bool showShadow;
 
@@ -19,6 +20,7 @@ class PrimaryButton extends StatelessWidget {
     this.isLoading = false,
     this.icon,
     this.height = 64,
+    this.width = double.infinity,
     this.borderRadius = 16,
     this.showShadow = false,
   });
@@ -28,7 +30,7 @@ class PrimaryButton extends StatelessWidget {
     return PumpButtonWrapper(
       onTap: isLoading ? null : onPressed,
       child: Container(
-        width: double.infinity,
+        width: width,
         height: height,
         decoration: BoxDecoration(
           color: color,

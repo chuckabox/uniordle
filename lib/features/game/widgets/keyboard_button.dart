@@ -69,7 +69,7 @@ class KeyboardButton extends StatelessWidget {
           child: Center(
             child: child ?? Text(
               letter ?? '',
-              style: GameFonts.keyText,
+              style: AppTextStyles.displayMedium.copyWith(fontSize: 24),
             ),
           ),
         )

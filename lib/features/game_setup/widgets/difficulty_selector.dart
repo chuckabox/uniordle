@@ -8,6 +8,8 @@ const _labels = {
   4: ('Postgrad', '5'),
 };
 
+const _attemptsIcon = Icons.favorite;
+
 class DifficultySelector extends StatelessWidget {
   final int value;
   final ValueChanged<int> onChanged;
@@ -28,21 +30,21 @@ class DifficultySelector extends StatelessWidget {
       children: [
         Text(
           'YEAR LEVEL',
-          style: GameSetUpFonts.yearLevelText,
+          style: AppTextStyles.displayMedium,
         ),
-        const SizedBox(height: 8),
+        const SizedBox(height: 4),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(
-              GameSetUpFonts.attemptsIcon,
+              _attemptsIcon,
               size: 12,
               color: discipline.color,
             ),
             const SizedBox(width: 8),
             Text(
               'ATTEMPTS ALLOWED',
-              style: GameSetUpFonts.attemptsAllowedText(discipline.color),
+              style: AppTextStyles.labelMedium.copyWith(color: discipline.color),
             ),
           ],
         ),
@@ -103,8 +105,8 @@ class DifficultySelector extends StatelessWidget {
                                 e.value.$1,
                                 textAlign: TextAlign.center,
                                 style: active
-                                    ? GameSetUpFonts.yearLabelActive
-                                    : GameSetUpFonts.yearLabelBase,
+                                    ? AppTextStyles.labelMedium.copyWith(color: Colors.white, fontWeight: FontWeight.w700)
+                                    : AppTextStyles.labelMedium,
                               ),
                               const SizedBox(height: 4),
                               Row(
@@ -119,13 +121,13 @@ class DifficultySelector extends StatelessWidget {
                                     child: Text(
                                       e.value.$2,
                                       style: active
-                                          ? GameSetUpFonts.attemptsActiveText(discipline.color)
-                                          : GameSetUpFonts.attemptsInactiveText,
+                                          ? AppTextStyles.labelMedium.copyWith(color: discipline.color, fontWeight: FontWeight.w700)
+                                          : AppTextStyles.labelMedium,
                                     ),
                                   ),
                                   const SizedBox(width: 2),
                                   Icon(
-                                    GameSetUpFonts.attemptsIcon,
+                                    _attemptsIcon,
                                     size: 12,
                                     color: active
                                         ? discipline.color

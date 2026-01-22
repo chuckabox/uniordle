@@ -29,7 +29,7 @@ class InfoTag extends StatelessWidget {
         textAlign: TextAlign.center,
         maxLines: 1,
         overflow: TextOverflow.ellipsis,
-        style: GameFonts.infoBarText,
+        style: AppTextStyles.labelMedium,
       ),
     );
   }

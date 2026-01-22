@@ -37,7 +37,7 @@ class GameSetupHero extends StatelessWidget {
         const SizedBox(height: 8),
         Text(
           'GAME SETTINGS',
-          style: GameSetUpFonts.gameSettingsText(discipline.color),
+          style: AppTextStyles.labelLarge.copyWith(color: discipline.color),
         ),
       ],
     );

@@ -25,11 +25,6 @@ class DialogHeader extends StatelessWidget {
         const SizedBox(height: 16),
         Text(
           won ? 'YOU WIN!' : 'GAME OVER',
-          style: GameFonts.infoBarText.copyWith(
-            fontSize: 32,
-            fontWeight: FontWeight.w900,
-            color: Colors.white,
-          ),
         ),
       ],
     );
