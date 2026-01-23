@@ -23,10 +23,10 @@ class GameInfoBar extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Expanded(child: InfoTag(label: disciplineName)),
-              const SizedBox(width: 4),
+              const SizedBox(width: 8),
               Expanded(child: InfoTag(label: '$wordLength LETTERS')),
-              const SizedBox(width: 4),
-              Expanded(child: InfoTag(label: yearLevel)),
+              const SizedBox(width: 8),
+              Expanded(child: InfoTag(label: yearLevel.toUpperCase())),
             ],
           ),
         )

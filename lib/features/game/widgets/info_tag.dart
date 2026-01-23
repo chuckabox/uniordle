@@ -17,7 +17,7 @@ class InfoTag extends StatelessWidget {
     return Container(
       width: double.infinity,
       alignment: Alignment.center,
-      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+      padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
       decoration: BoxDecoration(
         color: backgroundColor.withValues(alpha: 0.5),
         borderRadius: BorderRadius.circular(16),

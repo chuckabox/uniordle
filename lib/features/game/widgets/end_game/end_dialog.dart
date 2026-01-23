@@ -1,6 +1,7 @@
 import 'package:uniordle/features/game/widgets/end_game/attempts_info.dart';
 import 'package:uniordle/features/game/widgets/end_game/end_dialog_header.dart';
 import 'package:uniordle/features/game/widgets/end_game/solution_box.dart';
+import 'package:uniordle/features/game/widgets/game_info_bar.dart';
 import 'package:uniordle/features/home/models/discipline.dart';
 import 'package:uniordle/shared/buttons/primary_button.dart';
 import 'package:uniordle/shared/exports/game_screen_exports.dart';
@@ -50,15 +51,7 @@ class EndGameDialog extends StatelessWidget {
             const SizedBox(height: 12),
             AttemptsInfo(attempts: attempts, maxAttempts: maxAttempts, won: won),
             const SizedBox(height: 24),
-            Row(
-              children: [
-                Expanded(child: InfoTag(label: discipline.name)),
-                const SizedBox(width: 8),
-                Expanded(child: InfoTag(label: '${solution.length} LETTERS')),
-                const SizedBox(width: 8),
-                Expanded(child: InfoTag(label: yearLevel.toUpperCase())),
-              ],
-            ),
+            GameInfoBar(disciplineName: discipline.name, yearLevel: yearLevel, wordLength: solution.length),
             const SizedBox(height: 32),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
