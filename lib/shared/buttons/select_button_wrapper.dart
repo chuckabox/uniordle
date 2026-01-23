@@ -33,6 +33,7 @@ class PumpButtonWrapper extends StatefulWidget {
 class _PumpButtonWrapperState extends State<PumpButtonWrapper> {
   double _scale = 1.0;
   bool _isPressed = false;
+  bool _isHovered = false;
 
   void _updateState(double scale, bool pressed) {
     if (widget.onTap != null) {
@@ -49,24 +50,29 @@ class _PumpButtonWrapperState extends State<PumpButtonWrapper> {
   @override
   Widget build(BuildContext context) {
     Color? backgroundColor = widget.baseColor;
-    if (widget.enableDarken && widget.baseColor != null && _isPressed) {
-      backgroundColor = Color.alphaBlend(
-        Colors.black.withValues(alpha: widget.darkenIntensity),
-        widget.baseColor!,
-      );
+
+    if (widget.onTap != null && widget.baseColor != null) {
+      if (_isPressed && widget.enableDarken) {
+        backgroundColor = Color.alphaBlend(
+          Colors.black.withValues(alpha: widget.darkenIntensity),
+          widget.baseColor!,
+        );
+      }
     }
 
     return MouseRegion(
       cursor: widget.onTap != null 
         ? SystemMouseCursors.click 
         : SystemMouseCursors.basic,
+      onEnter: (_) => setState(() => _isHovered = true),
+      onExit: (_) => setState(() => _isHovered = false),
       child: GestureDetector(
         onTap: widget.onTap,
         onTapDown: (_) => _updateState(widget.pressScale, true),
         onTapUp: (_) => _updateState(1.0, false),
         onTapCancel: () => _updateState(1.0, false),
         child: AnimatedScale(
-          scale: _scale,
+          scale: _isHovered && !_isPressed ? 1.02 : _scale,
           duration: pumpDuration,
           curve: Curves.easeOut,
           child: AnimatedContainer(

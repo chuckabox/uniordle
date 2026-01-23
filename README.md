@@ -89,10 +89,8 @@ Latest release:
 
 * Make categories more university related
 * Change transition between screens
-* Add dialog when clicking help icon
 * Motion blur on game back to game settings transition
 * Add more words
-* Improve end game dialog
 * Add sound/music
 * Add stats/profile screens
 * change sound effect of tile flipping in game screen

@@ -54,13 +54,13 @@ class _DialogHeaderState extends State<DialogHeader> with SingleTickerProviderSt
                   color: effectColor.withValues(alpha: 0.15),
                   shape: BoxShape.circle,
                 ),
+              child: Icon(
+                widget.won ? Icons.stars_rounded : Icons.close_rounded,
+                color: widget.won ? AppColors.correctColor : Colors.red,
+                size: 64,
               ),
             ),
-            Icon(
-              widget.won ? Icons.stars_rounded : Icons.close_rounded,
-              color: widget.won ? AppColors.correctColor : Colors.red,
-              size: 64,
-            ),
+              ),
           ],
         ),
         const SizedBox(height: 16),
