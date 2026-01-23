@@ -11,36 +11,38 @@ class HelpDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseDialog(
-      child: Container(
-        constraints: const BoxConstraints(maxWidth: 320),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              'HOW TO PLAY', 
-              style: AppTextStyles.headline
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Text(
+            'HOW TO PLAY', 
+            style: AppTextStyles.headline
+          ),
+          const SizedBox(height: 8),
+          Text(
+            'Choose a category, customise your settings, then guess the word!',
+            style: AppTextStyles.labelMedium.copyWith(
+              color: Colors.white70,
             ),
-            const SizedBox(height: 8),
-            Text(
-              'Guess the word in 5 to 8 tries.',
-              style: AppTextStyles.labelMedium.copyWith(
-                color: Colors.white70,
-              ),
-              textAlign: TextAlign.center,
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 32),
+          InstructionRow(letter: 'W', color: AppColors.correctColor, title: 'Correct', subtitle: 'Right Spot'),
+          const SizedBox(height: 16),
+          InstructionRow(letter: 'I', color: AppColors.inWordColor, title: 'Eh', subtitle: 'Wrong Spot'),
+          const SizedBox(height: 16),
+          InstructionRow(letter: 'N', color: AppColors.notInWordColor, title: 'Incorrect', subtitle: 'Not in any Spot'),
+          const SizedBox(height: 40),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24),
+            child: PrimaryButton(
+                label: 'GOT IT',
+                onPressed: () => Navigator.pop(context),
+                borderRadius: 24,
             ),
-            const SizedBox(height: 32),
-            InstructionRow(letter: 'W', color: AppColors.correctColor, title: 'title', subtitle: 'subtitle'),
-            const SizedBox(height: 16),
-            InstructionRow(letter: 'I', color: AppColors.inWordColor, title: 'title', subtitle: 'subtitle'),
-            const SizedBox(height: 16),
-            InstructionRow(letter: 'N', color: AppColors.notInWordColor, title: 'title', subtitle: 'subtitle'),
-            const SizedBox(height: 40),
-            PrimaryButton(
-              label: 'GOT IT',
-              onPressed: () => Navigator.pop(context),
-            ),
-          ],
-        ),
+          ),
+        ],
       )
     );
   }

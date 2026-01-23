@@ -1,6 +1,6 @@
 import 'package:uniordle/shared/exports/game_setup_exports.dart';
 
-class AppTextStyles {
+abstract class AppTextStyles {
   static const String displayFont = 'Lexend';
   static const String uiFont = 'PlusJakartaSans';
 

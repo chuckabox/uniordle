@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class AppColors {
+abstract class AppColors {
   // Game Logic
   static const Color correctColor = Color(0xFF538D4E);   // Success / Correct
   static const Color inWordColor = Color(0XFFDAC316); // Warning / In Word

@@ -46,11 +46,11 @@ class InstructionRow extends StatelessWidget {
             children: [
               Text(
                 title,
-                style: AppTextStyles.labelMedium,
+                style: AppTextStyles.labelLarge,
                 ),
               Text(
                 subtitle,
-                style: AppTextStyles.labelSmall
+                style: AppTextStyles.labelMedium
               ),
             ]
           )

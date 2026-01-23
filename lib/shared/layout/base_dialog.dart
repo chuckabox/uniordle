@@ -19,9 +19,12 @@ class BaseDialog extends StatelessWidget {
         insetPadding: const EdgeInsets.symmetric(horizontal: 20),
         backgroundColor: AppColors.surface,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 24),
-          child: child,
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 540), 
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: child,
+          ),
         ),
       ),
     );
