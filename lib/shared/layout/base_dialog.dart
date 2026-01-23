@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:uniordle/core/app_layout.dart';
 import 'package:uniordle/shared/exports/game_screen_exports.dart';
 
 class BaseDialog extends StatelessWidget {
@@ -20,7 +21,7 @@ class BaseDialog extends StatelessWidget {
         backgroundColor: AppColors.surface,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
         child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 540), 
+          constraints: const BoxConstraints(maxWidth: AppLayout.maxDialogWidth), 
           child: Padding(
             padding: const EdgeInsets.all(16),
             child: child,

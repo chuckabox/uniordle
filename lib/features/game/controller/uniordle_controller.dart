@@ -1,3 +1,4 @@
+import 'package:uniordle/features/game/data/word_repository.dart';
 import 'package:uniordle/shared/exports/game_screen_exports.dart';
 import 'package:flip_card/flip_card.dart';
 import 'dart:math';
@@ -64,54 +65,61 @@ class UniordleController extends ChangeNotifier {
   }
 
   Future<void> submitWord() async {
-  if (status != GameStatus.playing || currentWord == null) return;
-  if (currentWord!.letters.any((l) => l.val.isEmpty)) return;
+    if (status != GameStatus.playing || currentWord == null) return;
+    if (currentWord!.letters.any((l) => l.val.isEmpty)) return;
 
-  status = GameStatus.submitting;
-  notifyListeners();
-
-  List<String> remainingLetters = solution.letters.map((l) => l.val).toList();
-  List<LetterStatus> statuses = List.filled(wordLength, LetterStatus.notInWord);
-
-  for (int i = 0; i < wordLength; i++) {
-    if (currentWord!.letters[i].val == solution.letters[i].val) {
-      statuses[i] = LetterStatus.correct;
-      remainingLetters[i] = "";
+    final guess = currentWord!.wordString; 
+    if (!WordRepository.isValidWord(guess)) {
+      onInvalidWord?.call(); 
+      
+      return;
     }
-  }
 
-  for (int i = 0; i < wordLength; i++) {
-    if (statuses[i] != LetterStatus.correct) {
-      int indexInRemaining = remainingLetters.indexOf(currentWord!.letters[i].val);
-      if (indexInRemaining != -1) {
-        statuses[i] = LetterStatus.inWord;
-        remainingLetters[indexInRemaining] = "";
+    status = GameStatus.submitting;
+    notifyListeners();
+
+    List<String> remainingLetters = solution.letters.map((l) => l.val).toList();
+    List<LetterStatus> statuses = List.filled(wordLength, LetterStatus.notInWord);
+
+    for (int i = 0; i < wordLength; i++) {
+      if (currentWord!.letters[i].val == solution.letters[i].val) {
+        statuses[i] = LetterStatus.correct;
+        remainingLetters[i] = "";
       }
     }
-  }
 
-  // reveal letters 1 by 1
-  for (int i = 0; i < wordLength; i++) {
-    currentWord!.letters[i] = currentWord!.letters[i].copyWith(status: statuses[i]);
-    _updateKeyboard(currentWord!.letters[i]);
-    
-    notifyListeners();
-
-    SoundManager().play(SoundType.keyboard);
-
-    notifyListeners();
-
-    if (currentWordIndex < flipCardKeys.length && i < flipCardKeys[currentWordIndex].length) {
-       flipCardKeys[currentWordIndex][i].currentState?.toggleCard();
+    for (int i = 0; i < wordLength; i++) {
+      if (statuses[i] != LetterStatus.correct) {
+        int indexInRemaining = remainingLetters.indexOf(currentWord!.letters[i].val);
+        if (indexInRemaining != -1) {
+          statuses[i] = LetterStatus.inWord;
+          remainingLetters[indexInRemaining] = "";
+        }
+      }
     }
-    
-    await Future.delayed(_flipDuration);
+
+    // reveal letters 1 by 1
+    for (int i = 0; i < wordLength; i++) {
+      currentWord!.letters[i] = currentWord!.letters[i].copyWith(status: statuses[i]);
+      _updateKeyboard(currentWord!.letters[i]);
+      
+      notifyListeners();
+
+      SoundManager().play(SoundType.keyboard);
+
+      notifyListeners();
+
+      if (currentWordIndex < flipCardKeys.length && i < flipCardKeys[currentWordIndex].length) {
+        flipCardKeys[currentWordIndex][i].currentState?.toggleCard();
+      }
+      
+      await Future.delayed(_flipDuration);
+    }
+
+    await Future.delayed(const Duration(milliseconds: 200));
+
+    _checkResult();
   }
-
-  await Future.delayed(const Duration(milliseconds: 200));
-
-  _checkResult();
-}
 
   void _updateKeyboard(Letter newLetter) {
     final existing = keyboardLetters.firstWhere((l) => l.val == newLetter.val, orElse: () => Letter.empty());

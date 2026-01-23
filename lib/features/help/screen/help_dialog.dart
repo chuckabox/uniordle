@@ -17,7 +17,8 @@ class HelpDialog extends StatelessWidget {
         children: [
           Text(
             'HOW TO PLAY', 
-            style: AppTextStyles.headline
+            style: AppTextStyles.headline,
+            textAlign: TextAlign.center,
           ),
           const SizedBox(height: 8),
           Text(
@@ -28,16 +29,16 @@ class HelpDialog extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 32),
-          InstructionRow(letter: 'W', color: AppColors.correctColor, title: 'Correct', subtitle: 'Right Spot'),
+          InstructionRow(letter: 'U', color: AppColors.correctColor, title: 'Correct Letter', subtitle: 'Right spot'),
           const SizedBox(height: 16),
-          InstructionRow(letter: 'I', color: AppColors.inWordColor, title: 'Eh', subtitle: 'Wrong Spot'),
+          InstructionRow(letter: 'N', color: AppColors.inWordColor, title: 'Correct Letter', subtitle: 'Wrong spot'),
           const SizedBox(height: 16),
-          InstructionRow(letter: 'N', color: AppColors.notInWordColor, title: 'Incorrect', subtitle: 'Not in any Spot'),
+          InstructionRow(letter: 'I', color: AppColors.notInWordColor, title: 'Letter not in word', subtitle: 'Not in any spot'),
           const SizedBox(height: 40),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24),
             child: PrimaryButton(
-                label: 'GOT IT',
+                label: 'GOT IT!',
                 onPressed: () => Navigator.pop(context),
                 borderRadius: 24,
             ),
