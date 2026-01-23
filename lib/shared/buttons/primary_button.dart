@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:uniordle/core/app_fonts.dart';
 import 'package:uniordle/shared/buttons/select_button_wrapper.dart';
+import 'package:uniordle/shared/exports/game_screen_exports.dart';
 
 class PrimaryButton extends StatelessWidget {
   final String label;
@@ -17,7 +16,7 @@ class PrimaryButton extends StatelessWidget {
     super.key,
     required this.label,
     required this.onPressed,
-    required this.color,
+    this.color = AppColors.accent,
     this.isLoading = false,
     this.icon,
     this.height = 64,

@@ -5,6 +5,7 @@ import 'package:uniordle/features/game/widgets/game_info_bar.dart';
 import 'package:uniordle/features/home/models/discipline.dart';
 import 'package:uniordle/shared/buttons/primary_button.dart';
 import 'package:uniordle/shared/exports/game_screen_exports.dart';
+import 'package:uniordle/shared/layout/base_dialog.dart';
 
 /// Dialog shown when game ends
 /// 
@@ -32,54 +33,42 @@ class EndGameDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Dialog(
-      insetPadding: const EdgeInsets.symmetric(
-        horizontal: 16,
-      ),
-      backgroundColor: AppColors.surface,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(32),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 24),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            DialogHeader(won: won),
-            const SizedBox(height: 24),
-            SolutionBox(solution: solution),
-            const SizedBox(height: 12),
-            AttemptsInfo(attempts: attempts, maxAttempts: maxAttempts, won: won),
-            const SizedBox(height: 24),
-            GameInfoBar(disciplineName: discipline.name, yearLevel: yearLevel, wordLength: solution.length),
-            const SizedBox(height: 32),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: PrimaryButton(
-                label: 'NEW GAME',
-                color: AppColors.accent,
-                onPressed: onRestart,
-                borderRadius: 24,
-                
-              ),
+    return BaseDialog(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          DialogHeader(won: won),
+          const SizedBox(height: 24),
+          SolutionBox(solution: solution),
+          const SizedBox(height: 12),
+          AttemptsInfo(attempts: attempts, maxAttempts: maxAttempts, won: won),
+          const SizedBox(height: 6),
+          GameInfoBar(disciplineName: discipline.name, yearLevel: yearLevel, wordLength: solution.length),
+          const SizedBox(height: 24),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24),
+            child: PrimaryButton(
+              label: 'NEW GAME',
+              onPressed: onRestart,
+              borderRadius: 24,
             ),
-            const SizedBox(height: 12),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: PrimaryButton(
-                label: 'HOME',
-                color: AppColors.surfaceVariant,
-                onPressed: () {
-                  Navigator.of(context).pushNamedAndRemoveUntil(
-                    '/',
-                    (route) => false,
-                  );
-                },
-                borderRadius: 24,
-              ),
-            )
-          ],
-        ),
+          ),
+          const SizedBox(height: 12),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24),
+            child: PrimaryButton(
+              label: 'HOME',
+              color: AppColors.surfaceVariant,
+              onPressed: () {
+                Navigator.of(context).pushNamedAndRemoveUntil(
+                  '/',
+                  (route) => false,
+                );
+              },
+              borderRadius: 24,
+            ),
+          )
+        ],
       ),
     );
   }
