@@ -60,7 +60,7 @@ class ResponsiveWrapper extends StatelessWidget {
       color: AppColors.surface, 
       child: Center(
         child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: AppLayout.maxAppWidth),
+          constraints: const BoxConstraints(maxWidth: AppLayout.minAppWidth),
           child: ClipRect(child: child),
         ),
       ),
