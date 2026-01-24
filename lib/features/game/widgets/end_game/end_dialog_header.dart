@@ -11,6 +11,7 @@ class DialogHeader extends StatelessWidget {
     return Column(
       children: [
         Container(
+          // background icon circle
           padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
             color: won
@@ -18,6 +19,7 @@ class DialogHeader extends StatelessWidget {
                 : Colors.red.withValues(alpha: 0.15),
             shape: BoxShape.circle,
           ),
+          
           child: Icon(
             won ? Icons.stars_rounded : Icons.close_rounded,
             color: won ? AppColors.correctColor : Colors.red,

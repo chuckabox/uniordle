@@ -7,6 +7,7 @@ abstract class AppLayout {
 
   static const double barHeight = 60.0; // header/footer
   static const double kSidePadding = 24.0;
+  static const double kVerticalPadding = 36.0;
   static const double kIconSize = 40.0;
   
   static const double dialogRadius = 32.0;

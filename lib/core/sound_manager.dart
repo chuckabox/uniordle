@@ -52,8 +52,12 @@ class SoundManager {
     }
   }
 
+  bool _enabled = true;
+
+  set soundsEnabled(bool value) => _enabled = value;
+
   void play(SoundType type, {double? volumeOverride}) {
-    if (!_isInitialized) return;
+    if (!_isInitialized || !_enabled) return;
     
     final source = _sources[type];
     if (source != null) {

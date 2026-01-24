@@ -34,41 +34,46 @@ class EndGameDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseDialog(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          DialogHeader(won: won),
-          const SizedBox(height: 24),
-          SolutionBox(solution: solution),
-          const SizedBox(height: 12),
-          AttemptsInfo(attempts: attempts, maxAttempts: maxAttempts, won: won),
-          const SizedBox(height: 6),
-          GameInfoBar(disciplineName: discipline.name, yearLevel: yearLevel, wordLength: solution.length),
-          const SizedBox(height: 24),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24),
-            child: PrimaryButton(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          vertical: 16, 
+          horizontal: 12
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            DialogHeader(won: won),
+            const SizedBox(height: 24),
+            SolutionBox(solution: solution),
+            const SizedBox(height: 12),
+            AttemptsInfo(attempts: attempts, maxAttempts: maxAttempts, won: won),
+            const SizedBox(height: 12),
+            GameInfoBar(disciplineName: discipline.name, yearLevel: yearLevel, wordLength: solution.length),
+            const SizedBox(height: 24),
+            PrimaryButton(
               label: 'NEW GAME',
-              onPressed: onRestart,
+              onPressed: () {
+                Navigator.of(context).pushNamed(
+                  '/setup',
+                  arguments: discipline
+                );
+              },
               borderRadius: 24,
             ),
-          ),
-          const SizedBox(height: 12),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24),
-            child: PrimaryButton(
+            const SizedBox(height: 12),
+            PrimaryButton(
               label: 'HOME',
               color: AppColors.surfaceVariant,
+              borderRadius: 24,
               onPressed: () {
                 Navigator.of(context).pushNamedAndRemoveUntil(
                   '/',
                   (route) => false,
                 );
               },
-              borderRadius: 24,
             ),
-          )
-        ],
+          ],
+        ),
       ),
     );
   }

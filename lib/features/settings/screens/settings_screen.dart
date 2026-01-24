@@ -1,3 +1,4 @@
+import 'package:uniordle/features/settings/settings_manager.dart';
 import 'package:uniordle/shared/exports/settings_exports.dart';
 import 'package:uniordle/shared/layout/base_header.dart';
 
@@ -11,18 +12,25 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  SettingsState _settings = SettingsState();
+  late SettingsState _settings = settingsNotifier.value;
 
   void _toggleSounds(bool value) {
     setState(() {
       _settings = _settings.copyWith(soundsEnabled: value);
     });
+
+    settingsNotifier.value = _settings;
+
+    SoundManager().soundsEnabled = value;
+
   }
 
   void _toggleDarkMode(bool value) {
     setState(() {
       _settings = _settings.copyWith(darkModeEnabled: value);
     });
+
+    settingsNotifier.value = _settings;
   }
 
   @override

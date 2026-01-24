@@ -42,6 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 disciplines: _disciplines,
                 onSubjectTap: _onDisciplineTap,
               ),
+              const SizedBox(height: 36),
             ],
           ),
         ),

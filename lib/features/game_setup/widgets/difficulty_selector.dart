@@ -105,7 +105,7 @@ class DifficultySelector extends StatelessWidget {
                                 e.value.$1,
                                 textAlign: TextAlign.center,
                                 style: active
-                                    ? AppTextStyles.labelMedium.copyWith(color: Colors.white, fontWeight: FontWeight.w700)
+                                    ? AppTextStyles.labelMedium.copyWith(color: Colors.white, fontWeight: FontWeight.w600)
                                     : AppTextStyles.labelMedium,
                               ),
                               const SizedBox(height: 4),
@@ -121,7 +121,7 @@ class DifficultySelector extends StatelessWidget {
                                     child: Text(
                                       e.value.$2,
                                       style: active
-                                          ? AppTextStyles.labelMedium.copyWith(color: discipline.color, fontWeight: FontWeight.w700)
+                                          ? AppTextStyles.labelMedium.copyWith(color: discipline.color, fontWeight: FontWeight.w600)
                                           : AppTextStyles.labelMedium,
                                     ),
                                   ),
