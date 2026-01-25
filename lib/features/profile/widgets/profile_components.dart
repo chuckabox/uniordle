@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:uniordle/shared/exports/profile_screen_exports.dart';
 
 class SummaryCard extends StatelessWidget {
   final String label, value;
@@ -7,26 +7,20 @@ class SummaryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 20),
+      padding: const EdgeInsets.symmetric(vertical: 12),
       decoration: BoxDecoration(
-        color: const Color(0xFF1E293B), 
+        color: AppColors.surfaceVariant, 
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: Colors.white.withValues(alpha: 0.08)),
       ),
       child: Column(
         children: [
           Text(
             label.toUpperCase(), 
-            style: const TextStyle(
-              color: Colors.orange, 
-            )
+            style: AppTextStyles.labelMedium
           ),
-          const SizedBox(height: 8),
           Text(
             value, 
-            style: const TextStyle(
-              color: Colors.redAccent, 
-            )
+            style: AppTextStyles.headline
           ),
         ],
       ),

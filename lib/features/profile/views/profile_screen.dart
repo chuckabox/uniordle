@@ -8,19 +8,15 @@ class ProfileView extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        const ProfileHeader(
-          primaryColor: Colors.blue, 
-          bgColor: Colors.red,
-        ),
-        const SizedBox(height: 16),
+        const ProfileHeader(),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24),
           child: Row(
             children: [
               Expanded(child: SummaryCard(label: "Streak", value: currentStats.streak)),
-              const SizedBox(width: 12),
+              const SizedBox(width: 16),
               Expanded(child: SummaryCard(label: "Solved", value: currentStats.solved)),
-              const SizedBox(width: 12),
+              const SizedBox(width: 16),
               Expanded(child: SummaryCard(label: "Level", value: currentStats.level)),
             ],
           ),

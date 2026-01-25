@@ -1,13 +1,13 @@
+import 'package:uniordle/shared/exports/home_screen_exports.dart';
 import 'package:uniordle/shared/exports/profile_screen_exports.dart';
 
 class ProfileHeader extends StatelessWidget {
-  final Color primaryColor, bgColor;
-  const ProfileHeader({super.key, required this.primaryColor, required this.bgColor});
+  const ProfileHeader({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 40, bottom: 30),
+      padding: const EdgeInsets.only(top: 40, bottom: 20),
       child: Column(
         children: [
           Center(
@@ -15,47 +15,43 @@ class ProfileHeader extends StatelessWidget {
               alignment: Alignment.bottomRight,
               children: [
                 Container(
-                  padding: const EdgeInsets.all(3),
+                  padding: const EdgeInsets.all(4),
                   decoration: const BoxDecoration(
-                    color: Colors.blue,
+                    color: AppColors.accent,
                     shape: BoxShape.circle,
                   ),
-                  child: CircleAvatar(
-                    radius: 48,
-                    backgroundColor: Colors.blue,
-                    child: Icon(Icons.account_circle, size: 84, color: Colors.red),
+                  child: Container(
+                    padding: const EdgeInsets.all(4),
+                    decoration: BoxDecoration(
+                      color: AppColors.surface,
+                      shape: BoxShape.circle,
+                    ),
+                    child: CircleAvatar(
+                      radius: 40,
+                      backgroundColor: AppColors.surfaceVariant,
+                      child: Icon(Icons.account_circle, size: 48, color: AppColors.onSurfaceVariant),
+                    ),
                   ),
                 ),
-                Container(
-                  height: 28,
-                  width: 28,
-                  decoration: BoxDecoration(
-                    color: Colors.red,
-                    shape: BoxShape.circle,
-                    border: Border.all(color: bgColor, width: 3),
-                  ),
-                  child: const Icon(
-                    Icons.check, 
-                    size: 14, 
-                    color: Colors.white
-                  ),
-                )
               ],
             ),
           ),
-          const SizedBox(height: 16),
-          const Text(
-            "Temp Name", 
+          const SizedBox(height: 8),
+          Text(
+            "Temp Name",
+            style: AppTextStyles.displayMedium
           ),
-          const SizedBox(height: 6),
+          const SizedBox(height: 8),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
               "Academic Level: ", 
+              style: AppTextStyles.labelMedium
               ),
               Text(
                 "SENIOR", 
+              style: AppTextStyles.labelLarge.copyWith(color: AppColors.accent)
               ),
             ],
           ),

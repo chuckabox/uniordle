@@ -11,4 +11,4 @@ class UserStats {
 
 }
 
-final currentStats = UserStats(streak: "12", solved: "148", level: "42"); // temporary
+final currentStats = UserStats(streak: "0", solved: "0", level: "0"); // temporary
