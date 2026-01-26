@@ -1,3 +1,4 @@
+import 'package:uniordle/features/game_setup/widgets/credit_preview_badge.dart';
 import 'package:uniordle/shared/buttons/primary_button.dart';
 import 'package:uniordle/shared/exports/game_setup_exports.dart';
 import 'package:uniordle/features/home/models/discipline.dart';
@@ -75,6 +76,15 @@ class _GameSetupScreenState extends State<GameSetupScreen> {
                   ],
                 ),
               ),
+
+              CreditPreviewBadge(
+                difficulty: _difficulty,
+                wordLength: _wordLength,
+                discipline: widget.discipline,
+              ),
+
+              const SizedBox(height: 24),
+
               PrimaryButton(
                 label: 'PLAY GAME',
                 onPressed: _play,

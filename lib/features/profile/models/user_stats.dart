@@ -33,11 +33,23 @@ extension UserStatsExtension on UserStats {
     int maxBase = 20 + (yearLevel * 6);
 
     // 5: +0 | 6: +3 | 7: +7
-    int lengthBonus = (wordLength - 5) * 4;
+    int lengthBonus = 0;
+    if (wordLength == 6) lengthBonus = 5;
+    if (wordLength == 7) lengthBonus = 15;
 
     int reward = minBase + random.nextInt(maxBase - minBase + 1) + lengthBonus;
 
     return reward;
+  }
+
+  static String getCreditRange(int yearLevel, int wordLength) {
+    int minBase = 10 + (yearLevel * 5);
+    int maxBase = 20 + (yearLevel * 6);
+    int lengthBonus = 0;
+    if (wordLength == 6) lengthBonus = 5;
+    if (wordLength == 7) lengthBonus = 15;
+
+    return "${minBase + lengthBonus} - ${maxBase + lengthBonus}";
   }
 
   int get currentLevel => xp ~/ creditsPerLevel;

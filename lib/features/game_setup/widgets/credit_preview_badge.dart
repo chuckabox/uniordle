@@ -1,0 +1,54 @@
+import 'package:uniordle/shared/exports/game_setup_exports.dart';
+import 'package:uniordle/features/home/models/discipline.dart';
+import 'package:uniordle/features/profile/models/user_stats.dart';
+
+class CreditPreviewBadge extends StatelessWidget {
+  final int difficulty;
+  final int wordLength;
+  final Discipline discipline;
+
+  const CreditPreviewBadge({
+    super.key,
+    required this.difficulty,
+    required this.wordLength,
+    required this.discipline,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+      decoration: BoxDecoration(
+        color: discipline.color.withValues(alpha: 0.1),
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(
+          color: discipline.color.withValues(alpha: 0.2),
+        ),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(
+            Icons.stars, 
+            size: 16, 
+            color: discipline.color
+          ),
+          const SizedBox(width: 8),
+          Text(
+            "POTENTIAL CREDITS: ",
+            style: AppFonts.labelLarge.copyWith(
+              color: discipline.color,
+            ),
+          ),
+          Text(
+            UserStatsExtension.getCreditRange(difficulty, wordLength),
+            style: AppFonts.labelLarge.copyWith(
+              color: discipline.color,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
