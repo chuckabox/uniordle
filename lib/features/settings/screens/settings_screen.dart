@@ -2,6 +2,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uniordle/features/settings/settings_manager.dart';
 import 'package:uniordle/shared/exports/settings_exports.dart';
 import 'package:uniordle/shared/layout/base_header.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SettingsScreen extends StatefulWidget {
   final VoidCallback onClose;
@@ -18,6 +19,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Future<void> _savePreference(String key, bool value) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool(key, value);
+  }
+
+  Future<void> _launchUrl(String url) async {
+    final Uri uri = Uri.parse(url);
+    if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
+      throw Exception('Could not launch $url');
+    }
   }
 
   void _toggleSounds(bool value) {
@@ -71,6 +79,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     label: 'About Uniordle',
                     value: 'v1.0.0',
                     onTap: () {},
+                  ),
+                  const SizedBox(height: 8),
+                  SettingsActionTile(
+                    icon: Icons.code_rounded,
+                    label: 'My GitHub',
+                    onTap: () => _launchUrl('https://github.com/chuckabox'),
+                  ),
+                  const SizedBox(height: 8),
+                  SettingsActionTile(
+                    icon: Icons.person_search_rounded,
+                    label: 'My LinkedIn',
+                    onTap: () => _launchUrl('https://www.linkedin.com/in/peterzma'),
                   ),
                 ],
               ),
