@@ -63,7 +63,7 @@ class StatsManager {
 
     statsNotifier.value = UserStats(
       streak: newStreak,
-      maxStreak: newStreak > current.maxStreak ? newStreak : current.maxStreak,
+      maxStreak: newMaxStreak,
       solved: newSolved,
       lost: current.lost,
       xp: newXP,

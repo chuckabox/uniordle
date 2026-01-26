@@ -1,51 +1,121 @@
-import 'package:uniordle/features/help/widgets/instruction_row.dart';
-import 'package:uniordle/shared/buttons/primary_button.dart';
-import 'package:uniordle/shared/exports/home_exports.dart';
-import 'package:uniordle/shared/layout/base_dialog.dart';
+import 'package:uniordle/shared/exports/help_exports.dart';
 
-class HelpDialog extends StatelessWidget {
-  const HelpDialog({
-    super.key
-  });
+class HelpDialog extends StatefulWidget {
+  const HelpDialog({super.key});
+
+  @override
+  State<HelpDialog> createState() => _HelpDialogState();
+}
+
+class _HelpDialogState extends State<HelpDialog> {
+  final PageController _pageController = PageController();
+  int _currentPage = 0;
+  final int _totalPages = 3;
 
   @override
   Widget build(BuildContext context) {
     return BaseDialog(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Text(
-            'HOW TO PLAY', 
-            style: AppFonts.headline,
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 8),
-          Text(
-            'Choose a category, customise your settings, then guess the word!',
-            style: AppFonts.labelMedium.copyWith(
-              color: Colors.white70,
+      child: Container(
+        decoration: BoxDecoration(
+          color: AppColors.surface, 
+          borderRadius: BorderRadius.circular(32),
+        ),
+        child: Stack(
+          clipBehavior: Clip.none,
+          alignment: Alignment.center,
+          children: [
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                SizedBox(
+                  child: PageView(
+                    controller: _pageController,
+                    onPageChanged: (index) => setState(() => _currentPage = index),
+                    children: [
+                      const HowToPlaySlide(),
+                      const Center(child: Text("Slide 2", style: TextStyle(color: Colors.white))),
+                      const Center(child: Text("Slide 3", style: TextStyle(color: Colors.white))),
+                    ],
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: List.generate(_totalPages, (index) => AnimatedContainer(
+                    duration: const Duration(milliseconds: 200),
+                    margin: const EdgeInsets.symmetric(horizontal: 6),
+                    height: 6,
+                    width: 6,
+                    decoration: BoxDecoration(
+                      color: _currentPage == index ? AppColors.accent : AppColors.outline,
+                      borderRadius: BorderRadius.circular(24),
+                    ),
+                  )),
+                ),
+                const SizedBox(height: 32),
+                PrimaryButton(
+                  label: 'Got it!',
+                  onPressed: () => Navigator.pop(context),
+                  borderRadius: 16,
+                ),
+              ],
             ),
-            textAlign: TextAlign.center,
+
+            // Left Arrow
+            if (_currentPage > 0)
+              Positioned(
+                left: -20,
+                top: 180,
+                child: _NavArrow(
+                  icon: LucideIcons.chevronLeft,
+                  onTap: () => _pageController.previousPage(
+                    duration: const Duration(milliseconds: 200),
+                    curve: Curves.easeOutQuart,
+                  ),
+                ),
+              ),
+
+            // Right Arrow
+            if (_currentPage < _totalPages - 1)
+              Positioned(
+                right: -20,
+                top: 180,
+                child: _NavArrow(
+                  icon: LucideIcons.chevronRight,
+                  onTap: () => _pageController.nextPage(
+                    duration: const Duration(milliseconds: 200),
+                    curve: Curves.easeOutQuart,
+                  ),
+                ),
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _NavArrow extends StatelessWidget {
+  final IconData icon;
+  final VoidCallback onTap;
+
+  const _NavArrow({required this.icon, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onTap,
+        customBorder: const CircleBorder(),
+        child: Container(
+          padding: const EdgeInsets.all(8),
+          child: Icon(
+            icon,
+            color: AppColors.outline,
+            size: 24,
           ),
-          const SizedBox(height: 32),
-          InstructionRow(letter: 'U', color: AppColors.correctColor, title: 'Correct Letter', subtitle: 'Right spot'),
-          const SizedBox(height: 28),
-          InstructionRow(letter: 'N', color: AppColors.inWordColor, title: 'Correct Letter', subtitle: 'Wrong spot'),
-          const SizedBox(height: 28),
-          InstructionRow(letter: 'I', color: AppColors.notInWordColor, title: 'Letter not in word', subtitle: 'Not in any spot'),
-          const SizedBox(height: 32),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24),
-            child: PrimaryButton(
-                label: 'Got it!',
-                onPressed: () => Navigator.pop(context),
-                borderRadius: 24,
-            ),
-          ),
-          const SizedBox(height: 8),
-        ],
-      )
+        ),
+      ),
     );
   }
 }

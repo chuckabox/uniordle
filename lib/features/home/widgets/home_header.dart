@@ -1,3 +1,4 @@
+import 'package:uniordle/core/app_layout.dart';
 import 'package:uniordle/features/help/views/help_dialog.dart';
 import 'package:uniordle/shared/exports/home_exports.dart';
 import 'package:uniordle/shared/layout/base_header.dart';
@@ -10,7 +11,7 @@ class HomeHeader extends StatelessWidget implements PreferredSizeWidget {
   });
 
   @override
-  Size get preferredSize => const Size.fromHeight(72);
+  Size get preferredSize => const Size.fromHeight(AppLayout.barHeight);
 
   @override
   Widget build(BuildContext context) {
