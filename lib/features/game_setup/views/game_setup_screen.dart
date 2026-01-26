@@ -27,10 +27,9 @@ class _GameSettingsScreenState extends State<GameSettingsScreen> {
 
     if (!mounted) return;
 
-    await Navigator.pushNamedAndRemoveUntil(
+    await Navigator.pushNamed(
       context, 
       '/uniordle',
-      ModalRoute.withName('/'),
       arguments: {
         'discipline': widget.discipline,
         'wordLength': _wordLength,

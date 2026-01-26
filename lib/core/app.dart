@@ -26,19 +26,36 @@ class App extends StatelessWidget {
       },
 
       initialRoute: '/',
-      routes: {
-        '/': (context) => const HomeScreen(),
-        '/uniordle': (context) => const UniordleScreen(),
-        '/setup': (context) {
-          final args = ModalRoute.of(context)!.settings.arguments as Discipline;
-          return GameSettingsScreen(discipline: args);
-        },
-        '/settings': (context) => SettingsScreen(
-          onClose: () => Navigator.of(context).pop(), 
-        ),
-        '/profile': (context) => const ProfileView(),
+
+      onGenerateRoute: (settings) {
+        return InstantPageRoute(
+          settings: settings,
+          page: _getPage(settings),
+        );
       },
     );
+  }
+
+  Widget _getPage(RouteSettings settings) {
+    switch (settings.name) {
+      case '/':
+        return const HomeScreen();
+      case '/uniordle':
+        return const UniordleScreen();
+      case '/setup':
+        final args = settings.arguments as Discipline;
+        return GameSettingsScreen(discipline: args);
+      case '/settings':
+        return Builder(builder: (context) {
+          return SettingsScreen(
+            onClose: () => Navigator.of(context).pop(),
+          );
+        });
+      case '/profile':
+        return const ProfileView();
+      default:
+        return const HomeScreen();
+    }
   }
 }
 
@@ -58,4 +75,17 @@ class ResponsiveWrapper extends StatelessWidget {
       ),
     );
   }
+}
+
+class InstantPageRoute extends PageRouteBuilder {
+  final Widget page;
+
+  InstantPageRoute({
+    required this.page, super.settings
+  }): super(
+      pageBuilder: (context, animation, secondaryAnimation) => page,
+      transitionDuration: Duration.zero,
+      reverseTransitionDuration: Duration.zero,
+      transitionsBuilder: (context, animation, secondaryAnimation, child) => child,
+    );
 }
