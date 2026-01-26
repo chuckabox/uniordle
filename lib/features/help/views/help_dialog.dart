@@ -43,6 +43,7 @@ class HelpDialog extends StatelessWidget {
                 borderRadius: 24,
             ),
           ),
+          const SizedBox(height: 8),
         ],
       )
     );

@@ -61,14 +61,14 @@ class WordLengthSelector extends StatelessWidget {
                           Text(
                             '$len',
                             style: active 
-                            ? AppFonts.displayLarge
+                            ? AppFonts.displayMedium.copyWith(fontWeight: FontWeight.w900)
                             : AppFonts.displayMedium,
                           ),
                           const SizedBox(height: 2),
                           Text(
                             'LETTERS',
                             style: active 
-                            ? AppFonts.labelLarge
+                            ? AppFonts.labelMedium.copyWith(color: AppColors.onSurface, fontWeight: FontWeight.w600)
                             : AppFonts.labelMedium,
                           ),
                         ],

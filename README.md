@@ -97,3 +97,5 @@ Latest release:
 * Add locked disciplines - let player choose 1 from the start, unlock every 5 levels.
 * Add level up pop up.
 * Add win/loss sound to end dialog
+* Put unlocked disciplines at the top, rest locked can stay alphabetical. 
+* Make a pop up surprise when you reach level 5 for the unlocking, and also in this update the academic title
