@@ -53,19 +53,19 @@ class ProfileView extends StatelessWidget {
 
           const SizedBox(height: 32),
 
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text("UNLOCKED DISCIPLINES", style: AppTextStyles.labelLarge),
-              TextButton(
-                onPressed: () {}, 
-                child: Text(
-                  "See All",
-                  style: AppTextStyles.labelSmall.copyWith(fontSize: 12)
-                )
-              ),
-            ],
-          ),
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //   children: [
+          //     Text("UNLOCKED DISCIPLINES", style: AppTextStyles.labelLarge),
+          //     TextButton(
+          //       onPressed: () {}, 
+          //       child: Text(
+          //         "See All",
+          //         style: AppTextStyles.labelSmall.copyWith(fontSize: 12)
+          //       )
+          //     ),
+          //   ],
+          // ),
 
           // GridView.count(
           //   shrinkWrap: true,

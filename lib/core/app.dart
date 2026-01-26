@@ -1,4 +1,5 @@
 import 'package:uniordle/core/app_layout.dart';
+import 'package:uniordle/core/app_theme.dart';
 import 'package:uniordle/shared/exports/home_screen_exports.dart';
 import 'package:uniordle/shared/exports/game_screen_exports.dart';
 import 'package:uniordle/shared/exports/game_setup_exports.dart';
@@ -17,19 +18,8 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Uniordle',
-      debugShowCheckedModeBanner: true,
-      theme: ThemeData(
-        brightness: Brightness.dark,
-        fontFamily: AppTextStyles.uiFont,
-      ).copyWith(
-        scaffoldBackgroundColor: AppColors.surface,
-        textTheme: TextTheme(
-          displayLarge: AppTextStyles.displayMedium,
-          headlineMedium: AppTextStyles.displayLarge,
-          labelLarge: AppTextStyles.labelLarge,
-          labelSmall: AppTextStyles.labelMedium,
-        ),
-      ),
+      debugShowCheckedModeBanner: false,
+      theme: AppTheme.darkTheme,
 
       builder: (context, child) {
         return ResponsiveWrapper(child: child!);
