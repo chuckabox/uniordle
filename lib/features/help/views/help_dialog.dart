@@ -31,7 +31,6 @@ class _HelpDialogState extends State<HelpDialog> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   SizedBox(
-                    height: 320,
                     child: PageView(
                       controller: _pageController,
                       physics: const BouncingScrollPhysics(),
@@ -64,20 +63,14 @@ class _HelpDialogState extends State<HelpDialog> {
             if (_currentPage > 0)
               NavArrow(
                 isLeft: true,
-                onTap: () => _pageController.previousPage(
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.easeOutQuart,
-                ),
+                onTap: () => _pageController.jumpToPage(_currentPage - 1),
               ),
 
             // Right Arrow
             if (_currentPage < _totalPages - 1)
               NavArrow(
                 isLeft: false,
-                onTap: () => _pageController.nextPage(
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.easeOutQuart,
-                ),
+                onTap: () => _pageController.jumpToPage(_currentPage + 1),
               ),
           ],
         ),
@@ -99,10 +92,8 @@ class NavArrow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      // 1. Span the full height of the parent Stack
       top: -24,
       bottom: -24,
-      // 2. Position exactly on the edges
       left: isLeft ? -25 : null,
       right: !isLeft ? -25 : null,
       child: GestureDetector(
