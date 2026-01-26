@@ -9,14 +9,14 @@ abstract class AppFonts {
         fontFamily: displayFont,
         fontSize: 32,
         fontWeight: FontWeight.w900,
-        color: Colors.white,
+        color: AppColors.onSurface,
   );
 
   static TextStyle get displayMedium => const TextStyle(
         fontFamily: displayFont,
         fontSize: 24,
         fontWeight: FontWeight.w800,
-        color: Colors.white,
+        color: AppColors.onSurface,
     );
 
   // Titles / Tiles
@@ -24,7 +24,7 @@ abstract class AppFonts {
         fontFamily: displayFont,
         fontSize: 20,
         fontWeight: FontWeight.w700,
-        color: Colors.white,
+        color: AppColors.onSurface,
       );
 
   // UI/ Labels (Buttons, Captions)
