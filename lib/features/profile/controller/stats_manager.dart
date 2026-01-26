@@ -9,8 +9,14 @@ class StatsManager {
   late SharedPreferences _prefs;
   
   final ValueNotifier<UserStats> statsNotifier = ValueNotifier(
-    UserStats(streak: 0, maxStreak: 0, solved: 0, lost: 0, xp: 0, 
-    guessDistribution: {1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0})
+    UserStats(
+      streak: 0, 
+      maxStreak: 0, 
+      solved: 0, 
+      lost: 0, 
+      xp: 0, 
+      guessDistribution: {1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0},
+    )
   );
 
   Future<void> init() async {
@@ -23,13 +29,17 @@ class StatsManager {
       for (var e in decodedDist.entries) int.parse(e.key): e.value as int
     };
 
+    final Map<int, int> fullDistribution = {
+      for (int i = 1; i <= 8; i++) i: distribution[i] ?? 0
+    };
+
     statsNotifier.value = UserStats(
       streak: _prefs.getInt('stat_streak') ?? 0,
       maxStreak: _prefs.getInt('stat_max_streak') ?? 0,
       solved: _prefs.getInt('stat_solved') ?? 0,
       lost: _prefs.getInt('stat_lost') ?? 0,
       xp: _prefs.getInt('stat_xp') ?? 0,
-      guessDistribution: distribution.isEmpty ? {1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0} : distribution,
+      guessDistribution: fullDistribution,
     );
   }
 

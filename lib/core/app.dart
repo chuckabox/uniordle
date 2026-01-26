@@ -1,5 +1,6 @@
 import 'package:uniordle/core/app_layout.dart';
 import 'package:uniordle/core/app_theme.dart';
+import 'package:uniordle/features/stats/views/stats_screen.dart';
 import 'package:uniordle/shared/exports/home_exports.dart';
 import 'package:uniordle/shared/exports/game_exports.dart';
 import 'package:uniordle/shared/exports/game_setup_exports.dart';
@@ -53,6 +54,8 @@ class App extends StatelessWidget {
         });
       case '/profile':
         return const ProfileScreen();
+      case '/stats':
+        return const StatsScreen();
       default:
         return const HomeScreen();
     }

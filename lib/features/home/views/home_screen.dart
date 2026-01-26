@@ -2,6 +2,7 @@ import 'package:uniordle/core/app_layout.dart';
 import 'package:uniordle/features/home/data/disciplines_data.dart';
 import 'package:uniordle/features/profile/views/profile_screen.dart';
 import 'package:uniordle/shared/exports/home_exports.dart';
+import 'package:uniordle/shared/exports/stats_exports.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({
@@ -37,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
         break;
       case 'stats':
         activeTitle = 'Statistics';
-        activeBody = const Center(child: Text('Stats View')); 
+        activeBody = const StatsScreen(); 
         break;
       case 'home':
       default:
