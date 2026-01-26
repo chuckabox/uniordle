@@ -51,7 +51,7 @@ class LevelUp extends StatelessWidget {
               InstructionRow(
                 leading: Icon(LucideIcons.trendingUp, color: Color(0xFF4A90E2), size: 24),
                 color: AppColors.surfaceVariant,
-                title: 'Choose your education',
+                title: 'Customise',
                 subtitle: 'HARDER SETTINGS = MORE MERITS',
               ),
               const SizedBox(height: 32),

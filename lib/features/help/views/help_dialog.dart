@@ -31,7 +31,7 @@ class _HelpDialogState extends State<HelpDialog> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   SizedBox(
-                    height: 300,
+                    height: 320,
                     child: PageView(
                       controller: _pageController,
                       physics: const BouncingScrollPhysics(),
@@ -54,7 +54,7 @@ class _HelpDialogState extends State<HelpDialog> {
                     onPressed: () => Navigator.pop(context),
                     borderRadius: 16,
                     height: 48,
-                    width: 400
+                    width: 300
                   ),
                 ],
               ),
@@ -99,27 +99,29 @@ class NavArrow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      top: 0,
-      bottom: 20,
-      left: isLeft ? -60 : null,
-      right: !isLeft ? -60 : null,
+      // 1. Span the full height of the parent Stack
+      top: -24,
+      bottom: -24,
+      // 2. Position exactly on the edges
+      left: isLeft ? -25 : null,
+      right: !isLeft ? -25 : null,
       child: GestureDetector(
         onTap: onTap,
-        behavior: HitTestBehavior.opaque,
         child: Container(
-          width: 80,
-          height: 100,
-          alignment: isLeft ? Alignment.centerRight : Alignment.centerLeft,
-          child: Container(
-            padding: const EdgeInsets.all(8),
-            decoration: BoxDecoration(
-              color: Colors.transparent,
-              shape: BoxShape.circle,
+          width: 50,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.only(
+              topLeft: isLeft ? const Radius.circular(32) : Radius.zero,
+              bottomLeft: isLeft ? const Radius.circular(32) : Radius.zero,
+              topRight: !isLeft ? const Radius.circular(32) : Radius.zero,
+              bottomRight: !isLeft ? const Radius.circular(32) : Radius.zero,
             ),
+          ),
+          child: Center(
             child: Icon(
               isLeft ? LucideIcons.chevronLeft : LucideIcons.chevronRight,
               color: AppColors.outline,
-              size: 28,
+              size: 32,
             ),
           ),
         ),
