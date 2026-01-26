@@ -28,6 +28,28 @@ class StatsScreen extends StatelessWidget {
                       "Your learning journey analytics",
                       style: AppFonts.labelMedium,
                     ),
+                    const SizedBox(height: 24),
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                      decoration: BoxDecoration(
+                        color: AppColors.accent.withValues(alpha: 0.1),
+                        borderRadius: BorderRadius.circular(30),
+                        border: Border.all(color: AppColors.accent.withValues(alpha: 0.3)),
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(Icons.stars, color: AppColors.accent, size: 18),
+                          const SizedBox(width: 8),
+                          Text(
+                            "${stats.xp} TOTAL CREDITS",
+                            style: AppFonts.labelLarge.copyWith(
+                              color: AppColors.accent,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),

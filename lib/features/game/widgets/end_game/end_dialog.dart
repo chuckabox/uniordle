@@ -58,7 +58,7 @@ class EndDialog extends StatelessWidget {
                   border: Border.all(color: AppColors.accent.withValues(alpha: 0.2)),
                 ),
                 child: Text(
-                  '+$gainedXP XP',
+                  '+$gainedXP CREDITS',
                   style: AppFonts.labelMedium.copyWith(
                     color: AppColors.accent,
                     fontWeight: FontWeight.bold,
