@@ -1,5 +1,4 @@
 import 'package:uniordle/shared/exports/help_exports.dart';
-import 'package:uniordle/shared/exports/profile_exports.dart';
 
 class ThankYouDialog extends StatelessWidget {
   const ThankYouDialog({super.key});

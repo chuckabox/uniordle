@@ -3,16 +3,14 @@ import 'package:uniordle/features/game/widgets/end_game/end_dialog_header.dart';
 import 'package:uniordle/features/game/widgets/end_game/solution_box.dart';
 import 'package:uniordle/features/game/widgets/game_info_bar.dart';
 import 'package:uniordle/features/home/models/discipline.dart';
+import 'package:uniordle/features/profile/controller/stats_manager.dart';
+import 'package:uniordle/features/profile/widgets/level_card.dart';
 import 'package:uniordle/shared/buttons/primary_button.dart';
 import 'package:uniordle/shared/exports/game_exports.dart';
 import 'package:uniordle/shared/layout/base_dialog.dart';
 import 'package:uniordle/features/profile/models/user_stats.dart';
 
-/// Dialog shown when game ends
-/// 
-/// Displays win or loss, solution world, attempt count,
-/// and actions to restart or go back to main menu
-class EndDialog extends StatelessWidget {
+class EndDialog extends StatefulWidget {
   final bool won;
   final String solution;
   final int attempts;
@@ -33,9 +31,62 @@ class EndDialog extends StatelessWidget {
   });
 
   @override
+  State<EndDialog> createState() => _EndDialogState();
+}
+
+class _EndDialogState extends State<EndDialog> with SingleTickerProviderStateMixin {
+  
+  late AnimationController _controller;
+  late Animation<double> _totalProgressAnimation;
+
+  late double startTotalValue;
+  late double endTotalValue;
+  late int nextLevelGoal;
+  
+  late double startProgress;
+  late double endProgress;
+  late int currentLevel;
+  late int nextLevel;
+  late String progressLabel;
+
+  @override
+  void initState() {
+    super.initState();
+    
+    final stats = statsManager.statsNotifier.value;
+    final int levelValue = _mapYearToValue(widget.yearLevel);
+    final gainedXP = UserStatsExtension.calculateGainedXP(levelValue, widget.solution.length);
+
+    // 1. Calculate Cumulative Values
+    // If stats.currentLevel is 5 and progress is 0.8, startTotalValue is 5.8
+    startTotalValue = stats.currentLevel + stats.levelProgress;
+    
+    // Calculate how much 1 XP is worth in "Level Units" 
+    // (e.g., if 100 XP = 1 Level, then gainedXP / 100)
+    double levelGain = gainedXP / 100; 
+    endTotalValue = startTotalValue + levelGain;
+    
+    nextLevelGoal = stats.nextLevel;
+
+    _controller = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: (1500 + (levelGain * 500)).toInt()), // Longer if leveling up multiple times
+    );
+
+    _totalProgressAnimation = Tween<double>(
+      begin: startTotalValue,
+      end: endTotalValue,
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOutCubic));
+
+    Future.delayed(const Duration(milliseconds: 600), () {
+      if (mounted) _controller.forward();
+    });
+  }
+  
+  @override
   Widget build(BuildContext context) {
-    final int levelValue = _mapYearToValue(yearLevel);
-    final gainedCredits = UserStatsExtension.calculateGainedXP(levelValue, solution.length);
+    final int levelValue = _mapYearToValue(widget.yearLevel);
+    final gainedCredits = UserStatsExtension.calculateGainedXP(levelValue, widget.solution.length);
 
     return BaseDialog(
       child: Padding(
@@ -46,9 +97,9 @@ class EndDialog extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            EndDialogHeader(won: won),
+            EndDialogHeader(won: widget.won),
             const SizedBox(height: 12),
-            if (won) ...[
+            if (widget.won) ...[
               const SizedBox(height: 8),
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
@@ -65,13 +116,34 @@ class EndDialog extends StatelessWidget {
                   ),
                 ),
               ),
+
+              const SizedBox(height: 16),
+
+              AnimatedBuilder(
+            animation: _totalProgressAnimation,
+            builder: (context, child) {
+              final double currentTotal = _totalProgressAnimation.value;
+              
+              final int displayLevel = currentTotal.floor();
+              final double displayProgress = currentTotal % 1.0;
+              
+              return LevelCard(
+                level: displayLevel,
+                progress: displayProgress,
+                nextLevel: displayLevel + 1,
+                progressLabel: "LEVELING UP...", 
+              );
+            },
+          ),
             ],
+
+
             const SizedBox(height: 12),
-            SolutionBox(solution: solution),
+            SolutionBox(solution: widget.solution),
             const SizedBox(height: 12),
-            AttemptsInfo(attempts: attempts, maxAttempts: maxAttempts, won: won),
+            AttemptsInfo(attempts: widget.attempts, maxAttempts: widget.maxAttempts, won: widget.won),
             const SizedBox(height: 12),
-            GameInfoBar(disciplineName: discipline.name, yearLevel: yearLevel, wordLength: solution.length),
+            GameInfoBar(disciplineName: widget.discipline.name, yearLevel: widget.yearLevel, wordLength: widget.solution.length),
             const SizedBox(height: 24),
             PrimaryButton(
               label: 'NEW GAME',
@@ -79,7 +151,7 @@ class EndDialog extends StatelessWidget {
               onPressed: () {
                 Navigator.of(context).pushNamed(
                   '/setup',
-                  arguments: discipline
+                  arguments: widget.discipline
                 );
               },
               borderRadius: 24,
