@@ -153,21 +153,28 @@ class _SettingsScreenState extends State<SettingsScreen> {
               Text("Uniordle", style: AppFonts.displayLarge),
               const SizedBox(height: 12),
           
-              Text(
-                "University + Wordle",
+              RichText(
                 textAlign: TextAlign.center,
-                style: AppFonts.displayMedium,
+                text: TextSpan(
+                  style: AppFonts.displayMedium,
+                  children: [
+                    const TextSpan(text: "A solo project by "),
+                    TextSpan(
+                      text: "Peter",
+                      style: AppFonts.displayMedium.copyWith(fontWeight: FontWeight.bold, color: AppColors.inWordColor),
+                    ),
+                  ],
+                ),
               ),
               
               const SizedBox(height: 24),
-          
-              Text("Developed by Peter", style: AppFonts.labelLarge),
+
               Text(
                 "Software Engineering Student @ UQ", 
-                style: AppFonts.labelSmall
+                style: AppFonts.labelMedium.copyWith(color: AppColors.accent)
               ),
               
-              const SizedBox(height: 24),
+              const SizedBox(height: 36),
               
               PrimaryButton(
                 onPressed: () => showLicensePage(context: context),
