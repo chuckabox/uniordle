@@ -21,7 +21,7 @@ class BaseFooter extends StatelessWidget {
         color: AppColors.surface.withValues(alpha: 0.95),
         border: const Border(
           top: BorderSide(
-            color: AppColors.outline,
+            color: AppColors.onSurfaceVariant,
             width: 0.5,
           ),
         ),

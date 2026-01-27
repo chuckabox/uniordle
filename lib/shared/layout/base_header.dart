@@ -31,7 +31,7 @@ class BaseHeader extends StatelessWidget {
         color: AppColors.surface.withValues(alpha: 0.8),
         border: const Border(
           bottom: BorderSide(
-            color: AppColors.outline,
+            color: AppColors.onSurfaceVariant,
             width: 0.5,
           ),
         ),

@@ -9,7 +9,7 @@ class InfoTag extends StatelessWidget {
   const InfoTag({
     super.key, 
     required this.label, 
-    this.borderColor = AppColors.outline, 
+    this.borderColor = AppColors.onSurfaceVariant, 
     this.backgroundColor = AppColors.surfaceVariant,
     this.icon,
   });

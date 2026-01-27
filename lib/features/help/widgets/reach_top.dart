@@ -28,10 +28,10 @@ class ReachTop extends StatelessWidget {
           child: Column(
             children: [
               _buildRankRow(ranks[0], color: AppColors.accent),
-              const Divider(color: AppColors.outline, height: 1),
+              const Divider(color: AppColors.onSurfaceVariant, height: 1),
 
               _buildRankRow(ranks[1], color: AppColors.onSurface),
-              const Divider(color: AppColors.outline, height: 1),
+              const Divider(color: AppColors.onSurfaceVariant, height: 1),
 
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8),
@@ -45,8 +45,8 @@ class ReachTop extends StatelessWidget {
                 ),
               ),
 
-              _buildRankRow(ranks[2], color: AppColors.outline, isBold: true),
-              const Divider(color: AppColors.outline, height: 1),
+              _buildRankRow(ranks[2], color: AppColors.onSurfaceVariant, isBold: true),
+              const Divider(color: AppColors.onSurfaceVariant, height: 1),
             ],
           ),
         ),

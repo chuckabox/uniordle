@@ -40,7 +40,7 @@ class LevelCard extends StatelessWidget {
             child: LinearProgressIndicator(
               value: progress,
               minHeight: 12,
-              backgroundColor: AppColors.outline,
+              backgroundColor: AppColors.onSurfaceVariant,
               borderRadius: BorderRadius.circular(12),
               valueColor: const AlwaysStoppedAnimation<Color>(AppColors.accent),
             ),

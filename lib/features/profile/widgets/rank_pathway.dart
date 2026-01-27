@@ -124,7 +124,7 @@ class RankPathway extends StatelessWidget {
         ? Colors.orange
         : (isAchieved 
             ? AppColors.accent 
-            : (isNext ? Colors.white : AppColors.outline));
+            : (isNext ? Colors.white : AppColors.onSurfaceVariant));
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 2),
