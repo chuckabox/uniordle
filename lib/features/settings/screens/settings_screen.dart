@@ -1,4 +1,5 @@
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:uniordle/features/settings/data/data_reset_service.dart';
 import 'package:uniordle/features/settings/settings_manager.dart';
 import 'package:uniordle/shared/exports/help_exports.dart';
 import 'package:uniordle/shared/exports/settings_exports.dart';
@@ -111,11 +112,19 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     value: 'v1.0.0',
                     onTap: () => _showAboutDialog(context),
                   ),
+
+                  const SettingsHeader(title: 'DANGER ZONE'),
+                  SettingsActionTile(
+                    icon: Icons.delete_forever_rounded,
+                    label: 'Clear All Data',
+                    onTap: () => DataResetService.showResetDialog(context),
+                  ),
+                  const SizedBox(height: 32),
                 ],
               ),
             ),
             SettingsSignOutButton(
-              onTap: () {},
+              onPressed: () {},
             ),
           ],
         ),

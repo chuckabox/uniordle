@@ -41,7 +41,7 @@ class InfoTag extends StatelessWidget {
             ),
           ),
           if (icon != null) ...[
-            const SizedBox(width: 2),
+            const SizedBox(width: 4),
             icon!,
           ],
         ],
