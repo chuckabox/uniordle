@@ -1,14 +1,4 @@
-import 'package:uniordle/features/game/widgets/end_game/attempts_info.dart';
-import 'package:uniordle/features/game/widgets/end_game/end_dialog_header.dart';
-import 'package:uniordle/features/game/widgets/end_game/solution_box.dart';
-import 'package:uniordle/features/game/widgets/game_info_bar.dart';
-import 'package:uniordle/features/home/models/discipline.dart';
-import 'package:uniordle/features/profile/controller/stats_manager.dart';
-import 'package:uniordle/features/profile/widgets/level_card.dart';
-import 'package:uniordle/shared/buttons/primary_button.dart';
-import 'package:uniordle/shared/exports/game_exports.dart';
-import 'package:uniordle/shared/layout/base_dialog.dart';
-import 'package:uniordle/features/profile/models/user_stats.dart';
+import 'package:uniordle/shared/exports/end_game_exports.dart';
 
 class EndDialog extends StatefulWidget {
   final bool won;
