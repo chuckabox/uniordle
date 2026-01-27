@@ -9,7 +9,7 @@ class BaseDialog extends StatelessWidget {
   const BaseDialog({
     super.key,
     required this.child,
-    this.blur = 6.0,
+    this.blur = 10.0,
   });
 
   @override

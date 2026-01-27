@@ -46,8 +46,6 @@ class _HelpDialogState extends State<HelpDialog> {
                 PrimaryButton(
                   label: 'Got it!',
                   onPressed: () => Navigator.pop(context),
-                  height: 48,
-                  width: 300
                 ),
               ],
             ),

@@ -127,56 +127,62 @@ class _SettingsScreenState extends State<SettingsScreen> {
   showDialog(
     context: context,
     builder: (context) => BaseDialog(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          // App Icon
-          Container(
-            height: 80,
-            width: 80,
-            decoration: BoxDecoration(
-              color: AppColors.accent,
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: const Icon(Icons.school, size: 40, color: Colors.white),
-          ),
-          const SizedBox(height: 24),
+      child: Container(
+        width: 400,
+        decoration: BoxDecoration(
+          color: AppColors.surface,
+          borderRadius: BorderRadius.circular(32),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              // App Icon
+              Container(
+                height: 80,
+                width: 80,
+                decoration: BoxDecoration(
+                  color: AppColors.accent,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: const Icon(Icons.school, size: 40, color: Colors.white),
+              ),
+              const SizedBox(height: 24),
+              
+              Text("Uniordle", style: AppFonts.displayLarge),
+              const SizedBox(height: 12),
           
-          Text("Uniordle", style: AppFonts.headline),
-          const SizedBox(height: 12),
-
-          Text(
-            "University + Wordle",
-            textAlign: TextAlign.center,
-            style: AppFonts.labelLarge,
-          ),
+              Text(
+                "University + Wordle",
+                textAlign: TextAlign.center,
+                style: AppFonts.displayMedium,
+              ),
+              
+              const SizedBox(height: 24),
           
-          const SizedBox(height: 24),
-
-          Text("Developed by Peter", style: AppFonts.labelMedium),
-          Text(
-            "Software Engineering Student @ UQ", 
-            style: AppFonts.labelSmall
-          ),
+              Text("Developed by Peter", style: AppFonts.labelLarge),
+              Text(
+                "Software Engineering Student @ UQ", 
+                style: AppFonts.labelSmall
+              ),
+              
+              const SizedBox(height: 24),
+              
+              PrimaryButton(
+                onPressed: () => showLicensePage(context: context),
+                label: "LICENSES",
+              ),
           
-          const SizedBox(height: 24),
+              const SizedBox(height: 12),
           
-          PrimaryButton(
-            onPressed: () => showLicensePage(context: context),
-            label: "LICENSES",
-            height: 48,
-            width: 300
+              PrimaryButton(
+                onPressed: () => Navigator.pop(context),
+                label: "CLOSE",
+              ),
+            ],
           ),
-
-          const SizedBox(height: 12),
-
-          PrimaryButton(
-            onPressed: () => Navigator.pop(context),
-            label: "CLOSE",
-            height: 48,
-            width: 300
-          ),
-        ],
+        ),
       ),
     ),
   );
