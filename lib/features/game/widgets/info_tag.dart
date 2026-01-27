@@ -4,12 +4,14 @@ class InfoTag extends StatelessWidget {
   final String label;
   final Color borderColor;
   final Color backgroundColor;
+  final Widget? icon;
 
   const InfoTag({
     super.key, 
     required this.label, 
     this.borderColor = AppColors.outline, 
     this.backgroundColor = AppColors.surfaceVariant,
+    this.icon,
   });
 
   @override
@@ -26,12 +28,23 @@ class InfoTag extends StatelessWidget {
           width: 1,
         ),
       ),
-      child: Text(
-        label.toUpperCase(),
-        textAlign: TextAlign.center,
-        maxLines: 1,
-        overflow: TextOverflow.ellipsis,
-        style: AppFonts.labelMedium,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Flexible(
+            child: Text(
+              label.toUpperCase(),
+              textAlign: TextAlign.center,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: AppFonts.labelMedium,
+            ),
+          ),
+          if (icon != null) ...[
+            const SizedBox(width: 2),
+            icon!,
+          ],
+        ],
       ),
     );
   }

@@ -12,6 +12,22 @@ class GameInfoBar extends StatelessWidget {
     required this.wordLength,
   });
 
+  String get _attemptsLabel {
+    const labels = {
+      1: ('1st Year', '8'),
+      2: ('2nd Year', '7'),
+      3: ('3rd Year', '6'),
+      4: ('Postgrad', '5'),
+    };
+
+    final match = labels.values.firstWhere(
+      (element) => element.$1.toLowerCase() == yearLevel.toLowerCase(),
+      orElse: () => ('', '6'),
+    );
+
+    return match.$2;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -26,7 +42,12 @@ class GameInfoBar extends StatelessWidget {
               const SizedBox(width: 8),
               Expanded(child: InfoTag(label: '$wordLength LETTERS')),
               const SizedBox(width: 8),
-              Expanded(child: InfoTag(label: yearLevel.toUpperCase())),
+              Expanded(
+                child: InfoTag(
+                  label: _attemptsLabel, 
+                  icon: const Icon(Icons.favorite, size: 12, color: AppColors.onSurfaceVariant),
+                ),
+              ),
             ],
           ),
         )
