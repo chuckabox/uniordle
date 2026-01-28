@@ -62,8 +62,8 @@ class LevelUp extends StatelessWidget {
               InstructionRow(
                 leading: Icon(LucideIcons.graduationCap, color: AppColors.accent, size: 24),
                 color: AppColors.surfaceVariant,
-                title: 'Unlock Disciplines',
-                subtitle: 'EVERY 5 LEVELS',
+                title: 'Use Credits',
+                subtitle: 'UNLOCK NEW DISCIPLINES',
               ),
             ]
           ),
