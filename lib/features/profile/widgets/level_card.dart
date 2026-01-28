@@ -51,18 +51,35 @@ class LevelCard extends StatelessWidget {
           // X/Y SOLVES TO LEVEL Z Badge
           LayoutBuilder(
             builder: (context, constraints) {
+              // Dynamic alignment logic
+              double xTranslation;
+              if (progress < 0.25) {
+                xTranslation = -0.5;
+              } else if (progress > 0.75) {
+                xTranslation = -1.0;
+              } else {
+                xTranslation = -0.5;
+              }
+
               return Stack(
                 children: [
                   const SizedBox(height: 30, width: double.infinity),
                   Positioned(
                     left: progress * constraints.maxWidth,
                     child: FractionalTranslation(
-                      translation: const Offset(-0.5, 0),
+                      translation: Offset(xTranslation, 0),
                       child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                         decoration: BoxDecoration(
                           color: AppColors.accent,
                           borderRadius: BorderRadius.circular(12),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withValues(alpha: 0.1),
+                              blurRadius: 4,
+                              offset: const Offset(0, 2),
+                            )
+                          ],
                         ),
                         child: Text(
                           progressLabel,

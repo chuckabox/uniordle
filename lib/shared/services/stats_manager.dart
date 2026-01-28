@@ -59,6 +59,7 @@ class StatsManager {
       lost: current.lost,
       merit: newMerit,
       guessDistribution: newDist,
+      unlockedIds: current.unlockedIds,
     );
 
     return gainedMerit;
