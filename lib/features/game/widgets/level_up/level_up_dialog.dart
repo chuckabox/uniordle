@@ -27,13 +27,16 @@ class _LevelUpDialogState extends State<LevelUpDialog> with SingleTickerProvider
   @override
   void initState() {
     super.initState();
+
+    const int meritPerLevel = UserStatsExtension.meritPerLevel;
+
     final double startTotal = widget.startingLevel + widget.startingProgress;
-    final double levelGain = widget.gainedMerit / 100;
-    final double endTotal = startTotal + levelGain;
+    final double levelChange = widget.gainedMerit / meritPerLevel;
+    final double endTotal = startTotal + levelChange;
 
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 1500 + (levelGain * 500).toInt()),
+      duration: Duration(milliseconds: 1500 + (levelChange.abs() * 500).toInt()),
     );
 
     _animation = Tween<double>(begin: startTotal, end: endTotal)

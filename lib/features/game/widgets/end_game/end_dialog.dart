@@ -23,7 +23,12 @@ class EndDialog extends StatelessWidget {
   void _handleNext(BuildContext context) {
     final currentStats = statsManager.statsNotifier.value;
     
-    final prevState = UserStatsExtension.getPreviousState(currentStats.merit, gainedMerit);
+    final double directedMerit = won ? gainedMerit.toDouble() : -gainedMerit.toDouble();
+
+    final prevState = UserStatsExtension.getPreviousState(
+    currentStats.merit, 
+    directedMerit.toInt(),
+    );
 
     Navigator.pop(context);
     showDialog(
@@ -31,7 +36,7 @@ class EndDialog extends StatelessWidget {
       builder: (context) => LevelUpDialog(
         startingLevel: prevState.$1,
         startingProgress: prevState.$2,
-        gainedMerit: gainedMerit.toDouble(),
+        gainedMerit: directedMerit,
         discipline: discipline,
       ),
     );
