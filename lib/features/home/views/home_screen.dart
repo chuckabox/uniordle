@@ -1,48 +1,113 @@
 import 'package:uniordle/features/home/data/disciplines_data.dart';
+import 'package:uniordle/shared/buttons/wiggle_button_wrapper.dart';
 import 'package:uniordle/shared/exports/game_exports.dart';
-import 'package:uniordle/shared/exports/home_exports.dart';
+import 'package:uniordle/shared/exports/help_exports.dart';
+import 'package:uniordle/shared/layout/base_show_dialog.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   void _onDisciplineTap(BuildContext context, Discipline sub, UserStats stats) {
     if (stats.unlockedIds.contains(sub.id)) {
-    Navigator.of(context).pushNamed('/setup', arguments: sub);
-    return;
-    } else if (!stats.hasAnyUnlock) {
-      _showUnlockDialog(context, sub, isFree: true);
-    } else {
-      _showUnlockDialog(context, sub, isFree: false);
+      Navigator.of(context).pushNamed('/setup', arguments: sub);
+      return;
     }
+
+    _showUnlockDialog(
+      context, 
+      sub, 
+      credits: stats.availableCredits, 
+      nextLevel: stats.nextCreditAtLevel
+    );
   }
 
-  void _showUnlockDialog(BuildContext context, Discipline sub, {required bool isFree}) {
-    showDialog(
+  void _showUnlockDialog(BuildContext context, Discipline sub, {
+    required int credits, 
+    required int nextLevel
+  }) {
+    final bool canAfford = credits > 0;
+    final Color buttonColor = canAfford ? sub.color : AppColors.onSurfaceVariant.withValues(alpha: 0.3);
+    final Color statusColor = canAfford ? sub.color : AppColors.onSurfaceVariant;
+    
+    final wiggleKey = GlobalKey<WiggleButtonWrapperState>();
+
+    baseShowDialog(
       context: context,
-      builder: (context) => AlertDialog(
-        title: Text(isFree ? "START YOUR CAREER" : "LOCKED"),
-        content: Text(isFree 
-          ? "Choose ${sub.name} as your primary discipline? This first choice is free." 
-          : "You haven't unlocked ${sub.name} yet. Continue playing to earn Merit and unlock more!"),
-        actions: [
-          TextButton(onPressed: () => Navigator.pop(context), child: const Text("BACK")),
-          if (isFree) ElevatedButton(
-          onPressed: () async {
-            await statsManager.unlockDiscipline(sub.id);
-            if (context.mounted) {
-              Navigator.pop(context);
-              
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text("${sub.name} is now available!"),
-                  backgroundColor: sub.color,
-                  duration: const Duration(seconds: 2),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          DisciplineIcon(
+            iconName: canAfford ? sub.icon : 'lock',
+            color: statusColor,
+            size: AppLayout.dialogIcon,
+          ),
+          const SizedBox(height: 16),
+          
+          // Title
+          Text(
+            canAfford ? "Enroll in ${sub.name}?" : "LOCKED",
+            style: AppFonts.displayMedium,
+          ),
+          const SizedBox(height: 12),
+          
+          // Content
+          Text(
+            canAfford 
+              ? "Would you like to spend 1 Credit to unlock ${sub.name}?"
+              : "You don't have enough Credits to unlock ${sub.name} right now.",
+            textAlign: TextAlign.center,
+            style: AppFonts.labelLarge,
+          ),
+          
+          const SizedBox(height: 12),
+          
+          Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "$credits ${credits == 1 ? 'Credit' : 'Credits'} Available",
+                    style: AppFonts.labelMedium.copyWith(color: statusColor, fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+              if (!canAfford) ...[
+                Text(
+                  "Next Credit at Level $nextLevel",
+                  style: AppFonts.labelSmall.copyWith(color: AppColors.onSurfaceVariant),
                 ),
-              );
-            }
-          },
-          child: const Text("UNLOCK"),
-        ),
+              ],
+            ],
+          ),
+          
+          const SizedBox(height: 12),
+          
+          Row(
+            children: [
+              Expanded(
+                child: PrimaryButton(
+                  onPressed: () => Navigator.pop(context),
+                  label: "BACK",
+                ),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: PrimaryButton(
+                  onPressed: () async {
+                    if (canAfford) {
+                      await statsManager.unlockDiscipline(sub.id);
+                      if (context.mounted) Navigator.pop(context);
+                    } else {
+                      wiggleKey.currentState?.wiggle();
+                    }
+                  },
+                  label: "UNLOCK",
+                  color: buttonColor,
+                ),
+              ),
+            ],
+          ),
         ],
       ),
     );
@@ -60,8 +125,8 @@ class HomeScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
               children: [
-                const HomeHero(),
-                const SizedBox(height: 36),
+                HomeHero(stats: stats),
+                const SizedBox(height: 20),
                 DisciplineGrid(
                     disciplines: DisciplinesData.all,
                     unlockedIds: stats.unlockedIds,

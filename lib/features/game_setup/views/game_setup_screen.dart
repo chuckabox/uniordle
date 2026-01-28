@@ -93,6 +93,8 @@ class _GameSetupScreenState extends State<GameSetupScreen> {
                 isLoading: _isLoading,
                 icon: AppIcons.play,
                 showShadow: true,
+                height: 64,
+                width: double.infinity,
               ),
               const SizedBox(height: 32),
             ],

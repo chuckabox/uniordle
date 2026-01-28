@@ -31,6 +31,12 @@ extension UserStatsExtension on UserStats {
   static const int meritPerLevel = 100;
   static const int penaltyAmount = 10;
 
+  int get totalCreditsEarned => 1 + (currentLevel ~/ 5);
+  int get creditsSpent => unlockedIds.length;
+  int get availableCredits => totalCreditsEarned - creditsSpent;
+  bool get hasCredits => availableCredits > 0;
+  int get nextCreditAtLevel => (creditsSpent) * 5;
+
   static ({int min, int max}) _calculateMeritBounds(int yearLevel, int wordLength) {
     int minBase = 10 + (yearLevel * 5);
     int maxBase = 20 + (yearLevel * 6);

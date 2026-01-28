@@ -4,24 +4,28 @@ import 'package:uniordle/core/app_icons.dart';
 class DisciplineIcon extends StatelessWidget {
   final String iconName;
   final Color? color;
+  final double size;
 
   const DisciplineIcon({
     super.key, 
     required this.iconName, 
-    required this.color
+    required this.color,
+    this.size = 24,
   });
 
   @override
   Widget build(BuildContext context) {
+    final double containerSize = size + 16;
+
     return Container(
-      width: 40,
-      height: 40,
+      width: containerSize,
+      height: containerSize,
       alignment: Alignment.center,
       decoration: BoxDecoration(
         color: Colors.white.withValues(alpha: 0.05),
         borderRadius: BorderRadius.circular(12),
       ),
-      child: Icon(IconMapper.getIcon(iconName), color: color, size: 24),
+      child: Icon(IconMapper.getIcon(iconName), color: color, size: size),
     );
   }
 }
