@@ -83,7 +83,7 @@ class NavHitArea extends StatelessWidget {
         height: 310, 
         alignment: Alignment.center,
         child: Transform.translate(
-          offset: const Offset(0, -28),
+          offset: const Offset(0, -20),
           child: Icon(
             isLeft ? LucideIcons.chevronLeft : LucideIcons.chevronRight,
             color: AppColors.onSurfaceVariant,

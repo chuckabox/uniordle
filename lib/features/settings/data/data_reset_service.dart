@@ -3,7 +3,7 @@ import 'package:uniordle/shared/exports/end_game_exports.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class DataResetService {
-  static Future<void> showResetDialog(BuildContext context) async {
+  static Future<void> showDialog(BuildContext context) async {
     final bool? firstConfirm = await showGeneralDialog<bool>(
       context: context,
       barrierDismissible: true,

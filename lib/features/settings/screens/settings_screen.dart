@@ -73,6 +73,7 @@ class SettingsScreen extends StatelessWidget {
                         onTap: () {
                           showDialog(
                             context: context,
+                            barrierColor: Colors.transparent,
                             builder: (context) => const AboutGameDialog(),
                           );
                         },
@@ -81,7 +82,7 @@ class SettingsScreen extends StatelessWidget {
                       SettingsActionTile(
                         icon: AppIcons.deleteData,
                         label: 'Clear All Data',
-                        onTap: () => DataResetService.showResetDialog(context),
+                        onTap: () => DataResetService.showDialog(context),
                       ),
                       const SizedBox(height: 32),
                     ],

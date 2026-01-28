@@ -29,13 +29,13 @@ class BaseDialog extends StatelessWidget {
         alignment: Alignment.center,
         children: [
           Dialog(
-            insetPadding: insetPadding ?? const EdgeInsets.symmetric(horizontal: 40.0),
-            backgroundColor: AppColors.surface,
+            elevation: 0,
+            backgroundColor: AppColors.surfaceDialog, 
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(32),
-              side: showBorder 
-                  ? BorderSide(color: AppColors.surfaceVariant, width: 4) 
-                  : BorderSide.none,
+              // side: showBorder 
+              //     ? BorderSide(color: AppColors.surfaceVariant, width: 4) 
+              //     : BorderSide.none,
             ),
             child: ConstrainedBox(
               constraints: const BoxConstraints(maxWidth: AppLayout.maxDialogWidth),

@@ -10,7 +10,6 @@
           width: 400,
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
           decoration: BoxDecoration(
-            color: AppColors.surface,
             borderRadius: BorderRadius.circular(32),
           ),
           child: Column(
@@ -47,7 +46,7 @@
       radius: 80,
       backgroundColor: AppColors.surfaceVariant,
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(2.0),
         child: Image.asset(
           'assets/images/white_on_blue/favicon.png',
           fit: BoxFit.contain,
