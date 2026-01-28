@@ -38,7 +38,9 @@ class BaseDialog extends StatelessWidget {
               //     : BorderSide.none,
             ),
             child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: AppLayout.maxDialogWidth),
+              constraints: const BoxConstraints(
+                maxWidth: AppLayout.maxDialogWidth,
+              ),
               child: Padding(
                 padding: padding ?? const EdgeInsets.all(24),
                 child: child,

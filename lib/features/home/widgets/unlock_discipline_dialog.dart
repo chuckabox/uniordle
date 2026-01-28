@@ -47,36 +47,38 @@ class UnlockDisciplineDialog extends StatelessWidget {
         Text(
           canAfford 
             ? "Spend 1 Credit to unlock ${discipline.name}?"
-            : "You don't have enough Credits to unlock ${discipline.name} right now.",
+            : "You don't have any credits to unlock ${discipline.name}.",
           textAlign: TextAlign.center,
           style: AppFonts.labelLarge,
         ),
         
+        const SizedBox(height: 8),
+        
+        Column(
+          children: [
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.center,
+            //   children: [
+            //     Text(
+            //       "$credits ${credits == 1 ? 'Credit' : 'Credits'} Available",
+            //       style: AppFonts.labelMedium.copyWith(
+            //         color: statusColor, 
+            //         fontWeight: FontWeight.bold
+            //       ),
+            //     ),
+            //   ],
+            // ),
+            if (!canAfford) ...[
+              Text(
+                "Next Credit at Level $nextLevel",
+                style: AppFonts.labelMedium,
+              ),
+            ],
+          ],
+        ),
+
         const SizedBox(height: AppLayout.gapToButton),
-        
-        // Column(
-        //   children: [
-        //     Row(
-        //       mainAxisAlignment: MainAxisAlignment.center,
-        //       children: [
-        //         Text(
-        //           "$credits ${credits == 1 ? 'Credit' : 'Credits'} Available",
-        //           style: AppFonts.labelMedium.copyWith(
-        //             color: statusColor, 
-        //             fontWeight: FontWeight.bold
-        //           ),
-        //         ),
-        //       ],
-        //     ),
-        //     if (!canAfford) ...[
-        //       Text(
-        //         "Next Credit at Level $nextLevel",
-        //         style: AppFonts.labelSmall.copyWith(color: AppColors.onSurfaceVariant),
-        //       ),
-        //     ],
-        //   ],
-        // ),
-        
+
         Row(
           children: [
             Expanded(
@@ -85,7 +87,7 @@ class UnlockDisciplineDialog extends StatelessWidget {
                 label: "BACK",
               ),
             ),
-            const SizedBox(width: 12),
+            const SizedBox(width: AppLayout.gapBetweenButtons),
             Expanded(
               child: WiggleButtonWrapper(
                 key: wiggleKey, 

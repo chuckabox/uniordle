@@ -26,7 +26,7 @@ class HomeHero extends StatelessWidget {
         ),
         const SizedBox(height: 12),
         BaseBadge(
-          label: "${stats.availableCredits} ${stats.availableCredits == 1 ? 'CREDIT' : 'CREDITS'} AVAILABLE",
+          label: "${stats.availableCredits} ${stats.availableCredits == 1 ? 'CREDIT' : 'CREDITS'}",
           icon: AppIcons.credits,
           color: statusColor,
         ),

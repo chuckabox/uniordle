@@ -24,7 +24,15 @@ class LevelUp extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const TextSpan(text: '. Level up with merits, and every five levels you unlock a new discipline.'),
+                const TextSpan(text: '. Level up with merits, and every five levels gain a '),
+                TextSpan(
+                  text: 'credit',
+                  style: TextStyle(
+                    color: AppColors.accent,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const TextSpan(text: '.'),
               ],
             ),
             style: AppFonts.labelMedium.copyWith(color: Colors.white70),
@@ -45,14 +53,14 @@ class LevelUp extends StatelessWidget {
               ),
               const SizedBox(height: 32),
               InstructionRow(
-                leading: Icon(LucideIcons.trendingUp, color: Color(0xFF4A90E2), size: 24),
+                leading: Icon(LucideIcons.trendingUp, color: Colors.green, size: 24),
                 color: AppColors.surfaceVariant,
                 title: 'Customise',
                 subtitle: 'HARDER SETTINGS = MORE MERITS',
               ),
               const SizedBox(height: 32),
               InstructionRow(
-                leading: Icon(LucideIcons.graduationCap, color: Color(0xFF8E99FF), size: 24),
+                leading: Icon(LucideIcons.graduationCap, color: AppColors.accent, size: 24),
                 color: AppColors.surfaceVariant,
                 title: 'Unlock Disciplines',
                 subtitle: 'EVERY 5 LEVELS',
