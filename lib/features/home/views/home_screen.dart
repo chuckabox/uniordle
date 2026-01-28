@@ -93,17 +93,22 @@ class HomeScreen extends StatelessWidget {
               ),
               const SizedBox(width: 12),
               Expanded(
-                child: PrimaryButton(
-                  onPressed: () async {
-                    if (canAfford) {
-                      await statsManager.unlockDiscipline(sub.id);
-                      if (context.mounted) Navigator.pop(context);
-                    } else {
-                      wiggleKey.currentState?.wiggle();
-                    }
-                  },
-                  label: "UNLOCK",
-                  color: buttonColor,
+                child: WiggleButtonWrapper(
+                  key: wiggleKey, 
+                  child: PrimaryButton(
+                    label: "UNLOCK",
+                    color: buttonColor,
+                    onPressed: () async {
+                      if (canAfford) {
+                        await statsManager.unlockDiscipline(sub.id);
+                        if (context.mounted) Navigator.pop(context);
+                      } else {
+                        wiggleKey.currentState?.wiggle();
+                        
+                        SoundManager().play(SoundType.grid); 
+                      }
+                    },
+                  ),
                 ),
               ),
             ],

@@ -24,9 +24,10 @@ class WiggleButtonWrapperState extends State<WiggleButtonWrapper> with SingleTic
     );
   }
 
-  void wiggle() {
-    _controller.forward(from: 0.0);
-    SoundManager().play(SoundType.grid);
+ void wiggle() {
+    if (!_controller.isAnimating) {
+      _controller.forward(from: 0.0);
+    }
   }
 
   @override
@@ -40,7 +41,8 @@ class WiggleButtonWrapperState extends State<WiggleButtonWrapper> with SingleTic
     return AnimatedBuilder(
       animation: _controller,
       builder: (context, child) {
-        final double offset = sin(_controller.value * 6 * pi) * 4 * (1 - _controller.value);
+        final double offset = sin(_controller.value * 4 * pi) * 4 * (1 - _controller.value);
+        
         return Transform.translate(
           offset: Offset(offset, 0),
           child: child,
