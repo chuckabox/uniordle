@@ -8,6 +8,7 @@ class DataResetService {
       context: context,
       barrierDismissible: true,
       barrierLabel: '',
+      barrierColor: Colors.transparent,
       transitionDuration: Duration.zero,
       pageBuilder: (context, anim1, anim2) => BaseDialog(
         child: Column(

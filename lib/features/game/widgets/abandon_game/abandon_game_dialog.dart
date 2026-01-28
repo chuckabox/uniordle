@@ -33,9 +33,9 @@ class AbandonGameDialog extends StatelessWidget {
             TextSpan(
               style: AppFonts.labelMedium,
               children: [
-                const TextSpan(text: "Leaving now, during a game, will result in a penalty of "),
+                const TextSpan(text: "Leaving early will result in a penalty of "),
                 TextSpan(
-                  text: "${UserStatsExtension.penaltyAmount} merits",
+                  text: "${UserStatsExtension.penaltyAmount} demerits",
                   style: highlightStyle,
                 ),
                 if (streak > 0) ...[
@@ -60,7 +60,7 @@ class AbandonGameDialog extends StatelessWidget {
                   onPressed: () => Navigator.pop(context, false),
                 ),
               ),
-              const SizedBox(width: 12),
+              const SizedBox(width: 16),
               Expanded(
                 child: PrimaryButton(
                   label: 'LEAVE',
@@ -79,7 +79,7 @@ class AbandonGameDialog extends StatelessWidget {
   static Future<bool> show(BuildContext context) async {
     return await showDialog<bool>(
       context: context,
-      barrierColor: Colors.black.withValues(alpha: 0.5),
+      barrierColor: Colors.transparent,
       builder: (context) => const AbandonGameDialog(),
     ) ?? false;
   }

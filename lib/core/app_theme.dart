@@ -6,6 +6,9 @@ class AppTheme {
       brightness: Brightness.dark,
       fontFamily: AppFonts.displayFont,
       scaffoldBackgroundColor: AppColors.surface,
+      
+      canvasColor: Colors.transparent,
+
     ).copyWith(
       textTheme: TextTheme(
         displayLarge: AppFonts.displayMedium,

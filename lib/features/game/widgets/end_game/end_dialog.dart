@@ -33,6 +33,7 @@ class EndDialog extends StatelessWidget {
     Navigator.pop(context);
     showDialog(
       context: context,
+      barrierColor: Colors.transparent,
       builder: (context) => LevelUpDialog(
         startingLevel: prevState.$1,
         startingProgress: prevState.$2,

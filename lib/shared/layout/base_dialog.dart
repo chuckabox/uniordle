@@ -8,6 +8,7 @@ class BaseDialog extends StatelessWidget {
   final Widget? rightAction;
   final EdgeInsets? padding;
   final EdgeInsets? insetPadding;
+  final bool showBorder;
 
   const BaseDialog({
     super.key,
@@ -17,6 +18,7 @@ class BaseDialog extends StatelessWidget {
     this.rightAction,
     this.padding,
     this.insetPadding,
+    this.showBorder = true,
   });
 
   @override
@@ -29,7 +31,12 @@ class BaseDialog extends StatelessWidget {
           Dialog(
             insetPadding: insetPadding ?? const EdgeInsets.symmetric(horizontal: 40.0),
             backgroundColor: AppColors.surface,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(32),
+              side: showBorder 
+                  ? BorderSide(color: AppColors.surfaceVariant, width: 4) 
+                  : BorderSide.none,
+            ),
             child: ConstrainedBox(
               constraints: const BoxConstraints(maxWidth: AppLayout.maxDialogWidth),
               child: Padding(

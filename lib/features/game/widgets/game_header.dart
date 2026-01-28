@@ -27,7 +27,7 @@ class GameHeader extends StatelessWidget implements PreferredSizeWidget {
           showDialog(
           context: context,
           barrierDismissible: true, 
-          barrierColor: Colors.black.withValues(alpha: 0.4),
+          barrierColor: Colors.transparent,
           builder: (context) => const HelpDialog(),
         );
       }

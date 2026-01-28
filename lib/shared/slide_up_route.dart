@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 Route slideUpRoute(Widget page) {
   return PageRouteBuilder(
     opaque: false,
-    barrierColor: Colors.black.withValues(alpha: 0.2),
+    barrierColor: Colors.transparent,
     transitionDuration: const Duration(milliseconds: 350),
     reverseTransitionDuration: const Duration(milliseconds: 175),
     pageBuilder: (_, _, _) => page,

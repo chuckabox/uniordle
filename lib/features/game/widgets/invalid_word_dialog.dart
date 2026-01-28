@@ -16,6 +16,7 @@ class InvalidWordDialog {
         });
 
         return BaseDialog(
+          showBorder: false,
           blur: 0.0,
           padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
           child: Text(
