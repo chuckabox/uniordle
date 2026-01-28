@@ -108,30 +108,35 @@ class _LevelUpDialogState extends State<LevelUpDialog> with SingleTickerProvider
 
               const SizedBox(height: 36),
 
-              PrimaryButton(
-              label: 'NEW GAME',
-              color: AppColors.accent,
-              onPressed: () {
-                Navigator.of(context).pushNamedAndRemoveUntil(
-                  '/setup',
-                  (route) => route.isFirst, 
-                  arguments: widget.discipline,
-                );
-              },
-              borderRadius: 24,
-            ),
-
-              const SizedBox(height: 12),
-              
-              PrimaryButton(
-              label: 'HOME',
-              onPressed: () {
-                Navigator.of(context).pushNamedAndRemoveUntil(
-                  '/',
-                  (route) => false,
-                );
-              },
-            ),
+              Row(
+                children: [
+                  Expanded(
+                    child: PrimaryButton(
+                      label: 'HOME',
+                      onPressed: () {
+                        Navigator.of(context).pushNamedAndRemoveUntil(
+                          '/',
+                          (route) => false,
+                        );
+                      },
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: PrimaryButton(
+                      label: 'NEW GAME',
+                      color: AppColors.accent,
+                      onPressed: () {
+                        Navigator.of(context).pushNamedAndRemoveUntil(
+                          '/setup',
+                          (route) => route.isFirst,
+                          arguments: widget.discipline,
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              ),
 
             ]
           )
