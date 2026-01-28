@@ -1,6 +1,7 @@
 import 'package:uniordle/core/app_icons.dart';
 import 'package:uniordle/shared/exports/end_game_exports.dart';
 import 'package:uniordle/shared/exports/stats_exports.dart';
+import 'package:uniordle/shared/layout/base_badge.dart';
 
 class StatsScreen extends StatelessWidget {
 
@@ -18,50 +19,27 @@ class StatsScreen extends StatelessWidget {
         final Color winColor = Color.lerp(AppColors.accent2, AppColors.correctColor, normalizedValue)!;
         
         return SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: AppLayout.sidePadding, vertical: 24),
+          padding: const EdgeInsets.all(AppLayout.sidePadding),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Center(
                 child: Column(
                   children: [
-                    Text(
-                      "Academic Performance",
-                      style: AppFonts.displayLarge,
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      "Your learning journey analytics",
-                      style: AppFonts.labelMedium,
-                    ),
-                    const SizedBox(height: 32),
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                      decoration: BoxDecoration(
-                        color: AppColors.accent.withValues(alpha: 0.1),
-                        borderRadius: BorderRadius.circular(24),
-                      ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Icon(AppIcons.merits, color: AppColors.accent, size: 20),
-
-                          const SizedBox(width: 12),
-                          
-                          Text(
-                            "${stats.merit} TOTAL MERITS",
-                            style: AppFonts.labelLarge.copyWith(
-                              color: AppColors.accent,
-                            ),
-                          ),
-                        ],
-                      ),
+                    Text("Academic Performance", style: AppFonts.displayLarge),
+                    const SizedBox(height: AppLayout.titleToSubtitle),
+                    Text("Your learning journey analytics", textAlign: TextAlign.center, style: AppFonts.labelMedium),
+                    const SizedBox(height: 12),
+                    BaseBadge(
+                      label: "${stats.merit} TOTAL MERITS",
+                      icon: AppIcons.merits,
+                      color: AppColors.accent,
                     ),
                   ],
                 ),
               ),
               
-              const SizedBox(height: 32),
+              const SizedBox(height: AppLayout.badgeToContent),
 
               IntrinsicHeight(
                 child: Row(

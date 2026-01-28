@@ -98,6 +98,7 @@ class UnlockDisciplineDialog extends StatelessWidget {
                       if (context.mounted) Navigator.pop(context);
                     } else {
                       wiggleKey.currentState?.wiggle();
+                      // TODO: change sound to negative sound for wiggle
                       SoundManager().play(SoundType.grid); 
                     }
                   },

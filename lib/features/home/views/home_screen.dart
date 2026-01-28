@@ -35,7 +35,7 @@ class HomeScreen extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 HomeHero(stats: stats),
-                const SizedBox(height: 20),
+                const SizedBox(height: AppLayout.badgeToContent),
                 DisciplineGrid(
                     disciplines: DisciplinesData.all,
                     unlockedIds: stats.unlockedIds,
