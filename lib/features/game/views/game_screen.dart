@@ -57,10 +57,10 @@ void didChangeDependencies() {
     final discipline = args?['discipline'] as Discipline;
     final int rawYearLevel = args?['yearLevel'] ?? 1;
 
-    int earnedXP = 0;
+    int earnedMerit = 0;
 
     if (won) {
-      earnedXP = await statsManager.recordWin(
+      earnedMerit = await statsManager.recordWin(
         yearLevel: rawYearLevel,
         wordLength: _controller.solution.wordString.length,
         attempts: _controller.currentWordIndex + 1,
@@ -82,7 +82,7 @@ void didChangeDependencies() {
           maxAttempts: _maxAttempts,
           discipline: discipline,
           yearLevel: _yearLevel,
-          gainedXP: earnedXP,
+          gainedMerit: earnedMerit,
         );
       },
     );

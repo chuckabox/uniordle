@@ -3,14 +3,14 @@ import 'package:uniordle/shared/exports/end_game_exports.dart';
 class LevelUpDialog extends StatefulWidget {
   final int startingLevel;
   final double startingProgress;
-  final double gainedXP;
+  final double gainedMerit;
   final Discipline discipline;
 
   const LevelUpDialog({
     super.key,
     required this.startingLevel,
     required this.startingProgress,
-    required this.gainedXP,
+    required this.gainedMerit,
     required this.discipline,
   });
 
@@ -28,7 +28,7 @@ class _LevelUpDialogState extends State<LevelUpDialog> with SingleTickerProvider
   void initState() {
     super.initState();
     final double startTotal = widget.startingLevel + widget.startingProgress;
-    final double levelGain = widget.gainedXP / 100;
+    final double levelGain = widget.gainedMerit / 100;
     final double endTotal = startTotal + levelGain;
 
     _controller = AnimationController(
@@ -87,7 +87,7 @@ class _LevelUpDialogState extends State<LevelUpDialog> with SingleTickerProvider
                   final int displayLevel = val.floor();
                   final double displayProgress = val % 1.0;
                   
-                  final int currentLevelXP = (displayProgress * 100).round();
+                  final int currentLevelMerit = (displayProgress * 100).round();
                   
                   return LevelCard(
                     level: displayLevel,
@@ -95,7 +95,7 @@ class _LevelUpDialogState extends State<LevelUpDialog> with SingleTickerProvider
                     nextLevel: displayLevel + 1,
                     progressLabel: _hasLeveledUp 
                         ? "LEVEL UP REACHED!" 
-                        : "$currentLevelXP / 100 MERITS",
+                        : "$currentLevelMerit / 100 MERITS",
                   );
                 },
               ),

@@ -49,7 +49,7 @@ class StatsScreen extends StatelessWidget {
                           const SizedBox(width: 12),
                           
                           Text(
-                            "${stats.xp} TOTAL MERITS",
+                            "${stats.merit} TOTAL MERITS",
                             style: AppFonts.labelLarge.copyWith(
                               color: AppColors.accent,
                             ),

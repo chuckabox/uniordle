@@ -7,7 +7,7 @@ class EndDialog extends StatelessWidget {
   final int maxAttempts;
   final String yearLevel;
   final Discipline discipline;
-  final int gainedXP;
+  final int gainedMerit;
 
   const EndDialog({
     super.key,
@@ -17,13 +17,13 @@ class EndDialog extends StatelessWidget {
     required this.maxAttempts,
     required this.yearLevel,
     required this.discipline,
-    required this.gainedXP,
+    required this.gainedMerit,
   });
 
   void _handleNext(BuildContext context) {
     final currentStats = statsManager.statsNotifier.value;
     
-    final prevState = UserStatsExtension.getPreviousState(currentStats.xp, gainedXP);
+    final prevState = UserStatsExtension.getPreviousState(currentStats.merit, gainedMerit);
 
     Navigator.pop(context);
     showDialog(
@@ -31,7 +31,7 @@ class EndDialog extends StatelessWidget {
       builder: (context) => LevelUpDialog(
         startingLevel: prevState.$1,
         startingProgress: prevState.$2,
-        gainedXP: gainedXP.toDouble(),
+        gainedMerit: gainedMerit.toDouble(),
         discipline: discipline,
       ),
     );

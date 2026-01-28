@@ -5,13 +5,13 @@ class UserStats {
   final int maxStreak;
   final int solved;
   final int lost;
-  final int xp;
+  final int merit;
   final Map<int, int> guessDistribution;
 
   UserStats({
     required this.streak,
     required this.solved,
-    required this.xp,
+    required this.merit,
     this.maxStreak = 0,
     this.lost = 0,
     this.guessDistribution = const {1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0},
@@ -26,9 +26,9 @@ class UserStats {
 }
 
 extension UserStatsExtension on UserStats {
-  static const int xpPerLevel = 100;
+  static const int meritPerLevel = 100;
 
-  static ({int min, int max}) _calculateXpBounds(int yearLevel, int wordLength) {
+  static ({int min, int max}) _calculateMeritBounds(int yearLevel, int wordLength) {
     int minBase = 10 + (yearLevel * 5);
     int maxBase = 20 + (yearLevel * 6);
 
@@ -40,29 +40,29 @@ extension UserStatsExtension on UserStats {
   }
 
   static String getMeritRange(int yearLevel, int wordLength) {
-    final bounds = _calculateXpBounds(yearLevel, wordLength);
+    final bounds = _calculateMeritBounds(yearLevel, wordLength);
     return "${bounds.min}-${bounds.max}";
   }
 
   static int generateGainedMerit(int yearLevel, int wordLength) {
-    final bounds = _calculateXpBounds(yearLevel, wordLength);
+    final bounds = _calculateMeritBounds(yearLevel, wordLength);
     final random = Random();
     return bounds.min + random.nextInt(bounds.max - bounds.min + 1);
   }
 
-  int get currentLevel => xp ~/ xpPerLevel;
+  int get currentLevel => merit ~/ meritPerLevel;
 
   int get nextLevel => currentLevel + 1;
   
-  int get xpInCurrentLevel => xp % xpPerLevel;
+  int get meritInCurrentLevel => merit % meritPerLevel;
 
-  double get levelProgress => (xp % xpPerLevel) / xpPerLevel.toDouble();
+  double get levelProgress => (merit % meritPerLevel) / meritPerLevel.toDouble();
   
-  String get progressText => "$xpInCurrentLevel/$xpPerLevel MERITS";
+  String get progressText => "$meritInCurrentLevel/$meritPerLevel MERITS";
   
-  static (int level, double progress) getPreviousState(int totalXP, int gainedXP) {
-    int oldXP = totalXP - gainedXP;
-    return (oldXP ~/ xpPerLevel, (oldXP % xpPerLevel) / xpPerLevel.toDouble());
+  static (int level, double progress) getPreviousState(int totalMerit, int gainedMerit) {
+    int oldMerit = totalMerit - gainedMerit;
+    return (oldMerit ~/ meritPerLevel, (oldMerit % meritPerLevel) / meritPerLevel.toDouble());
   }
 
   String get academicTitle => getAcademicTitle(currentLevel);

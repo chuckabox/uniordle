@@ -8,7 +8,7 @@ class StatsManager {
   StatsManager._internal();
 
   late SharedPreferences _prefs;
-  final ValueNotifier<UserStats> statsNotifier = ValueNotifier(UserStats(streak: 0, solved: 0, xp: 0));
+  final ValueNotifier<UserStats> statsNotifier = ValueNotifier(UserStats(streak: 0, solved: 0, merit: 0));
   Future<void> init() async {
     _prefs = await SharedPreferences.getInstance();
     
@@ -28,7 +28,7 @@ class StatsManager {
       maxStreak: _prefs.getInt('stat_max_streak') ?? 0,
       solved: _prefs.getInt('stat_solved') ?? 0,
       lost: _prefs.getInt('stat_lost') ?? 0,
-      xp: _prefs.getInt('stat_xp') ?? 0,
+      merit: _prefs.getInt('stat_merit') ?? 0,
       guessDistribution: fullDistribution,
     );
   }
@@ -36,15 +36,15 @@ class StatsManager {
   Future<int> recordWin({required int yearLevel, required int wordLength, required int attempts}) async {
     final current = statsNotifier.value;
 
-    final int gainedXP = UserStatsExtension.generateGainedMerit(yearLevel, wordLength);
+    final int gainedMerit = UserStatsExtension.generateGainedMerit(yearLevel, wordLength);
 
-    final newXP = current.xp + gainedXP;
+    final newMerit = current.merit + gainedMerit;
     final newStreak = current.streak + 1;
     final newMaxStreak = max(newStreak, current.maxStreak);
     final newDist = Map<int, int>.from(current.guessDistribution);
     newDist[attempts] = (newDist[attempts] ?? 0) + 1;
     
-    await _prefs.setInt('stat_xp', newXP);
+    await _prefs.setInt('stat_merit', newMerit);
     await _prefs.setInt('stat_streak', newStreak);
     await _prefs.setInt('stat_max_streak', newMaxStreak);
     await _prefs.setString('stat_dist', jsonEncode(newDist.map((k, v) => MapEntry(k.toString(), v))));
@@ -54,11 +54,11 @@ class StatsManager {
       maxStreak: newMaxStreak,
       solved: current.solved + 1,
       lost: current.lost,
-      xp: newXP,
+      merit: newMerit,
       guessDistribution: newDist,
     );
 
-    return gainedXP;
+    return gainedMerit;
   }
 
   Future<void> recordLoss() async {
@@ -73,7 +73,7 @@ class StatsManager {
       maxStreak: current.maxStreak,
       solved: current.solved,
       lost: newLost,
-      xp: current.xp,
+      merit: current.merit,
       guessDistribution: current.guessDistribution,
     );
   }
