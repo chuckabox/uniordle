@@ -81,24 +81,20 @@ class _LevelUpDialogState extends State<LevelUpDialog> with SingleTickerProvider
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              // TODO: change progress to something else
-              // Text("PROGRESS", style: AppFonts.labelMedium),
-              // const SizedBox(height: 16),
               AnimatedBuilder(
                 animation: _animation,
                 builder: (context, _) {
                   final double val = _animation.value;
                   final int displayLevel = val.floor();
                   final double displayProgress = val % 1.0;
-                  
-                  const int totalRequired = UserStats.meritPerLevel;
-                  final int currentLevelMerit = (displayProgress * totalRequired).round();
+
+                  final int percentage = (displayProgress * 100).round();
                   
                   return LevelCard(
                     level: displayLevel,
                     progress: displayProgress,
                     nextLevel: displayLevel + 1,
-                    progressLabel: "$currentLevelMerit/$totalRequired",
+                    progressLabel: "$percentage%",
                   );
                 },
               ),
