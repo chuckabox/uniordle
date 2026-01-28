@@ -1,3 +1,4 @@
+import 'package:uniordle/core/app_icons.dart';
 import 'package:uniordle/shared/exports/game_exports.dart';
 import 'package:uniordle/shared/exports/help_exports.dart';
 
@@ -20,7 +21,7 @@ class LevelUp extends StatelessWidget {
                 TextSpan(
                   text: 'merits',
                   style: TextStyle(
-                    color: Colors.amberAccent,
+                    color: AppColors.accent,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -28,14 +29,14 @@ class LevelUp extends StatelessWidget {
                 TextSpan(
                   text: 'credit ',
                   style: TextStyle(
-                    color: AppColors.accent,
+                    color: AppColors.accent3,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 const TextSpan(text: 'every five levels.'),
               ],
             ),
-            style: AppFonts.labelMedium.copyWith(color: Colors.white70),
+            style: AppFonts.labelMedium,
             textAlign: TextAlign.center,
           ),
         ),
@@ -46,7 +47,7 @@ class LevelUp extends StatelessWidget {
           child: Column(
             children: [
               InstructionRow(
-                leading: Icon(LucideIcons.dollarSign, color: Colors.amberAccent, size: 24),
+                leading: Icon(AppIcons.merits, color: AppColors.accent, size: 24),
                 color: AppColors.surfaceVariant,
                 title: 'Earn Merits',
                 subtitle: 'FOR EVERY CORRECT GUESS',
@@ -60,7 +61,7 @@ class LevelUp extends StatelessWidget {
               ),
               const SizedBox(height: 32),
               InstructionRow(
-                leading: Icon(LucideIcons.graduationCap, color: AppColors.accent, size: 24),
+                leading: Icon(AppIcons.credits, color: AppColors.accent3, size: 24),
                 color: AppColors.surfaceVariant,
                 title: 'Use Credits',
                 subtitle: 'UNLOCK NEW DISCIPLINES',

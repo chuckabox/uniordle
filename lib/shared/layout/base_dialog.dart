@@ -43,7 +43,10 @@ class BaseDialog extends StatelessWidget {
               ),
               child: Padding(
                 padding: padding ?? const EdgeInsets.all(24),
-                child: child,
+                child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [child],
+              ),
               ),
             ),
           ),

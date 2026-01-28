@@ -45,12 +45,9 @@
     Widget _buildAppIcon() => CircleAvatar(
       radius: 80,
       backgroundColor: AppColors.surfaceVariant,
-      child: Padding(
-        padding: const EdgeInsets.all(2.0),
-        child: Image.asset(
-          'assets/images/white_on_blue/favicon.png',
-          fit: BoxFit.contain,
-        ),
+      child: Image.asset(
+        'assets/images/white_on_blue/favicon.png',
+        fit: BoxFit.contain,
       ),
     );
 

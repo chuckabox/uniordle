@@ -2,6 +2,7 @@ abstract class AppLayout {
   
   static const double minAppWidth = 540.0;
   static const double maxDialogWidth = 480.0;
+  static const double maxDialogHeight = 620.0;
 
   static const double barHeight = 64.0;
   static const double sidePadding = 24.0;

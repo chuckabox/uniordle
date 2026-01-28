@@ -13,7 +13,7 @@ class HomeHero extends StatelessWidget {
   @override
   Widget build (BuildContext context) {
     final bool hasCredits = stats.availableCredits > 0;
-    final Color statusColor = hasCredits ? AppColors.accent : AppColors.onSurfaceVariant.withValues(alpha: 0.5);
+    final Color statusColor = hasCredits ? AppColors.accent3 : AppColors.onSurfaceVariant.withValues(alpha: 0.5);
 
     return Column(
       children: [

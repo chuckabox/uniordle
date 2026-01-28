@@ -24,7 +24,7 @@ class ReachTop extends StatelessWidget {
         const SizedBox(height: 24),
         
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 30),
           child: Column(
             children: [
               _buildRankRow(ranks[0], color: AppColors.accent),
@@ -56,7 +56,7 @@ class ReachTop extends StatelessWidget {
 
   Widget _buildRankRow(Map<String, String> rank, {required Color color, bool isBold = false}) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10.0),
+      padding: const EdgeInsets.symmetric(vertical: 12.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
