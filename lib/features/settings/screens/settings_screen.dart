@@ -96,7 +96,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   SettingsActionTile(
                     icon: Icons.bug_report_rounded,
                     label: 'Report a Bug',
-                    onTap: () => _launchUrl('https://docs.google.com/forms/d/19N6-JRjClBgYyfCR6-PgeSD8mpJWJkswuQcQXo9DE0k/prefill'),
+                    onTap: () => _launchUrl('https://docs.google.com/forms/d/e/1FAIpQLSeTSDNdbh0e0pl3-IbcI9aXB-3vqUnG__bQR57T2AOmz-PgsQ/viewform?usp=pp_url&entry.1189187296=Bug+Report'),
                   ),
                   const SizedBox(height: 8),
                   SettingsActionTile(
