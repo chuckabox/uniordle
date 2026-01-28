@@ -26,6 +26,7 @@ abstract class AppIcons {
   static const IconData gameWin = Icons.stars_rounded;
   static const IconData gameLoss = Icons.close_rounded;
   static const IconData merits = Icons.stars;
+  static const IconData abandonGame = Icons.warning_amber_rounded;
 
   // Profile
   static const IconData defaultProfile = Icons.account_circle;

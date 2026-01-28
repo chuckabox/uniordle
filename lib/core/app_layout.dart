@@ -9,4 +9,6 @@ abstract class AppLayout {
   static const double settingsTileHeight = 60;
   
   static const int flipSpeedMs = 300; // board flip speed
+
+  static const double dialogIcon = 64; // icons at the top of dialogs
 }

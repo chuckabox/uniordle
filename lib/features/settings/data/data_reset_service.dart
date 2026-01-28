@@ -1,5 +1,5 @@
 import 'package:uniordle/core/app_icons.dart';
-import 'package:uniordle/shared/exports/settings_exports.dart';
+import 'package:uniordle/shared/exports/end_game_exports.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class DataResetService {
@@ -13,7 +13,7 @@ class DataResetService {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Icon(AppIcons.inProgressDeleteData1, size: 64, color: Colors.red),
+            const Icon(AppIcons.inProgressDeleteData1, size: AppLayout.dialogIcon, color: Colors.red),
             const SizedBox(height: 16),
             Text("RESET PROGRESS?", style: AppFonts.headline),
             const SizedBox(height: 12),

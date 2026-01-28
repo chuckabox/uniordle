@@ -1,3 +1,4 @@
+import 'package:uniordle/core/app_icons.dart';
 import 'package:uniordle/shared/exports/end_game_exports.dart';
 
 class AbandonGameDialog extends StatelessWidget {
@@ -5,25 +6,26 @@ class AbandonGameDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return BaseDialog(
       padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 24),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           const Icon(
-            Icons.warning_amber_rounded,
+            AppIcons.abandonGame,
             color: Colors.orange,
-            size: 48,
+            size: AppLayout.dialogIcon,
           ),
           const SizedBox(height: 16),
           Text(
             "ABANDON GAME?",
-            style: AppFonts.labelLarge,
+            style: AppFonts.displayLarge,
             textAlign: TextAlign.center,
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: 16),
           Text(
-            "Leaving now will result in a penalty of ${UserStatsExtension.penaltyAmount} merits.",
+            UserStatsExtension.getAbandonWarning(statsManager.statsNotifier.value.streak),
             style: AppFonts.labelMedium,
             textAlign: TextAlign.center,
           ),
@@ -33,6 +35,7 @@ class AbandonGameDialog extends StatelessWidget {
               Expanded(
                 child: PrimaryButton(
                   label: 'CANCEL',
+                  height: 48,
                   onPressed: () => Navigator.pop(context, false),
                 ),
               ),
@@ -40,6 +43,7 @@ class AbandonGameDialog extends StatelessWidget {
               Expanded(
                 child: PrimaryButton(
                   label: 'LEAVE',
+                  height: 48,
                   color: AppColors.accent2,
                   onPressed: () => Navigator.pop(context, true),
                 ),

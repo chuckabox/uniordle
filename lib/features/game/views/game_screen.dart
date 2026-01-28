@@ -94,15 +94,20 @@ class _GameScreenState extends State<GameScreen> {
   
 
   void _handleBack() async {
-  final shouldLeave = await AbandonGameDialog.show(context);
-  
-  if (shouldLeave) {
-    await statsManager.recordAbandonment();
-    
-    if (mounted) {
+    if (!_controller.hasSubmissions) {
       Navigator.of(context).pop();
+      return;
     }
-  }
+
+    final shouldLeave = await AbandonGameDialog.show(context);
+    
+    if (shouldLeave) {
+      await statsManager.recordAbandonment();
+      
+      if (mounted) {
+        Navigator.of(context).pop();
+      }
+    }
   }
 
   @override

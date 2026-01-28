@@ -25,6 +25,7 @@ class GameController extends ChangeNotifier {
   late List<List<GlobalKey<FlipCardState>>> flipCardKeys;
   late Word solution;
   int currentWordIndex = 0;
+  bool get hasSubmissions => currentWordIndex > 0;
   GameStatus status = GameStatus.playing;
   final Set<Letter> keyboardLetters = {};
 
@@ -146,10 +147,8 @@ class GameController extends ChangeNotifier {
 
   void abandonGame() {
   if (status == GameStatus.playing || status == GameStatus.submitting) {
-    if (currentWordIndex > 0) {
-        status = GameStatus.lost;
-        statsManager.recordAbandonment(); 
-      }
+      status = GameStatus.lost;
+      statsManager.recordAbandonment(); 
     }
   }
 }
