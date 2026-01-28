@@ -103,6 +103,7 @@ class _GameScreenState extends State<GameScreen> {
     
     if (shouldLeave) {
       await statsManager.recordAbandonment();
+      _controller.abandonGame();
       
       if (mounted) {
         Navigator.of(context).pop();

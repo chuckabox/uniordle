@@ -146,9 +146,9 @@ class GameController extends ChangeNotifier {
   }
 
   void abandonGame() {
-  if (status == GameStatus.playing || status == GameStatus.submitting) {
+    if (status == GameStatus.playing || status == GameStatus.submitting) {
       status = GameStatus.lost;
-      statsManager.recordAbandonment(); 
+      notifyListeners();
     }
   }
 }
