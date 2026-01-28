@@ -70,7 +70,6 @@ class SettingsScreen extends StatelessWidget {
                         value: 'v1.0.0',
                         onTap: () => const AboutDialog()
                       ),
-                  
                       const SettingsHeader(title: 'DANGER ZONE'),
                       SettingsActionTile(
                         icon: Icons.delete_forever_rounded,
