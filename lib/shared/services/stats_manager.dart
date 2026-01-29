@@ -40,7 +40,7 @@ class StatsManager {
 
   Future<int> recordWin({required int yearLevel, required int wordLength, required int attempts}) async {
     final current = statsNotifier.value;
-    final int gainedMerit = UserStatsRewards.generateGainedMerit(yearLevel, wordLength);
+    final int gainedMerit = UserStatsRewards.generateGainedMerit(current, yearLevel, wordLength);
 
     final int oldLevel = current.currentLevel;
     final int newMerit = current.merit + gainedMerit;

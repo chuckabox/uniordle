@@ -1,6 +1,5 @@
 import 'package:uniordle/shared/exports/game_exports.dart';
 import 'package:uniordle/shared/exports/help_exports.dart';
-import 'package:uniordle/shared/layout/base_badge.dart';
 
 class UnlockedDisciplineDialog extends StatelessWidget {
   final Discipline discipline;
@@ -30,13 +29,7 @@ class UnlockedDisciplineDialog extends StatelessWidget {
             textAlign: TextAlign.center,
             style: AppFonts.labelLarge,
           ),
-          const SizedBox(height: 24),
-          BaseBadge(
-            label: "ENROLLMENT SUCCESS",
-            icon: LucideIcons.checkCircle,
-            color: discipline.color,
-          ),
-          const SizedBox(height: 32),
+          const SizedBox(height: AppLayout.gapToButton),
           PrimaryButton(
             onPressed: () => Navigator.pop(context),
             label: "START STUDYING",

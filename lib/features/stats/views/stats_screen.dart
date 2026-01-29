@@ -11,12 +11,16 @@ class StatsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     return ValueListenableBuilder<UserStats>(
       valueListenable: statsManager.statsNotifier,
       builder: (context, stats, child) {
         final double winValue = double.tryParse(stats.winPercentage.replaceAll('%', '')) ?? 0;
         final double normalizedValue = (winValue / 100).clamp(0.0, 1.0);
         final Color winColor = Color.lerp(AppColors.accent2, AppColors.correctColor, normalizedValue)!;
+
+        final int bonusCount = stats.unlockedIds.length - 1;
+        final int totalBonusPercent = (bonusCount * 5).clamp(0, 100);
         
         return SingleChildScrollView(
           padding: const EdgeInsets.all(AppLayout.sidePadding),
@@ -30,10 +34,24 @@ class StatsScreen extends StatelessWidget {
                     const SizedBox(height: AppLayout.titleToSubtitle),
                     Text("Your learning journey analytics", textAlign: TextAlign.center, style: AppFonts.labelMedium),
                     const SizedBox(height: 12),
-                    BaseBadge(
-                      label: "${stats.merit} TOTAL MERITS",
-                      icon: AppIcons.merits,
-                      color: AppColors.accent,
+                    Wrap(
+                      spacing: 12,
+                      runSpacing: 12,
+                      alignment: WrapAlignment.center,
+                      children: [
+                        BaseBadge(
+                          label: "${stats.merit} TOTAL MERITS",
+                          icon: AppIcons.merits,
+                          color: AppColors.accent,
+                        ),
+                        
+                        if (stats.unlockedIds.isNotEmpty)
+                          BaseBadge(
+                            label: "+$totalBonusPercent% MERIT BONUS",
+                            icon: LucideIcons.trendingUp,
+                            color: AppColors.correctColor,
+                          ),
+                      ],
                     ),
                   ],
                 ),

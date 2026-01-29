@@ -79,6 +79,12 @@ extension UserStatsProgress on UserStats {
 }
 
 extension UserStatsRewards on UserStats {
+
+  double get meritMultiplier {
+    final bonusCount = max(0, unlockedIds.length - 1);
+    return 1.0 + (bonusCount * 0.05);
+  }
+
   static ({int min, int max}) _calculateMeritBounds(int yearLevel, int wordLength) {
     int minBase = 10 + (yearLevel * 5);
     int maxBase = 20 + (yearLevel * 6);
@@ -87,14 +93,25 @@ extension UserStatsRewards on UserStats {
     return (min: minBase + lengthBonus, max: maxBase + lengthBonus);
   }
 
-  static String getMeritRange(int yearLevel, int wordLength) {
+  static ({String original, String boosted}) getMeritRange(UserStats stats, int yearLevel, int wordLength) {
     final bounds = _calculateMeritBounds(yearLevel, wordLength);
-    return "${bounds.min}-${bounds.max}";
+    final multiplier = stats.meritMultiplier;
+
+    final int boostedMin = (bounds.min * multiplier).round();
+    final int boostedMax = (bounds.max * multiplier).round();
+
+    return (
+      original: "${bounds.min}-${bounds.max}",
+      boosted: "$boostedMin-$boostedMax"
+    );
   }
 
-  static int generateGainedMerit(int yearLevel, int wordLength) {
+  static int generateGainedMerit(UserStats stats, int yearLevel, int wordLength) {
     final bounds = _calculateMeritBounds(yearLevel, wordLength);
-    return bounds.min + Random().nextInt(bounds.max - bounds.min + 1);
+    final random = Random();
+    int baseMerit = bounds.min + random.nextInt(bounds.max - bounds.min + 1);
+    
+    return (baseMerit * stats.meritMultiplier).round();
   }
 }
 

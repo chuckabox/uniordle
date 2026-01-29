@@ -38,6 +38,8 @@ class _UnlockDisciplineDialogState extends State<UnlockDisciplineDialog> {
 
   @override
   Widget build(BuildContext context) {
+    final bool isFirstUnlock = statsManager.statsNotifier.value.unlockedIds.isEmpty;
+
     if (_isUnlocked) {
       return UnlockedDisciplineDialog(discipline: widget.discipline);
     }
@@ -79,12 +81,44 @@ class _UnlockDisciplineDialogState extends State<UnlockDisciplineDialog> {
           ),
           
           const SizedBox(height: 8),
+
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+            decoration: BoxDecoration(
+              color: canAfford 
+                  ? widget.discipline.color.withValues(alpha: 0.1)
+                  : AppColors.onSurfaceVariant.withValues(alpha: 0.1),
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(
+                  LucideIcons.trendingUp, 
+                  size: 16, 
+                  color: canAfford ? widget.discipline.color : AppColors.onSurfaceVariant,
+                ),
+                const SizedBox(width: 8),
+                Text(
+                  isFirstUnlock 
+                    ? "INITIAL ENROLLMENT" 
+                    : "PERMANENT +5% MERIT BONUS",
+                  style: AppFonts.labelSmall.copyWith(
+                    color: canAfford ? widget.discipline.color : AppColors.onSurfaceVariant,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+          const SizedBox(height: 8),
           
           Column(
             children: [
               if (!canAfford) ...[
                 Text(
-                  "Next Credit at Level ${widget.nextLevel}",
+                  "(Credit available at Level ${widget.nextLevel})",
                   style: AppFonts.labelMedium,
                 ),
               ],
