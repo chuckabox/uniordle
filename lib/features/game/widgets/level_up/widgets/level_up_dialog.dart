@@ -291,13 +291,19 @@ class _LevelUpDialogState extends State<LevelUpDialog> with SingleTickerProvider
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(performanceText, style: AppFonts.labelSmall.copyWith(color: performanceColor, fontWeight: FontWeight.bold)),
-            Text("${widget.attempts}/${widget.maxAttempts} TRIES", style: AppFonts.labelSmall.copyWith(color: performanceColor)),
+            Text("${widget.attempts}/${widget.maxAttempts} ATTEMPTS", style: AppFonts.labelSmall.copyWith(color: performanceColor)),
           ],
         ),
         const SizedBox(height: 4),
         Text(
-          "You earned ${widget.gainedMerit.toInt()} merits based on your attempts.",
-          style: AppFonts.labelSmall.copyWith(color: AppColors.onSurfaceVariant),
+          widget.gainedMerit >= 0
+              ? "You earned ${widget.gainedMerit.toInt()} merits based on your attempts."
+              : "You lost ${widget.gainedMerit.toInt().abs()} merits due to academic failure.",
+          style: AppFonts.labelSmall.copyWith(
+            color: widget.gainedMerit >= 0 
+                ? AppColors.onSurfaceVariant 
+                : AppColors.accent2.withValues(alpha: 0.8),
+          ),
           textAlign: TextAlign.center,
         ),
       ],
