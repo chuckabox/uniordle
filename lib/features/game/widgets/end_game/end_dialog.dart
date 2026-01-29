@@ -39,8 +39,11 @@ class EndDialog extends StatelessWidget {
         startingProgress: prevState.$2,
         gainedMerit: directedMerit,
         discipline: discipline,
+        attempts: attempts,
+        maxAttempts: maxAttempts,
+        won: won,
       ),
-    );
+);
   }
   
   @override
@@ -58,8 +61,8 @@ class EndDialog extends StatelessWidget {
             const SizedBox(height: AppLayout.titleToSubtitle),
             SolutionBox(solution: solution),
             const SizedBox(height: 12),
-            AttemptsInfo(attempts: attempts, maxAttempts: maxAttempts, won: won),
-            const SizedBox(height: 12),
+            // AttemptsInfo(attempts: attempts, maxAttempts: maxAttempts, won: won),
+            // const SizedBox(height: 12),
             GameInfoBar(disciplineName: discipline.name, yearLevel: yearLevel, wordLength: solution.length),
             const SizedBox(height: AppLayout.gapToButton),
             PrimaryButton(

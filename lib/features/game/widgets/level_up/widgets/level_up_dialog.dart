@@ -6,6 +6,9 @@ class LevelUpDialog extends StatefulWidget {
   final double startingProgress;
   final double gainedMerit;
   final Discipline discipline;
+  final int attempts;
+  final int maxAttempts;
+  final bool won;
 
   const LevelUpDialog({
     super.key,
@@ -13,6 +16,9 @@ class LevelUpDialog extends StatefulWidget {
     required this.startingProgress,
     required this.gainedMerit,
     required this.discipline,
+    required this.attempts,
+    required this.maxAttempts,
+    required this.won,
   });
 
   @override
@@ -114,6 +120,8 @@ class _LevelUpDialogState extends State<LevelUpDialog> with SingleTickerProvider
         style: AppFonts.displayLarge,
         ),
         const SizedBox(height: 16),
+        _buildPerformanceBreakdown(),
+        const SizedBox(height: 12),
         AnimatedBuilder(
           animation: _animation,
           builder: (context, _) {
@@ -242,6 +250,60 @@ class _LevelUpDialogState extends State<LevelUpDialog> with SingleTickerProvider
       ),
     );
   }
+
+  Widget _buildPerformanceBreakdown() {
+  final double weight = widget.won 
+      ? (widget.maxAttempts - widget.attempts) / (widget.maxAttempts - 1).toDouble()
+      : 0.0;
+  
+  String performanceText;
+  Color performanceColor;
+  
+    if (!widget.won) {
+    performanceText = "FAIL";
+    performanceColor = AppColors.accent2;
+  } else {
+    if (weight >= 0.85) { // Roughly 1-2 attempts
+      performanceText = "HIGH DISTINCTION";
+      performanceColor = AppColors.correctColor;
+    } else if (weight >= 0.70) { // Roughly 3 attempts
+      performanceText = "DISTINCTION";
+      performanceColor = AppColors.accent;
+    } else if (weight >= 0.50) { // Roughly 4-5 attempts
+      performanceText = "CREDIT";
+      performanceColor = Colors.orange;
+    } else { // 6-8 attempts
+      performanceText = "PASS";
+      performanceColor = Colors.blueGrey;
+    }
+  }
+
+  return Container(
+    padding: const EdgeInsets.all(12),
+    decoration: BoxDecoration(
+      color: performanceColor.withValues(alpha: 0.1),
+      borderRadius: BorderRadius.circular(16),
+      border: Border.all(color: performanceColor.withValues(alpha: 0.2)),
+    ),
+    child: Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(performanceText, style: AppFonts.labelSmall.copyWith(color: performanceColor, fontWeight: FontWeight.bold)),
+            Text("${widget.attempts}/${widget.maxAttempts} TRIES", style: AppFonts.labelSmall.copyWith(color: performanceColor)),
+          ],
+        ),
+        const SizedBox(height: 4),
+        Text(
+          "You earned ${widget.gainedMerit.toInt()} merits based on your attempts.",
+          style: AppFonts.labelSmall.copyWith(color: AppColors.onSurfaceVariant),
+          textAlign: TextAlign.center,
+        ),
+      ],
+    ),
+  );
+}
 }
 
 

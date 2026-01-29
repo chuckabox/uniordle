@@ -1,5 +1,3 @@
-import 'dart:math';
-
 class UserStats {
 
   static const int meritPerLevel = 100;
@@ -116,10 +114,19 @@ extension UserStatsRewards on UserStats {
     );
   }
 
-  static int generateGainedMerit(UserStats stats, int yearLevel, int wordLength) {
+  static int generateGainedMerit({
+    required UserStats stats, 
+    required int yearLevel, 
+    required int wordLength, 
+    required int attempts,
+  }) {
     final bounds = _calculateMeritBounds(yearLevel, wordLength);
-    final random = Random();
-    int baseMerit = bounds.min + random.nextInt(bounds.max - bounds.min + 1);
+    
+    double performanceWeight = (8 - attempts) / 7.0;
+    
+    performanceWeight = performanceWeight.clamp(0.0, 1.0);
+
+    int baseMerit = bounds.min + ((bounds.max - bounds.min) * performanceWeight).round();
     
     return (baseMerit * stats.meritMultiplier).round();
   }
