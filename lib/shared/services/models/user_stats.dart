@@ -11,6 +11,7 @@ class UserStats {
   final Map<int, int> guessDistribution;
   final List<String> unlockedIds;
   final List<int> achievedMilestones;
+  final Map<String, int> modeFrequency;
 
   UserStats({
     required this.streak,
@@ -21,6 +22,7 @@ class UserStats {
     this.guessDistribution = const {1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0},
     this.unlockedIds = const [],
     this.achievedMilestones = const [],
+    this.modeFrequency = const {},
   });
 
     UserStats copyWith({
@@ -32,6 +34,7 @@ class UserStats {
     Map<int, int>? guessDistribution,
     List<String>? unlockedIds,
     List<int>? achievedMilestones,
+    Map<String, int>? modeFrequency,
   }) {
     return UserStats(
       streak: streak ?? this.streak,
@@ -42,6 +45,7 @@ class UserStats {
       guessDistribution: guessDistribution ?? this.guessDistribution,
       unlockedIds: unlockedIds ?? this.unlockedIds,
       achievedMilestones: achievedMilestones ?? this.achievedMilestones,
+      modeFrequency: modeFrequency ?? this.modeFrequency,
     );
   }
 

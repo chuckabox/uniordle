@@ -110,11 +110,12 @@ class GameController extends ChangeNotifier {
         yearLevel: yearLevel, 
         wordLength: wordLength, 
         attempts: currentWordIndex + 1,
+        maxAttempts: maxAttempts,
       );
       onGameEnd(true);
     } else if (currentWordIndex + 1 >= maxAttempts) {
       status = GameStatus.lost;
-      statsManager.recordLoss();
+      statsManager.recordLoss(wordLength: yearLevel, maxAttempts: maxAttempts);
       onGameEnd(false);
     } else {
       status = GameStatus.playing;

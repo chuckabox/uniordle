@@ -1,3 +1,4 @@
+import 'package:uniordle/features/stats/widgets/mode_analytics_chart.dart';
 import 'package:uniordle/shared/exports/end_game_exports.dart';
 import 'package:uniordle/shared/exports/stats_exports.dart';
 
@@ -61,6 +62,18 @@ class StatsScreen extends StatelessWidget {
 
               GuessDistributionChart(distribution: stats.guessDistribution),
               
+              const SizedBox(height: 32),
+
+              Text(
+                "GAMES PLAYED", 
+                style: AppFonts.labelMedium
+              ),
+
+              const SizedBox(height: 12),
+
+              // This Heatmap-style grid shows Word Length vs Max Attempts
+              ModeAnalyticsChart(modeFrequency: stats.modeFrequency),
+
               const SizedBox(height: 32),
             ],
           ),
