@@ -2,38 +2,79 @@ import 'package:uniordle/shared/exports/game_exports.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  test('Higher chance of an unique word', () {
-    List<String> userSolved = ['ATOMS', 'CELLS', 'GENES'];
-    List<String> results = [];
+  group('Word Selection Logic:', () {
+    test('Higher chance of an unique word', () {
+      final List<String> userSolved = ['ATOMS', 'CELLS', 'GENES'];
+      final List<String> results = [];
 
-    for (int i = 0; i < 100; i++) {
-      results.add(WordRepository.getNextWord(
+      for (int i = 0; i < 100; i++) {
+        results.add(WordRepository.getNextWord(
+          disciplineId: 'science',
+          length: 5,
+          userSolvedWords: userSolved,
+        ));
+      }
+
+      final int repeats = results.where((w) => userSolved.contains(w.toUpperCase())).length;
+      final int uniqueCount = results.length - repeats;
+
+      expect(
+        repeats, 
+        lessThan(30), 
+        reason: 'Selection logic should favor unique words (Found $uniqueCount unique vs $repeats repeats).',
+      ); 
+    });
+
+    test('Handles edge case 100% completion', () {
+      final allScienceWords = WordRepository.getWordsForLength(5);
+      
+      final result = WordRepository.getNextWord(
         disciplineId: 'science',
         length: 5,
-        userSolvedWords: userSolved,
-      ));
+        userSolvedWords: allScienceWords,
+      );
+
+      // Verify state without printing
+      expect(result, isA<String>(), reason: 'Should return a valid String even when category is complete.');
+      expect(result, isNotEmpty);
+      expect(
+        allScienceWords.contains(result.toUpperCase()), 
+        isTrue, 
+        reason: 'When 100% complete, the returned word must be a repeat from the existing library.',
+      );
+    });
+
+    test('All disciplines have valid word lists', () {
+    // Loop through every discipline ID you've registered
+    for (final entry in categorizedWords.entries) {
+      final String disciplineId = entry.key;
+      final Map<int, List<String>> wordMap = entry.value;
+
+      // Check 5, 6, and 7 letter categories
+      for (int length in [5, 6, 7]) {
+        final List<String>? wordList = wordMap[length];
+
+        // Failure message if a list is missing or empty
+        expect(
+          wordList, 
+          isNotNull, 
+          reason: 'Discipline "$disciplineId" is missing the $length-letter word list.',
+        );
+        
+        expect(
+          wordList!.isNotEmpty, 
+          isTrue, 
+          reason: 'Discipline "$disciplineId" has an empty list for $length-letter words.',
+        );
+
+        // Ensure no empty strings sneaked into the lists
+      expect(
+        wordList.every((word) => word.trim().isNotEmpty),
+        isTrue,
+        reason: 'Discipline "$disciplineId" ($length letters) contains an empty string entry.',
+      );
     }
-
-    int repeats = results.where((w) => userSolved.contains(w)).length;
-    print('Out of 100 games, $repeats were repeats and ${100 - repeats} were new.');
-    
-    // You should see roughly 20 repeats and 80 new words
-    expect(repeats, lessThan(30)); 
-  });
-
-  test('Handles edge case 100% completion', () {
-  // Mock a user who has solved everything in the small test list
-  final allScienceWords = WordRepository.getWordsForLength(5);
-  
-  final result = WordRepository.getNextWord(
-    disciplineId: 'science',
-    length: 5,
-    userSolvedWords: allScienceWords,
-  );
-
-  // It should still return a word (a repeat), not an error or null
-  expect(result, isNotNull);
-  expect(allScienceWords.contains(result), isTrue);
-  print('Completion Test: Picked "${result}" from a fully mastered list.');
+  }
 });
+  });
 }
