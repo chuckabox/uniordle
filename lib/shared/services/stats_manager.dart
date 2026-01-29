@@ -21,6 +21,12 @@
       final modeFreqString = _prefs.getString('stat_mode_freq') ?? '{}';
       final Map<String, dynamic> decodedModeFreq = jsonDecode(modeFreqString);
       final Map<String, int> modeFrequency = decodedModeFreq.map((k, v) => MapEntry(k, v as int));
+
+      final historyRaw = _prefs.getString('stat_game_history') ?? '[]';
+      final List<dynamic> decodedHistory = jsonDecode(historyRaw);
+      final List<Map<String, dynamic>> gameHistory = decodedHistory.cast<Map<String, dynamic>>();
+
+      final solvedWords = _prefs.getStringList('stat_solved_words') ?? [];
       
       final Map<int, int> distribution = {
         for (var e in decodedDist.entries) int.parse(e.key): e.value as int
@@ -41,13 +47,19 @@
         unlockedIds: unlocked,
         achievedMilestones: milestonesRaw.map(int.parse).toList(),
         modeFrequency: modeFrequency,
+        gameHistory: gameHistory,
+        solvedWords: solvedWords,
       );
     }
 
-    Future<int> recordWin({required int yearLevel, required int wordLength, required int attempts, required int maxAttempts}) async {
+    Future<int> recordWin({
+      required int yearLevel, 
+      required int wordLength, 
+      required int attempts, 
+      required int maxAttempts,
+      required String word,
+    }) async {
       final current = statsNotifier.value;
-
-      final updatedModeFreq = await _incrementModeFrequency(wordLength, maxAttempts);
 
       final int gainedMerit = UserStatsRewards.generateGainedMerit(
         stats: current, 
@@ -56,25 +68,30 @@
         attempts: attempts,
       );
 
-      final int oldLevel = current.currentLevel;
       final int newMerit = current.merit + gainedMerit;
-      final int newLevel = newMerit ~/ UserStats.meritPerLevel;
-
-      List<int> updatedMilestones = List.from(current.achievedMilestones);
-      if (newLevel > oldLevel) {
-        for (int i = oldLevel + 1; i <= newLevel; i++) {
-          if (!updatedMilestones.contains(i)) updatedMilestones.insert(0, i);
-        }
-        await _prefs.setStringList('stat_milestones', updatedMilestones.map((e) => e.toString()).toList());
-      }
-
-      await _incrementModeFrequency(wordLength, maxAttempts);
-
       final newStreak = current.streak + 1;
       final newMaxStreak = max(newStreak, current.maxStreak);
+      
       final newDist = Map<int, int>.from(current.guessDistribution);
       newDist[attempts] = (newDist[attempts] ?? 0) + 1;
-      
+
+      final newSolvedWords = List<String>.from(current.solvedWords);
+      if (!newSolvedWords.contains(word.toUpperCase())) {
+        newSolvedWords.add(word.toUpperCase());
+        await _prefs.setStringList('stat_solved_words', newSolvedWords);
+      }
+
+      final updatedHistory = _generateUpdatedHistory(
+        current: current,
+        word: word,
+        won: true,
+        attempts: attempts,
+        maxAttempts: maxAttempts,
+        merit: gainedMerit,
+      );
+
+      final updatedModeFreq = await _incrementModeFrequency(wordLength, maxAttempts);
+
       await _prefs.setInt('stat_merit', newMerit);
       await _prefs.setInt('stat_streak', newStreak);
       await _prefs.setInt('stat_max_streak', newMaxStreak);
@@ -87,27 +104,61 @@
         solved: current.solved + 1,
         merit: newMerit,
         guessDistribution: newDist,
-        achievedMilestones: updatedMilestones,
         modeFrequency: updatedModeFreq,
+        gameHistory: updatedHistory,
+        solvedWords: newSolvedWords,
       );
 
       return gainedMerit;
     }
 
-    Future<void> recordLoss({required int wordLength, required int maxAttempts}) async {
-      await _incrementModeFrequency(wordLength, maxAttempts);
-      return _applyPenalty(UserStats.penaltyAmount);
-    }
-    Future<void> recordAbandonment({required int wordLength, required int maxAttempts}) async {
-      await _incrementModeFrequency(wordLength, maxAttempts);
-      final current = statsNotifier.value;
-      return _applyPenalty(current.activePenalty);
+    Future<void> recordLoss({
+      required String word, 
+      required int wordLength, 
+      required int maxAttempts
+    }) async {
+      return _handleFailure(
+        word: word,
+        wordLength: wordLength,
+        maxAttempts: maxAttempts,
+        penalty: UserStats.penaltyAmount,
+      );
     }
 
-    Future<void> _applyPenalty(int amount) async {
+    Future<void> recordAbandonment({
+      required String word, 
+      required int wordLength, 
+      required int maxAttempts
+    }) async {
+      final current = statsNotifier.value;
+      return _handleFailure(
+        word: word,
+        wordLength: wordLength,
+        maxAttempts: maxAttempts,
+        penalty: current.activePenalty,
+      );
+    }
+
+    Future<void> _handleFailure({
+      required String word,
+      required int wordLength,
+      required int maxAttempts,
+      required int penalty,
+    }) async {
       final current = statsNotifier.value;
       final newLost = current.lost + 1;
-      final newMerit = max(0, current.merit - amount);
+      final newMerit = max(0, current.merit - penalty);
+
+      final updatedModeFreq = await _incrementModeFrequency(wordLength, maxAttempts);
+
+      final updatedHistory = _generateUpdatedHistory(
+        current: current,
+        word: word,
+        won: false,
+        attempts: maxAttempts,
+        maxAttempts: maxAttempts,
+        merit: -penalty,
+      );
 
       await _prefs.setInt('stat_streak', 0);
       await _prefs.setInt('stat_lost', newLost);
@@ -117,6 +168,8 @@
         streak: 0,
         lost: newLost,
         merit: newMerit,
+        modeFrequency: updatedModeFreq,
+        gameHistory: updatedHistory,
       );
     }
 
@@ -142,6 +195,35 @@
       statsNotifier.value = current.copyWith(modeFrequency: newFreq);
       
       return newFreq;
+    }
+
+    List<Map<String, dynamic>> _generateUpdatedHistory({
+      required UserStats current,
+      required String word,
+      required bool won,
+      required int attempts,
+      required int maxAttempts,
+      required int merit,
+    }) {
+      final List<Map<String, dynamic>> updatedHistory = List.from(current.gameHistory);
+
+      // Add the new entry
+      updatedHistory.add({
+        'word': word,
+        'won': won,
+        'attempts': attempts,
+        'maxAttempts': maxAttempts,
+        'merit': merit,
+        'timestamp': DateTime.now().millisecondsSinceEpoch,
+      });
+
+      if (updatedHistory.length > 50) {
+        updatedHistory.removeAt(0);
+      }
+
+      _prefs.setString('stat_game_history', jsonEncode(updatedHistory));
+
+      return updatedHistory;
     }
   }
 

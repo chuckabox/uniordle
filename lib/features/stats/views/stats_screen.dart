@@ -1,3 +1,4 @@
+import 'package:uniordle/features/stats/widgets/academic_history.dart';
 import 'package:uniordle/features/stats/widgets/mode_analytics_chart.dart';
 import 'package:uniordle/shared/exports/end_game_exports.dart';
 import 'package:uniordle/shared/exports/stats_exports.dart';
@@ -73,6 +74,10 @@ class StatsScreen extends StatelessWidget {
 
               // This Heatmap-style grid shows Word Length vs Max Attempts
               ModeAnalyticsChart(modeFrequency: stats.modeFrequency),
+
+              const SizedBox(height: 24),
+              AcademicHistory(stats: stats),
+              const SizedBox(height: 32),
             ],
           ),
         );

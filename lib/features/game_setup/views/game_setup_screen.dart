@@ -1,5 +1,5 @@
 import 'package:uniordle/core/app_icons.dart';
-import 'package:uniordle/features/game_setup/widgets/credit_preview_badge.dart';
+import 'package:uniordle/features/game_setup/widgets/merit_preview_badge.dart';
 import 'package:uniordle/shared/buttons/primary_button.dart';
 import 'package:uniordle/shared/exports/game_exports.dart';
 import 'package:uniordle/shared/exports/game_setup_exports.dart';

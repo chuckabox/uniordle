@@ -62,16 +62,19 @@ class _GameScreenState extends State<GameScreen> {
 
     int meritChange = 0;
 
+    final String solutionWord = _controller.solution.wordString;
+
     if (won) {
       meritChange = await statsManager.recordWin(
         yearLevel: rawYearLevel,
         wordLength: _controller.solution.wordString.length,
         attempts: _controller.currentWordIndex + 1,
-        maxAttempts: _maxAttempts
+        maxAttempts: _maxAttempts,
+        word: solutionWord,
       );
     } else {
       meritChange = UserStats.penaltyAmount;
-      await statsManager.recordLoss(wordLength: rawYearLevel, maxAttempts: _maxAttempts);
+      await statsManager.recordLoss(wordLength: rawYearLevel, maxAttempts: _maxAttempts, word: solutionWord);
     }
 
     if (!mounted) return;

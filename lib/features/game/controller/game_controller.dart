@@ -107,6 +107,7 @@ class GameController extends ChangeNotifier {
     if (currentWord!.wordString == solution.wordString) {
       status = GameStatus.won;
       statsManager.recordWin(
+        word: solution.wordString,
         yearLevel: yearLevel, 
         wordLength: wordLength, 
         attempts: currentWordIndex + 1,
@@ -115,7 +116,7 @@ class GameController extends ChangeNotifier {
       onGameEnd(true);
     } else if (currentWordIndex + 1 >= maxAttempts) {
       status = GameStatus.lost;
-      statsManager.recordLoss(wordLength: wordLength, maxAttempts: maxAttempts);
+      statsManager.recordLoss(wordLength: wordLength, maxAttempts: maxAttempts, word: solution.wordString);
       onGameEnd(false);
     } else {
       status = GameStatus.playing;
@@ -150,6 +151,7 @@ class GameController extends ChangeNotifier {
     if (status == GameStatus.playing || status == GameStatus.submitting) {
       status = GameStatus.lost;
       statsManager.recordAbandonment(
+        word: solution.wordString,
         wordLength: wordLength, 
         maxAttempts: maxAttempts
       );
