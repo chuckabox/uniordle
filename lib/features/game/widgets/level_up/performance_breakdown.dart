@@ -61,7 +61,7 @@ class PerformanceBreakdown extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              Text(
+              Text( // TODO: for fail, it shouldnt be max/max attempts, change eventually
                 "$attempts/$maxAttempts ATTEMPTS",
                 style: AppFonts.labelSmall.copyWith(color: performanceColor),
               ),

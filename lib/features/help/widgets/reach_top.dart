@@ -6,7 +6,7 @@ class ReachTop extends StatelessWidget {
   final List<Map<String, String>> ranks = const [
     {'title': 'UNDERGRADUATE', 'level': 'LEVEL 0+'},
     {'title': 'BACHELOR', 'level': 'LEVEL 10+'},
-    {'title': '???', 'level': 'LEVEL 70+'}, // CHANCELLOR
+    {'title': '???', 'level': 'LEVEL ???'}, // CHANCELLOR
   ];
 
   @override
