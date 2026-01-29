@@ -17,14 +17,14 @@ class DistributionBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 6.0),
+      padding: const EdgeInsets.symmetric(vertical: 4),
       child: Row(
         children: [
           SizedBox(
             width: 16,
             child: Text(
               label,
-              style: AppFonts.labelSmall.copyWith(color: Colors.grey),
+              style: AppFonts.labelMedium,
             ),
           ),
           const SizedBox(width: 12),
