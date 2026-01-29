@@ -12,7 +12,7 @@ class MilestoneItem extends StatelessWidget {
     final bool isCreditEarned = level % 5 == 0;
     final bool isCreditOnly = level % 5 == 0 && level % 10 != 0;
 
-    final Color bgColor = isRankUp
+    final Color bgColor = isRankUp // TODO: change milestones to show 3 separate dialogs for instead of all in 1 for rank up etc
         ? AppColors.accent3
         : (isCreditOnly ? AppColors.accent : AppColors.surfaceVariant);
 

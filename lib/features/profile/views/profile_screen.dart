@@ -14,7 +14,7 @@ class ProfileScreen extends StatelessWidget {
       builder: (context, stats, child) {
 
         final int dBonus = ((stats.unlockedIds.length - 1).clamp(0, 99)) * 5;
-        final int rBonus = (stats.currentLevel ~/ 10) * 5;
+        final int rBonus = (stats.currentLevel ~/ 10) * 10;
 
         return SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 24),

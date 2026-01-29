@@ -78,7 +78,7 @@ class _GameSetupScreenState extends State<GameSetupScreen> {
                 ),
               ),
 
-              CreditPreviewBadge(
+              MeritPreviewBadge(
                 difficulty: _difficulty,
                 wordLength: _wordLength,
                 discipline: widget.discipline,

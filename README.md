@@ -107,3 +107,4 @@ Latest release:
 * improve transition between end game dialog and levelup dialog
 * during unlocking discipline, bring up dialog, behind the scenes, move the unlock to the top.
 * make paddings consistent throughout app using app_layout.dart
+* add progress on each discipline. increase likihood of new unique words. once mastered, stop user from farming it by decreasing merits earned

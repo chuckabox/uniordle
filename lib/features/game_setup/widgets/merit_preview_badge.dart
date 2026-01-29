@@ -1,12 +1,12 @@
 import 'package:uniordle/core/app_icons.dart';
 import 'package:uniordle/shared/exports/game_exports.dart';
 
-class CreditPreviewBadge extends StatelessWidget {
+class MeritPreviewBadge extends StatelessWidget {
   final int difficulty;
   final int wordLength;
   final Discipline discipline;
 
-  const CreditPreviewBadge({
+  const MeritPreviewBadge({
     super.key,
     required this.difficulty,
     required this.wordLength,
