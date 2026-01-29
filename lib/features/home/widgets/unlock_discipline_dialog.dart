@@ -42,6 +42,9 @@ class _UnlockDisciplineDialogState extends State<UnlockDisciplineDialog> {
       return UnlockedDisciplineDialog(discipline: widget.discipline);
     }
 
+    final stats = statsManager.statsNotifier.value;
+    final bool isFirstEnrollment = stats.unlockedIds.isEmpty;
+
     final bool canAfford = widget.credits > 0;
     final Color buttonColor = canAfford 
         ? widget.discipline.color 
@@ -49,6 +52,14 @@ class _UnlockDisciplineDialogState extends State<UnlockDisciplineDialog> {
     final Color statusColor = canAfford 
         ? widget.discipline.color 
         : AppColors.onSurfaceVariant.withValues(alpha: 0.5);
+
+    final String bonusText = isFirstEnrollment 
+    ? "FIRST ENROLLMENT" 
+    : "PERMANENT +5% MERIT BONUS";
+
+    final IconData bonusIcon = isFirstEnrollment 
+        ? LucideIcons.bookOpen 
+        : LucideIcons.trendingUp;
 
     final wiggleKey = GlobalKey<WiggleButtonWrapperState>();
 
@@ -92,12 +103,13 @@ class _UnlockDisciplineDialogState extends State<UnlockDisciplineDialog> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Icon(
-                  LucideIcons.trendingUp, 
+                  bonusIcon,
                   size: 16, 
                   color: canAfford ? widget.discipline.color : AppColors.onSurfaceVariant,
                 ),
                 const SizedBox(width: 8),
-                Text("PERMANENT +5% MERIT BONUS",
+                Text(
+                  bonusText,
                   style: AppFonts.labelSmall.copyWith(
                     color: canAfford ? widget.discipline.color : AppColors.onSurfaceVariant,
                     fontWeight: FontWeight.bold,

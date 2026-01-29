@@ -92,11 +92,10 @@ extension UserStatsProgress on UserStats {
 extension UserStatsRewards on UserStats {
 
   double get meritMultiplier {
-    // 5% bonus per
-    final double rankMultiplier = (currentLevel ~/ 10) * 0.05;
+    final double rankMultiplier = (currentLevel ~/ 10) * 0.10;
     
-    // 10% bonus per
-    final double disciplineMultiplier = unlockedIds.length * 0.10;
+    final int additionalDisciplines = (unlockedIds.length - 1).clamp(0, 99);
+    final double disciplineMultiplier = additionalDisciplines * 0.05;
     
     return 1.0 + disciplineMultiplier + rankMultiplier;
   }
