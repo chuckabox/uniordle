@@ -1,4 +1,5 @@
 abstract class AppLayout {
+  static const double breakpoint = 600.0;
   
   static const double minAppWidth = 540.0;
   static const double maxDialogWidth = 480.0;
@@ -8,13 +9,11 @@ abstract class AppLayout {
   static const double sidePadding = 24.0;
 
   static const double settingsTileHeight = 60;
-  
-  static const int flipSpeedMs = 300; // board flip speed
+  static const int flipSpeedMs = 300; 
 
-  // Screen constants
-  static const double dialogIcon = 64; // icons at the top of dialogs
+  static const double dialogIcon = 64; 
   static const double titleToSubtitle = 8;
-  static const double gapBetweenButtons = 16; // width or height
-  static const double gapToButton = 32; // last item to the action buttons
+  static const double gapBetweenButtons = 16; 
+  static const double gapToButton = 32; 
   static const double badgeToContent = 16;
 }
