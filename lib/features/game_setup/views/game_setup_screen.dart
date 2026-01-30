@@ -24,9 +24,7 @@ class _GameSetupScreenState extends State<GameSetupScreen> {
 
   void _play() async {
     setState(() => _isLoading = true);
-
     await Future.delayed(const Duration(milliseconds: 250));
-
     if (!mounted) return;
 
     await Navigator.pushNamed(
@@ -38,7 +36,6 @@ class _GameSetupScreenState extends State<GameSetupScreen> {
         'yearLevel': _difficulty,
       },
     );
-
     if (mounted) {
     setState(() => _isLoading = false);
     }

@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:uniordle/core/app_icons.dart';
 import 'package:uniordle/shared/exports/game_exports.dart';
 import 'package:uniordle/shared/layout/base_badge.dart';
@@ -17,7 +18,7 @@ class HomeHero extends StatelessWidget {
 
     return Column(
       children: [
-        Text('Select a Discipline', style: AppFonts.displayLarge),
+        AutoSizeText('Select a Discipline', style: AppFonts.displayLarge, maxLines: 1,),
         const SizedBox(height: AppLayout.titleToSubtitle),
         Text(
           'Master your academic vocabulary.',
