@@ -16,8 +16,8 @@ class GameSetupHero extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Container(
-          width: 96,
-          height: 96,
+          width: 80,
+          height: 80,
           decoration: BoxDecoration(
             color: Colors.white.withValues(alpha: 0.05),
             borderRadius: BorderRadius.circular(32),
