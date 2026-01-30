@@ -6,10 +6,10 @@ import 'package:uniordle/features/game/data/word_list.dart';
 class DisciplinesData {
 
   static List<String> getAllWordsForDiscipline(String id) {
-    // 1. Get the map for this discipline (e.g., engineeringWords)
+    // Get the map for this discipline (e.g., engineeringWords)
     final Map<int, List<String>> wordMap = categorizedWords[id.toLowerCase()] ?? {};
     
-    // 2. Flatten all values (List of strings for 5, 6, 7 letters) into one list
+    // Flatten all values (List of strings for 5, 6, 7 letters) into one list
     return wordMap.values
         .expand((list) => list)
         .map((word) => word.toUpperCase())
@@ -19,6 +19,24 @@ class DisciplinesData {
   static int getWordCount(Map<int, List<String>> wordMap) {
     return wordMap.values.fold(0, (sum, list) => sum + list.length);
   }
+
+  static List<Discipline> getSortedDisciplines(List<String> unlockedIds) {
+  List<Discipline> sortedList = List.from(all);
+
+  sortedList.sort((a, b) {
+    bool isAUnlocked = unlockedIds.contains(a.id);
+    bool isBUnlocked = unlockedIds.contains(b.id);
+
+    // Sort by "Lockedness"
+    if (isAUnlocked && !isBUnlocked) return -1;
+    if (!isAUnlocked && isBUnlocked) return 1;
+
+    // Sort Alphabetically
+    return a.name.compareTo(b.name);
+  });
+
+  return sortedList;
+}
 
   static final List<Discipline> all = [
     Discipline(

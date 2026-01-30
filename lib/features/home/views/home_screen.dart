@@ -27,6 +27,7 @@ class HomeScreen extends StatelessWidget {
     return ValueListenableBuilder(
       valueListenable: statsManager.statsNotifier,
       builder: (context, stats, _) {
+        final sortedDisciplines = DisciplinesData.getSortedDisciplines(stats.unlockedIds);
         return Padding(
           padding: const EdgeInsets.all(AppLayout.sidePadding),
           child: Center(
@@ -37,7 +38,7 @@ class HomeScreen extends StatelessWidget {
                 HomeHero(stats: stats),
                 const SizedBox(height: AppLayout.badgeToContent),
                 DisciplineGrid(
-                    disciplines: DisciplinesData.all,
+                    disciplines: sortedDisciplines,
                     unlockedIds: stats.unlockedIds,
                     onSubjectTap: (sub) => _onDisciplineTap(context, sub, stats),
                   ),

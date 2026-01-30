@@ -98,15 +98,11 @@ Latest release:
 * Add win/loss sound to end dialog
 * Put unlocked disciplines at the top, rest locked can stay alphabetical. 
 * Make a pop up surprise when you reach level 5 for the unlocking, and also in this update the academic title
-* BIG BUG: xp gained in level up dialog does not match profile xp
 * improve popup for levelling up, add differnet pop up for user to have a credit to unlock discipline
-* every 5 levels, give user 1 credit, 1 credit can unlock a discipline. first we need to have locked disciplines. allow user to choose their first discipline upon joining
 * add intro for app only
-* lock disciplines (make them greyscale and add a small lock icon on the right of the tile). also sort all discipline sby lock status then after alphabetical.
 * fix slight offset on text in settings when holding down buttons (rasturising issue)
 * improve transition between end game dialog and levelup dialog
 * during unlocking discipline, bring up dialog, behind the scenes, move the unlock to the top.
 * make paddings consistent throughout app using app_layout.dart
 * add progress on each discipline. increase likihood of new unique words. once mastered, **stop user from farming it by decreasing merits earned** (need to add this part now)
-* add game history in stats
 * **IMPROVE APPEARANCE AND DESIGN AFTER ADDING LOGIC**
