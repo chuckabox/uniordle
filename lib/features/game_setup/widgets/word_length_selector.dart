@@ -34,7 +34,7 @@ class WordLengthSelector extends StatelessWidget {
                 : AppColors.surfaceVariant;
             return Expanded(
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: mobileMode ? 2.0 : 6.0),
+                padding: EdgeInsets.symmetric(horizontal: mobileMode ? 4.0 : 8.0),
                 child: SelectButtonWrapper(
                   onTap: () => onChanged(len),
                   soundType: SoundType.settings,

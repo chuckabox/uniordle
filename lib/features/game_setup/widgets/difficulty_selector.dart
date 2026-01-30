@@ -50,6 +50,7 @@ class DifficultySelector extends StatelessWidget {
             inactiveTrackColor: Colors.white24,
             thumbColor: discipline.color,
             overlayColor: Colors.transparent,
+            overlayShape: RoundSliderOverlayShape(overlayRadius: mobileMode ? 40 : 60),
             thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 5.0),
             tickMarkShape: const RoundSliderTickMarkShape(tickMarkRadius: 3.0),
             activeTickMarkColor: discipline.color,
@@ -74,46 +75,41 @@ class DifficultySelector extends StatelessWidget {
             ),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 22),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: levels.map((e) {    
-              final active = e.key == value;
-              final isFirst = e.key == 1;
-              final isLast = e.key == 4;
-
-              return Column(
+        Row(
+          children: levels.map((e) {
+            final active = e.key == value;
+            
+            return Expanded(
+              child: Column(
                 mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: isFirst 
-                  ? CrossAxisAlignment.start 
-                  : isLast 
-                      ? CrossAxisAlignment.end 
-                      : CrossAxisAlignment.center,
                 children: [
-                  SizedBox(
-                    width: 70,
-                    child: AutoSizeText(
-                      mobileMode 
+                  AutoSizeText(
+                    mobileMode 
                         ? e.value.$1.replaceAll(' Year', '').trim() 
                         : e.value.$1,
-                      textAlign: isFirst ? TextAlign.left : (isLast ? TextAlign.right : TextAlign.center),
-                      minFontSize: 8,
-                      maxLines: 1,
-                      style: active
-                          ? AppFonts.labelMedium.copyWith(color: Colors.white, fontWeight: FontWeight.bold)
-                          : AppFonts.labelMedium.copyWith(color: AppColors.onSurfaceVariant),
-                    ),
+                    textAlign: TextAlign.center,
+                    minFontSize: 8,
+                    maxLines: 1,
+                    style: active
+                        ? AppFonts.labelMedium.copyWith(
+                            color: Colors.white, 
+                            fontWeight: FontWeight.bold,
+                          )
+                        : AppFonts.labelMedium.copyWith(
+                            color: AppColors.onSurfaceVariant,
+                          ),
                   ),
-                  const SizedBox(height: 4),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
                         e.value.$2.toString(),
                         style: active
-                            ? AppFonts.labelMedium.copyWith(color: discipline.color, fontWeight: FontWeight.w600)
+                            ? AppFonts.labelMedium.copyWith(
+                                color: discipline.color, 
+                                fontWeight: FontWeight.w600,
+                              )
                             : AppFonts.labelMedium,
                       ),
                       const SizedBox(width: 2),
@@ -127,9 +123,9 @@ class DifficultySelector extends StatelessWidget {
                     ],
                   )
                 ],
-              );
-            }).toList()
-          ),
+              ),
+            );
+          }).toList(),
         )
       ],
     );
