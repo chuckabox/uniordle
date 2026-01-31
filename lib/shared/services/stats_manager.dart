@@ -15,7 +15,7 @@
       
       final distString = _prefs.getString('stat_dist') ?? '{}';
       final Map<String, dynamic> decodedDist = jsonDecode(distString);
-      final unlocked = _prefs.getStringList('unlocked_disciplines') ?? [];
+      final unlocked = _prefs.getStringList('unlocked_majors') ?? [];
       final milestonesRaw = _prefs.getStringList('stat_milestones') ?? [];
 
       final modeFreqString = _prefs.getString('stat_mode_freq') ?? '{}';
@@ -173,12 +173,12 @@
       );
     }
 
-    Future<void> unlockDiscipline(String id) async {
+    Future<void> unlockMajor(String id) async {
       final current = statsNotifier.value;
       if (current.unlockedIds.contains(id)) return;
 
       final newList = List<String>.from(current.unlockedIds)..add(id);
-      await _prefs.setStringList('unlocked_disciplines', newList);
+      await _prefs.setStringList('unlocked_majors', newList);
       
       statsNotifier.value = current.copyWith(unlockedIds: newList);
     }

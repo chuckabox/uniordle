@@ -1,14 +1,14 @@
-import 'package:uniordle/features/home/widgets/unlocked_discipline_dialog.dart';
+import 'package:uniordle/features/home/widgets/unlocked_major_dialog.dart';
 import 'package:uniordle/shared/exports/game_exports.dart';
 import 'package:uniordle/shared/exports/help_exports.dart';
 import 'package:uniordle/shared/buttons/wiggle_button_wrapper.dart';
 
-class UnlockDisciplineDialog extends StatefulWidget {
+class UnlockMajorDialog extends StatefulWidget {
   final Major major;
   final int credits;
   final int nextLevel;
 
-  const UnlockDisciplineDialog({
+  const UnlockMajorDialog({
     super.key,
     required this.major,
     required this.credits,
@@ -16,15 +16,15 @@ class UnlockDisciplineDialog extends StatefulWidget {
   });
 
   @override
-  State<UnlockDisciplineDialog> createState() => _UnlockDisciplineDialogState();
+  State<UnlockMajorDialog> createState() => _UnlockMajorDialogState();
 }
 
-class _UnlockDisciplineDialogState extends State<UnlockDisciplineDialog> {
+class _UnlockMajorDialogState extends State<UnlockMajorDialog> {
   bool _isUnlocked = false;
   final wiggleKey = GlobalKey<WiggleButtonWrapperState>();
 
   void _handleUnlock() async {
-    await statsManager.unlockDiscipline(widget.major.id);
+    await statsManager.unlockMajor(widget.major.id);
     
     if (mounted) {
       setState(() {
@@ -39,7 +39,7 @@ class _UnlockDisciplineDialogState extends State<UnlockDisciplineDialog> {
   @override
   Widget build(BuildContext context) {
     if (_isUnlocked) {
-      return UnlockedDisciplineDialog(major: widget.major);
+      return UnlockedMajorDialog(major: widget.major);
     }
 
     final stats = statsManager.statsNotifier.value;
@@ -68,7 +68,7 @@ class _UnlockDisciplineDialogState extends State<UnlockDisciplineDialog> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          DisciplineIcon(
+          MajorIcon(
             iconName: canAfford ? widget.major.icon : 'lock',
             color: statusColor,
             size: AppLayout.dialogIcon,

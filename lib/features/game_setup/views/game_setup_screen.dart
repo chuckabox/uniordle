@@ -43,51 +43,51 @@ class _GameSetupScreenState extends State<GameSetupScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final bool mobileMode = AppLayout.mobileMode(context);
     return Scaffold(
       backgroundColor: AppColors.surface,
       appBar: const GameSetupHeader(),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 24,
-            vertical: 12,
-          ),
+          padding: const EdgeInsets.all(AppLayout.pagePadding),
           child: Column(
             children: [
               Expanded(
                 child: LayoutBuilder(
                   builder: (context, constraints) {
                   return SingleChildScrollView(
-                    child: ConstrainedBox(
-                      constraints: BoxConstraints(
-                        minHeight: constraints.maxHeight, 
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          GameSetupHero(major: widget.major),
-                          SizedBox(height: mobileMode ? 12 : 48),
-                          WordLengthSelector(
-                            value: _wordLength, 
-                            onChanged: (v) => setState(() => _wordLength = v),
-                            major: widget.major,
-                          ),
-                          SizedBox(height: mobileMode ? 24 : 48),
-                          DifficultySelector(
-                            value: _difficulty, 
-                            onChanged: (v) => setState(() => _difficulty = v),
-                            major: widget.major,
-                          ),
-                        ],
-                      ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        GameSetupHero(major: widget.major),
+                        SizedBox(height: context.responsive(32, 16)),
+                        context.autoText(
+                          'WORD LENGTH',
+                          style: AppFonts.displayMedium,
+                        ),
+                        SizedBox(height: context.r(8)),
+                        WordLengthSelector(
+                          value: _wordLength, 
+                          onChanged: (v) => setState(() => _wordLength = v),
+                          major: widget.major,
+                        ),
+                        SizedBox(height: context.responsive(32, 16)),
+                        context.autoText(
+                          'YEAR LEVEL',
+                          style: AppFonts.displayMedium,
+                        ),
+                        DifficultySelector(
+                          value: _difficulty, 
+                          onChanged: (v) => setState(() => _difficulty = v),
+                          major: widget.major,
+                        ),
+                      ],
                     ),
                   );
                   }
                 ),
               ),
 
-              const SizedBox(height: 12),
+              SizedBox(height: context.responsive(32, 16)),
 
               MeritPreviewBadge(
                 difficulty: _difficulty,
@@ -95,7 +95,7 @@ class _GameSetupScreenState extends State<GameSetupScreen> {
                 major: widget.major,
               ),
 
-              const SizedBox(height: 12),
+              SizedBox(height: 16),
 
               PrimaryButton(
                 label: 'PLAY GAME',
@@ -106,8 +106,8 @@ class _GameSetupScreenState extends State<GameSetupScreen> {
                 showShadow: true,
                 height: 64,
                 width: double.infinity,
+                resizeLabel: false,
               ),
-              const SizedBox(height: 32),
             ],
           ),
         ),

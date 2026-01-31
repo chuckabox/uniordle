@@ -1,8 +1,8 @@
 export '../../features/home/models/major.dart';
 export '../../features/home/views/home_screen.dart';
-export '../../features/home/widgets/discipline_grid.dart';
-export '../../features/home/widgets/discipline_icon.dart';
-export '../../features/home/widgets/discipline_tile.dart';
+export '../../features/home/widgets/major_grid.dart';
+export '../../features/home/widgets/major_icon.dart';
+export '../../features/home/widgets/major_tile.dart';
 export '../navigation/main_navigation_footer.dart';
 export '../navigation/main_navigation_header.dart';
 export '../../features/home/widgets/home_hero.dart';

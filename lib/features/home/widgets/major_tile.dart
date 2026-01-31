@@ -1,14 +1,14 @@
-import 'package:uniordle/features/home/data/disciplines_data.dart';
+import 'package:uniordle/features/home/data/major_data.dart';
 import 'package:uniordle/shared/exports/game_exports.dart';
 import 'package:uniordle/shared/exports/home_exports.dart';
 import 'package:uniordle/shared/buttons/select_button_wrapper.dart';
 
-class DisciplineTile extends StatefulWidget {
+class MajorTile extends StatefulWidget {
   final Major major;
   final VoidCallback onTap;
   final bool isLocked;
 
-  const DisciplineTile({
+  const MajorTile({
     super.key, 
     required this.major, 
     required this.onTap,
@@ -16,10 +16,10 @@ class DisciplineTile extends StatefulWidget {
   });
 
   @override
-  State<DisciplineTile> createState() => _DisciplineTileState();
+  State<MajorTile> createState() => _MajorTileState();
 }
 
-class _DisciplineTileState extends State<DisciplineTile> {
+class _MajorTileState extends State<MajorTile> {
   bool _hovering = false;
 
   @override
@@ -30,7 +30,7 @@ class _DisciplineTileState extends State<DisciplineTile> {
     return ValueListenableBuilder(
       valueListenable: statsManager.statsNotifier,
       builder: (context, stats, _) {
-        final List<String> library = DisciplinesData.getAllWordsForDiscipline(sub.id);
+        final List<String> library = MajorsData.getAllWordsForMajor(sub.id);
         final int masteredCount = library.where((w) => stats.solvedWords.contains(w)).length;
 
         final double progress = (masteredCount / sub.totalWords).clamp(0.0, 1.0);
@@ -60,7 +60,7 @@ class _DisciplineTileState extends State<DisciplineTile> {
                 opacity: widget.isLocked ? 0.5 : 1.0,
                 child: Row(
                   children: [
-                    DisciplineIcon(
+                    MajorIcon(
                       iconName: widget.isLocked ? 'lock' : sub.icon, 
                       color: widget.isLocked ? Colors.grey : sub.color,
                     ),

@@ -3,9 +3,9 @@ import 'package:uniordle/features/home/models/major.dart';
 import 'package:uniordle/shared/exports/word_lists_exports.dart';
 import 'package:uniordle/features/game/data/word_list.dart';
 
-class DisciplinesData {
+class MajorsData {
 
-  static List<String> getAllWordsForDiscipline(String id) {
+  static List<String> getAllWordsForMajor(String id) {
     // Get the map for this major (e.g., engineeringWords)
     final Map<int, List<String>> wordMap = categorizedWords[id.toLowerCase()] ?? {};
     
@@ -20,7 +20,7 @@ class DisciplinesData {
     return wordMap.values.fold(0, (sum, list) => sum + list.length);
   }
 
-  static List<Major> getSortedDisciplines(List<String> unlockedIds) {
+  static List<Major> getSortedMajors(List<String> unlockedIds) {
     List<Major> sortedList = List.from(all);
 
     sortedList.sort((a, b) {

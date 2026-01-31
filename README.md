@@ -93,10 +93,10 @@ Latest release:
 * Add stats/profile screens
 * change sound effect of tile flipping in game screen
 * replace ui click on buttons to be more minimal
-* Add locked disciplines - let player choose 1 from the start, unlock every 5 levels.
+* Add locked majors - let player choose 1 from the start, unlock every 5 levels.
 * Add level up pop up.
 * Add win/loss sound to end dialog
-* Put unlocked disciplines at the top, rest locked can stay alphabetical. 
+* Put unlocked majors at the top, rest locked can stay alphabetical. 
 * Make a pop up surprise when you reach level 5 for the unlocking, and also in this update the academic title
 * improve popup for levelling up, add differnet pop up for user to have a credit to unlock major
 * add intro for app only

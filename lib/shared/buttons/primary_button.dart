@@ -11,6 +11,7 @@ class PrimaryButton extends StatelessWidget {
   final double? width;
   final double? borderRadius;
   final bool showShadow;
+  final bool resizeLabel;
 
   const PrimaryButton({
     super.key,
@@ -23,6 +24,7 @@ class PrimaryButton extends StatelessWidget {
     this.width,
     this.borderRadius,
     this.showShadow = false,
+    this.resizeLabel = true,
   });
 
   @override
@@ -77,12 +79,18 @@ class PrimaryButton extends StatelessWidget {
           Icon(icon, size: context.r(28), color: Colors.white),
           SizedBox(width: context.r(8)),
         ],
-        context.autoText(
-          label.toUpperCase(),
-          style: AppFonts.labelLarge,
-          minSize: 12,
-          maxSize: 18,
-        ),
+        // Conditional check for resizing
+        resizeLabel 
+          ? context.autoText(
+              label.toUpperCase(),
+              style: AppFonts.labelLarge,
+              minSize: 12,
+              maxSize: 18,
+            )
+          : Text(
+              label.toUpperCase(),
+              style: AppFonts.labelLarge,
+            ),
       ],
     );
   }

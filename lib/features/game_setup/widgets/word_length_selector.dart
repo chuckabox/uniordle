@@ -16,56 +16,54 @@ class WordLengthSelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool mobileMode = AppLayout.mobileMode(context);
-
     return Column(
       children: [
-        Text(
-          'WORD LENGTH',
-          style: AppFonts.displayMedium,
-        ),
-        const SizedBox(height: 12),
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [5, 6, 7].map((len) {
             final bool active = value == len;
             final Color baseColor = active 
                 ? major.color 
                 : AppColors.surfaceVariant;
             return Expanded(
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: mobileMode ? 4.0 : 8.0),
-                child: SelectButtonWrapper(
-                  onTap: () => onChanged(len),
-                  soundType: SoundType.settings,
-                  baseColor: baseColor,
-                  enableDarken: true,
-                  borderRadius: BorderRadius.circular(36),
-                  child: AspectRatio(
-                    aspectRatio: 1,
-                    child: AnimatedContainer(
-                      duration: const Duration(milliseconds: 300),
-                      curve: Curves.easeInOut,
-                      decoration: BoxDecoration(
-                        color: active ? major.color : AppColors.surfaceVariant,
-                        borderRadius: BorderRadius.circular(36),
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          AutoSizeText(
-                            '$len',
-                            style: active 
-                            ? AppFonts.displayMedium.copyWith(fontWeight: FontWeight.w900)
-                            : AppFonts.displayMedium,
+              child: Center(
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(maxWidth: 160),
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: context.r(8)),
+                    child: SelectButtonWrapper(
+                      onTap: () => onChanged(len),
+                      soundType: SoundType.settings,
+                      baseColor: baseColor,
+                      enableDarken: true,
+                      borderRadius: BorderRadius.circular(36),
+                      child: AspectRatio(
+                        aspectRatio: 1,
+                        child: AnimatedContainer(
+                          duration: const Duration(milliseconds: 300),
+                          curve: Curves.easeInOut,
+                          decoration: BoxDecoration(
+                            color: active ? major.color : AppColors.surfaceVariant,
+                            borderRadius: BorderRadius.circular(36),
                           ),
-                          AutoSizeText(
-                            'LETTERS',
-                            style: active 
-                            ? AppFonts.labelMedium.copyWith(color: AppColors.onSurface, fontWeight: FontWeight.w600)
-                            : AppFonts.labelMedium,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              AutoSizeText(
+                                '$len',
+                                style: active 
+                                ? AppFonts.displayMedium.copyWith(fontWeight: FontWeight.w900)
+                                : AppFonts.displayMedium,
+                              ),
+                              AutoSizeText(
+                                'LETTERS',
+                                style: active 
+                                ? AppFonts.labelMedium.copyWith(color: AppColors.onSurface, fontWeight: FontWeight.w600)
+                                : AppFonts.labelMedium,
+                              ),
+                            ],
                           ),
-                        ],
+                        ),
                       ),
                     ),
                   ),

@@ -25,12 +25,12 @@ class WordRepository {
   }
 
   static String getNextWord({
-    required String disciplineId,
+    required String majorId,
     required int length,
     required List<String> userSolvedWords,
   }) {
-    final Map<int, List<String>>? disciplineMap = categorizedWords[disciplineId.toLowerCase()];
-    final List<String> allWords = disciplineMap?[length] ?? [];
+    final Map<int, List<String>>? majorMap = categorizedWords[majorId.toLowerCase()];
+    final List<String> allWords = majorMap?[length] ?? [];
     
     if (allWords.isEmpty) return "ERROR";
 

@@ -5,7 +5,7 @@ enum GameStatus { playing, submitting, won, lost }
 class GameController extends ChangeNotifier {
   final int wordLength;
   final int maxAttempts;
-  final String disciplineId;
+  final String majorId;
   final int yearLevel;
   final Function(bool won) onGameEnd;
   final VoidCallback? onInvalidWord;
@@ -14,7 +14,7 @@ class GameController extends ChangeNotifier {
     required this.wordLength,
     required this.maxAttempts,
     required this.yearLevel,
-    required this.disciplineId,
+    required this.majorId,
     required this.onGameEnd,
     this.onInvalidWord,
   }) {
@@ -38,7 +38,7 @@ class GameController extends ChangeNotifier {
     final userSolvedWords = statsManager.statsNotifier.value.solvedWords;
     
     final String nextWord = WordRepository.getNextWord(
-      disciplineId: disciplineId,
+      majorId: majorId,
       length: wordLength,
       userSolvedWords: userSolvedWords,
     );

@@ -23,10 +23,6 @@ class DifficultySelector extends StatelessWidget {
     final bool mobileMode = AppLayout.mobileMode(context);
     return Column(
       children: [
-        Text(
-          'YEAR LEVEL',
-          style: AppFonts.displayMedium,
-        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -35,14 +31,14 @@ class DifficultySelector extends StatelessWidget {
               size: 12,
               color: major.color,
             ),
-            const SizedBox(width: 8),
+            SizedBox(width: context.r(8)),
             Text(
               'ATTEMPTS ALLOWED',
               style: AppFonts.labelMedium.copyWith(color: major.color),
             ),
           ],
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: context.r(8)),
         SliderTheme(
           data: SliderTheme.of(context).copyWith(
             trackHeight: 4,

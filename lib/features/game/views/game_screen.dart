@@ -16,7 +16,7 @@ class _GameScreenState extends State<GameScreen> {
   late GameController _controller;
     bool _isInitialized = false;
 
-    String _disciplineName = '';
+    String _majorName = '';
     String _yearLevel = '';
     int _wordLength = 5;
     int _maxAttempts = 6;
@@ -39,12 +39,12 @@ class _GameScreenState extends State<GameScreen> {
       _maxAttempts = config.$2;
 
       _wordLength = args?['wordLength'] ?? 5;
-      _disciplineName = major?.name ?? 'Engineering';
+      _majorName = major?.name ?? 'Engineering';
       
       _controller = GameController(
         wordLength: _wordLength,
         maxAttempts: _maxAttempts,
-        disciplineId: major?.id ?? 'engineering',
+        majorId: major?.id ?? 'engineering',
         onGameEnd: (won) => _showEndDialog(won),
         onInvalidWord: () => InvalidWordDialog.show(context),
         yearLevel: yearLevel,
@@ -147,7 +147,7 @@ class _GameScreenState extends State<GameScreen> {
               child: Column(
                 children: [
                   GameInfoBar(
-                    disciplineName: _disciplineName,
+                    majorName: _majorName,
                     yearLevel: _yearLevel,
                     wordLength: _wordLength,
                   ),

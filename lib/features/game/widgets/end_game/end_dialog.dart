@@ -63,7 +63,7 @@ class EndDialog extends StatelessWidget {
             const SizedBox(height: 12),
             // AttemptsInfo(attempts: attempts, maxAttempts: maxAttempts, won: won),
             // const SizedBox(height: 12),
-            GameInfoBar(disciplineName: major.name, yearLevel: yearLevel, wordLength: solution.length),
+            GameInfoBar(majorName: major.name, yearLevel: yearLevel, wordLength: solution.length),
             const SizedBox(height: AppLayout.size2XL),
             PrimaryButton(
               label: 'NEXT',

@@ -1,5 +1,5 @@
-import 'package:uniordle/features/home/data/disciplines_data.dart';
-import 'package:uniordle/features/home/widgets/unlock_discipline_dialog.dart';
+import 'package:uniordle/features/home/data/major_data.dart';
+import 'package:uniordle/features/home/widgets/unlock_major_dialog.dart';
 import 'package:uniordle/shared/exports/game_exports.dart';
 import 'package:uniordle/shared/exports/help_exports.dart';
 import 'package:uniordle/shared/layout/base_show_dialog.dart';
@@ -7,13 +7,13 @@ import 'package:uniordle/shared/layout/base_show_dialog.dart';
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
-  void _onDisciplineTap(BuildContext context, Major sub, UserStats stats) {
+  void _onMajorTap(BuildContext context, Major sub, UserStats stats) {
     if (stats.unlockedIds.contains(sub.id)) {
       Navigator.of(context).pushNamed('/setup', arguments: sub);
     } else {
       baseShowDialog(
         context: context,
-        child: UnlockDisciplineDialog(
+        child: UnlockMajorDialog(
           major: sub,
           credits: stats.availableCredits,
           nextLevel: stats.nextCreditAtLevel,
@@ -27,7 +27,7 @@ Widget build(BuildContext context) {
   return ValueListenableBuilder(
     valueListenable: statsManager.statsNotifier,
     builder: (context, stats, _) {
-      final sortedDisciplines = DisciplinesData.getSortedDisciplines(stats.unlockedIds);
+      final sortedMajors = MajorsData.getSortedMajors(stats.unlockedIds);
 
       return Scaffold(
         backgroundColor: AppColors.surface,
@@ -40,10 +40,10 @@ Widget build(BuildContext context) {
                 
                 SizedBox(height: context.r(16)),
 
-                DisciplineGrid(
-                  disciplines: sortedDisciplines,
+                MajorGrid(
+                  majors: sortedMajors,
                   unlockedIds: stats.unlockedIds,
-                  onSubjectTap: (sub) => _onDisciplineTap(context, sub, stats),
+                  onSubjectTap: (sub) => _onMajorTap(context, sub, stats),
                 ),
               ],
             ),

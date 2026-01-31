@@ -9,7 +9,7 @@ void main() {
 
       for (int i = 0; i < 100; i++) {
         results.add(WordRepository.getNextWord(
-          disciplineId: 'science',
+          majorId: 'science',
           length: 5,
           userSolvedWords: userSolved,
         ));
@@ -29,7 +29,7 @@ void main() {
       final allScienceWords = WordRepository.getWordsForLength(5);
       
       final result = WordRepository.getNextWord(
-        disciplineId: 'science',
+        majorId: 'science',
         length: 5,
         userSolvedWords: allScienceWords,
       );
@@ -44,10 +44,10 @@ void main() {
       );
     });
 
-    test('All disciplines have valid word lists', () {
+    test('All majors have valid word lists', () {
     // Loop through every major ID you've registered
     for (final entry in categorizedWords.entries) {
-      final String disciplineId = entry.key;
+      final String majorId = entry.key;
       final Map<int, List<String>> wordMap = entry.value;
 
       // Check 5, 6, and 7 letter categories
@@ -58,20 +58,20 @@ void main() {
         expect(
           wordList, 
           isNotNull, 
-          reason: 'Major "$disciplineId" is missing the $length-letter word list.',
+          reason: 'Major "$majorId" is missing the $length-letter word list.',
         );
         
         expect(
           wordList!.isNotEmpty, 
           isTrue, 
-          reason: 'Major "$disciplineId" has an empty list for $length-letter words.',
+          reason: 'Major "$majorId" has an empty list for $length-letter words.',
         );
 
         // Ensure no empty strings sneaked into the lists
       expect(
         wordList.every((word) => word.trim().isNotEmpty),
         isTrue,
-        reason: 'Major "$disciplineId" ($length letters) contains an empty string entry.',
+        reason: 'Major "$majorId" ($length letters) contains an empty string entry.',
       );
     }
   }

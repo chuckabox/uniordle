@@ -98,10 +98,10 @@ extension UserStatsRewards on UserStats {
   double get meritMultiplier {
     final double rankMultiplier = (currentLevel ~/ 10) * 0.10;
     
-    final int additionalDisciplines = (unlockedIds.length - 1).clamp(0, 99);
-    final double disciplineMultiplier = additionalDisciplines * 0.05;
+    final int additionalMajors = (unlockedIds.length - 1).clamp(0, 99);
+    final double majorMultiplier = additionalMajors * 0.05;
     
-    return 1.0 + disciplineMultiplier + rankMultiplier;
+    return 1.0 + majorMultiplier + rankMultiplier;
   }
 
   static ({int min, int max}) _calculateMeritBounds(int yearLevel, int wordLength) {

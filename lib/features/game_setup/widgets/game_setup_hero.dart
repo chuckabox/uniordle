@@ -1,3 +1,4 @@
+import 'package:uniordle/shared/exports/app_exports.dart';
 import 'package:uniordle/shared/exports/game_setup_exports.dart';
 import 'package:uniordle/features/home/models/major.dart';
 import 'package:uniordle/core/app_icons.dart';
@@ -19,7 +20,7 @@ class GameSetupHero extends StatelessWidget {
           width: 80,
           height: 80,
           decoration: BoxDecoration(
-            color: Colors.white.withValues(alpha: 0.05),
+            color: AppColors.surfaceVariant,
             borderRadius: BorderRadius.circular(32),
           ),
           child: Icon(
@@ -28,12 +29,12 @@ class GameSetupHero extends StatelessWidget {
             size: 48,
           ),
         ),
-        const SizedBox(height: 8),
-        Text(
+        SizedBox(height: context.r(8)),
+        context.autoText(
           major.name,
           style: AppFonts.displayLarge,
         ),
-        Text(
+        context.autoText(
           'GAME SETTINGS',
           style: AppFonts.labelLarge.copyWith(color: major.color),
         ),

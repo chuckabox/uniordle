@@ -1,10 +1,10 @@
 import 'package:uniordle/shared/exports/game_exports.dart';
 import 'package:uniordle/shared/exports/help_exports.dart';
 
-class UnlockedDisciplineDialog extends StatelessWidget {
+class UnlockedMajorDialog extends StatelessWidget {
   final Major major;
 
-  const UnlockedDisciplineDialog({super.key, required this.major});
+  const UnlockedMajorDialog({super.key, required this.major});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class UnlockedDisciplineDialog extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          DisciplineIcon(
+          MajorIcon(
             iconName: major.icon,
             color: major.color,
             size: AppLayout.dialogIcon * 1.2,

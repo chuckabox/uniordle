@@ -24,8 +24,7 @@ class MeritPreviewBadge extends StatelessWidget {
         final int bonusPercent = (max(0, stats.unlockedIds.length - 1) * 5);
 
         return Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-          constraints: const BoxConstraints(maxWidth: AppLayout.maxDialogWidth),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           decoration: BoxDecoration(
             color: major.color.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(16),

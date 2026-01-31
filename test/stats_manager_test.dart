@@ -80,10 +80,10 @@ void main() {
     });
 
     test('Unlocking a major adds it to the list', () async {
-      const String disciplineId = 'medicine';
-      await manager.unlockDiscipline(disciplineId);
+      const String majorId = 'medicine';
+      await manager.unlockMajor(majorId);
       
-      expect(manager.statsNotifier.value.unlockedIds, contains(disciplineId));
+      expect(manager.statsNotifier.value.unlockedIds, contains(majorId));
     });
   });
 }

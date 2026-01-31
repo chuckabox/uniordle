@@ -1,12 +1,12 @@
 import 'package:uniordle/shared/exports/home_exports.dart';
 import 'package:uniordle/core/app_icons.dart';
 
-class DisciplineIcon extends StatelessWidget {
+class MajorIcon extends StatelessWidget {
   final String iconName;
   final Color? color;
   final double size;
 
-  const DisciplineIcon({
+  const MajorIcon({
     super.key, 
     required this.iconName, 
     required this.color,

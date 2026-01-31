@@ -3,13 +3,13 @@ import 'package:uniordle/shared/exports/game_exports.dart';
 import 'package:uniordle/shared/services/models/difficulty_config.dart';
 
 class GameInfoBar extends StatelessWidget {
-  final String disciplineName;
+  final String majorName;
   final String yearLevel;
   final int wordLength;
 
   const GameInfoBar({
     super.key,
-    required this.disciplineName,
+    required this.majorName,
     required this.yearLevel,
     required this.wordLength,
   });
@@ -27,7 +27,7 @@ class GameInfoBar extends StatelessWidget {
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Expanded(child: InfoTag(label: disciplineName)),
+              Expanded(child: InfoTag(label: majorName)),
               const SizedBox(width: 8),
               Expanded(child: InfoTag(label: '$wordLength LETTERS')),
               const SizedBox(width: 8),
