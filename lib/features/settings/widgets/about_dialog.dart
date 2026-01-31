@@ -1,4 +1,5 @@
-  import 'package:uniordle/shared/exports/settings_exports.dart';
+  import 'package:uniordle/shared/exports/end_game_exports.dart';
+import 'package:uniordle/shared/exports/settings_exports.dart';
 
   class AboutGameDialog extends StatelessWidget {
     const AboutGameDialog({super.key});
@@ -15,23 +16,23 @@
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              _buildAppIcon(),
-              const SizedBox(height: 24),
-              Text("Uniordle", style: AppFonts.displayLarge),
-              const SizedBox(height: 12),
+              _buildAppIcon(context),
+              SizedBox(height: context.r(32)),
+              context.autoText("Uniordle", style: AppFonts.displayLarge),
+              SizedBox(height: context.r(16)),
               _buildAuthorText(),
-              const SizedBox(height: 24),
-              Text(
+              SizedBox(height: context.r(8)),
+              context.autoText(
                 "Software Engineering Student @ UQ", 
                 style: AppFonts.labelMedium.copyWith(color: AppColors.accent)
               ),
-              const SizedBox(height: 36),
+              SizedBox(height: context.r(32)),
               PrimaryButton(
                 onPressed: () => showLicensePage(context: context),
                 label: "LICENSES",
                 color: AppColors.accent,
               ),
-              const SizedBox(height: 12),
+              SizedBox(height: context.r(16)),
               PrimaryButton(
                 onPressed: () => Navigator.pop(context),
                 label: "CLOSE",
@@ -42,8 +43,8 @@
       );
     }
 
-    Widget _buildAppIcon() => CircleAvatar(
-      radius: 80,
+    Widget _buildAppIcon(BuildContext context) => CircleAvatar(
+      radius: context.r(60),
       backgroundColor: AppColors.surfaceVariant,
       child: Image.asset(
         'assets/images/white_on_blue/favicon.png',
@@ -54,12 +55,12 @@
     Widget _buildAuthorText() => RichText(
       textAlign: TextAlign.center,
       text: TextSpan(
-        style: AppFonts.displayMedium,
+        style: AppFonts.labelLarge,
         children: [
           const TextSpan(text: "A solo project by "),
           TextSpan(
             text: "Peter",
-            style: AppFonts.displayMedium.copyWith(
+            style: AppFonts.labelLarge.copyWith(
               fontWeight: FontWeight.bold, 
               color: AppColors.inWordColor
             ),
