@@ -6,6 +6,7 @@ class HowToPlay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double contentWidth = AppLayout.contentWidth(context);
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -22,7 +23,7 @@ class HowToPlay extends StatelessWidget {
         const SizedBox(height: 16),
         
         Padding(
-          padding: const EdgeInsets.only(left: 30.0),
+          padding: const EdgeInsets.symmetric(horizontal: 30.0),
           child: Column(
             children: [
               InstructionRow(
@@ -31,14 +32,14 @@ class HowToPlay extends StatelessWidget {
                 title: 'Correct Letter',
                 subtitle: 'Right spot',
               ),
-              const SizedBox(height: 32),
+              SizedBox(height: 32),
               InstructionRow(
                 leading: Text('N', style: AppFonts.displayMedium), 
                 color: AppColors.inWordColor, 
                 title: 'Correct Letter', 
                 subtitle: 'Wrong spot'
               ),
-              const SizedBox(height: 32),
+              SizedBox(height: 32),
               InstructionRow(
                 leading: Text('I', style: AppFonts.displayMedium), 
                 color: AppColors.notInWordColor, 

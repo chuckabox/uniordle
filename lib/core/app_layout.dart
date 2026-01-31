@@ -40,9 +40,20 @@ abstract class AppLayout {
 
   /// Returns the width of the app content (clamped between 360 and 512)
   static double contentWidth(BuildContext context) {
-    final double screenW = MediaQuery.of(context).size.width;
     // If window is 340, it returns 360
     // If window is 400, it returns 400.
-    return screenW.clamp(minAppWidth, maxAppWidth);
+    return screenWidth(context).clamp(minAppWidth, maxAppWidth);
+  }
+
+  /// Returns a factor between 0.0 (at 360px) and 1.0 (at 512px)
+  static double scaleFactor(BuildContext context) {
+    final double width = contentWidth(context);
+    return (width - minAppWidth) / (maxAppWidth - minAppWidth);
+  }
+
+  /// Returns a responsive value that scales between [min] and [max]
+  /// based on the current content width.
+  static double responsive(BuildContext context, double min, double max) {
+    return min + (max - min) * scaleFactor(context);
   }
 }
