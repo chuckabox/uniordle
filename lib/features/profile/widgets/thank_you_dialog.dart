@@ -16,7 +16,7 @@ class _ThankYouDialogState extends State<ThankYouDialog> {
   @override
   void initState() {
     super.initState();
-    _confettiController = ConfettiController(duration: const Duration(seconds: 3));
+    _confettiController = ConfettiController(duration: const Duration(seconds: 10));
     _confettiController.play();
   }
 

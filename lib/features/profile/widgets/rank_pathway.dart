@@ -96,7 +96,7 @@ class RankPathway extends StatelessWidget {
               child: PrimaryButton(
                 label: 'A Message from the Faculty',
                 color: Colors.orange,
-                width: double.infinity,
+                width: 260,
                 onPressed: () {
                   baseShowDialog(
                     context: context,
