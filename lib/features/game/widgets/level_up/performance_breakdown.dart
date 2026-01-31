@@ -16,30 +16,31 @@ class PerformanceBreakdown extends StatelessWidget {
   });
 
   @override
-Widget build(BuildContext context) {
-  final grade = GameGrade.calculate(won, attempts, maxAttempts);
+  Widget build(BuildContext context) {
+    final grade = GameGrade.calculate(won, attempts, maxAttempts);
 
-  return Container(
-    padding: EdgeInsets.all(context.r(16)),
-    decoration: BoxDecoration(
-      color: grade.color.withValues(alpha: 0.1),
-      borderRadius: BorderRadius.circular(context.r(16)),
-    ),
-    child: Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            context.autoText(grade.label, 
-              style: AppFonts.labelSmall.copyWith(color: grade.color),
-            ),
-            context.autoText(
-              won ? "$attempts/$maxAttempts ATTEMPTS" : "X/$maxAttempts ATTEMPTS",
-              style: AppFonts.labelSmall.copyWith(color: grade.color),
-            ),
-          ],
-        ),
-        SizedBox(height: context.r(8)),
+    return Container(
+      padding: EdgeInsets.all(context.r(16)),
+      decoration: BoxDecoration(
+        color: grade.color.withValues(alpha: 0.1),
+        borderRadius: BorderRadius.circular(context.r(16)),
+      ),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              context.autoText(
+                grade.label, 
+                style: AppFonts.labelSmall.copyWith(color: grade.color),
+              ),
+              context.autoText(
+                won ? "$attempts/$maxAttempts ATTEMPTS" : "X/$maxAttempts ATTEMPTS",
+                style: AppFonts.labelSmall.copyWith(color: grade.color),
+              ),
+            ],
+          ),
+          SizedBox(height: context.r(8)),
           Builder(
             builder: (context) {
               final double baseSize = AppFonts.labelSmall.fontSize ?? 12;
@@ -52,9 +53,8 @@ Widget build(BuildContext context) {
               final Color normalColor = isPositive 
                   ? AppColors.onSurfaceVariant 
                   : AppColors.accent2.withValues(alpha: 0.8);
-              final Color highlightColor = isPositive 
-                  ? AppColors.correctColor
-                  : AppColors.accent2;
+              
+              final Color highlightColor = grade.color;
 
               return Padding(
                 padding: EdgeInsets.symmetric(horizontal: context.r(16)),
@@ -67,7 +67,6 @@ Widget build(BuildContext context) {
                     ),
                     children: [
                       TextSpan(text: isPositive ? "You earned " : "You gained "),
-                      
                       TextSpan(
                         text: amount,
                         style: TextStyle(
@@ -75,9 +74,7 @@ Widget build(BuildContext context) {
                           color: highlightColor,
                         ),
                       ),
-                      
                       const TextSpan(text: " "),
-                      
                       TextSpan(
                         text: unit,
                         style: TextStyle(
@@ -85,11 +82,10 @@ Widget build(BuildContext context) {
                           color: highlightColor,
                         ),
                       ),
-                      
                       TextSpan(
                         text: isPositive 
-                          ? " based on your number of attempts." 
-                          : " due to failing to guess correctly."
+                          ? " based on your efficiency." 
+                          : " due to failing the semester."
                       ),
                     ],
                   ),

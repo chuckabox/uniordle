@@ -13,16 +13,14 @@ class HistoryItemCard extends StatelessWidget {
     final int merit = game['merit'] ?? 0;
     final String word = game['word'] ?? "?????";
 
-    // One-liner to get all the data we need
     final grade = GameGrade.calculate(won, attempts, maxAttempts);
 
     return Container(
-      margin: EdgeInsets.only(bottom: context.r(10)),
-      padding: EdgeInsets.all(context.r(12)),
+      margin: EdgeInsets.only(bottom: context.r(16)),
+      padding: EdgeInsets.all(context.r(16)),
       decoration: BoxDecoration(
-        color: grade.color.withValues(alpha: 0.05),
+        color: grade.color.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(context.r(12)),
-        border: Border.all(color: grade.color.withValues(alpha: 0.15)),
       ),
       child: Row(
         children: [
@@ -31,7 +29,7 @@ class HistoryItemCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 context.autoText(word.toUpperCase(), 
-                  style: AppFonts.labelLarge.copyWith(fontWeight: FontWeight.bold, letterSpacing: 1.2),
+                  style: AppFonts.labelLarge,
                   textAlign: TextAlign.left,
                 ),
                 context.autoText(
@@ -46,13 +44,12 @@ class HistoryItemCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               context.autoText(grade.label, 
-                style: AppFonts.labelSmall.copyWith(color: grade.color, fontWeight: FontWeight.bold),
+                style: AppFonts.labelSmall.copyWith(color: grade.color),
               ),
               context.autoText(
                 won ? "+$merit MERITS" : "$merit MERITS",
                 style: AppFonts.labelSmall.copyWith(
                   color: won ? AppColors.correctColor : AppColors.accent2,
-                  fontWeight: FontWeight.w600,
                 ),
               ),
             ],
