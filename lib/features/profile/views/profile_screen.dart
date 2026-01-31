@@ -27,7 +27,7 @@ class ProfileScreen extends StatelessWidget {
               Align(
                 alignment: Alignment.centerLeft,
                 child: context.autoText(
-                  "Progress",
+                  "Studies Report",
                   style: AppFonts.labelLarge,
                 ),
               ),

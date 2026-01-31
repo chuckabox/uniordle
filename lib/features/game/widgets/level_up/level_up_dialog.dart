@@ -98,23 +98,25 @@ class _LevelUpDialogState extends State<LevelUpDialog> with SingleTickerProvider
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Text(
-          "ACADEMIC PROGRESS",
-          style: AppFonts.displayLarge,
+        FittedBox(
+          fit: BoxFit.scaleDown,
+          child: Text(
+            "STUDIES REPORT",
+            style: AppFonts.displayLarge,
+          ),
         ),
-        const SizedBox(height: 16),
-        
-        // Performance Reasoner
+
+        SizedBox(height: context.r(32)),
+
         PerformanceBreakdown(
           won: widget.won,
           attempts: widget.attempts,
           maxAttempts: widget.maxAttempts,
           gainedMerit: widget.gainedMerit,
         ),
-        
-        const SizedBox(height: 12),
-        
-        // Animated Level Progress
+
+        SizedBox(height: context.r(32)),
+
         AnimatedBuilder(
           animation: _animation,
           builder: (context, _) {
@@ -131,10 +133,9 @@ class _LevelUpDialogState extends State<LevelUpDialog> with SingleTickerProvider
             );
           },
         ),
-    
-        const SizedBox(height: 16),
-      
-        // List of unlocked milestones (Rank ups, Credits, etc)
+
+        SizedBox(height: context.r(16)),
+
         ConstrainedBox(
           constraints: const BoxConstraints(maxHeight: 200),
           child: AnimatedList(
@@ -156,9 +157,9 @@ class _LevelUpDialogState extends State<LevelUpDialog> with SingleTickerProvider
             },
           ),
         ),
-    
-        const SizedBox(height: AppLayout.size2XL),
-      
+
+        SizedBox(height: context.r(32)),
+
         Row(
           children: [
             Expanded(

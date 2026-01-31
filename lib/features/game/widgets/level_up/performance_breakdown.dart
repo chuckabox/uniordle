@@ -43,42 +43,86 @@ class PerformanceBreakdown extends StatelessWidget {
     }
 
     return Container(
-      padding: const EdgeInsets.all(12),
+      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: performanceColor.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: performanceColor.withValues(alpha: 0.2)),
       ),
       child: Column(
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
+              context.autoText(
                 performanceText,
                 style: AppFonts.labelSmall.copyWith(
                   color: performanceColor,
-                  fontWeight: FontWeight.bold,
                 ),
               ),
-              Text( // TODO: for fail, it shouldnt be max/max attempts, change eventually
-                "$attempts/$maxAttempts ATTEMPTS",
+              context.autoText(
+                won ? "$attempts/$maxAttempts ATTEMPTS" : "X/$maxAttempts ATTEMPTS",
                 style: AppFonts.labelSmall.copyWith(color: performanceColor),
               ),
             ],
           ),
           const SizedBox(height: 4),
-          Text(
-            gainedMerit >= 0
-                ? "You earned ${gainedMerit.toInt()} merits based on your number of attempts."
-                : "You lost ${gainedMerit.toInt().abs()} merits due to failing to guess correctly.",
-            style: AppFonts.labelSmall.copyWith(
-              color: gainedMerit >= 0
-                  ? AppColors.onSurfaceVariant
-                  : AppColors.accent2.withValues(alpha: 0.8),
-            ),
-            textAlign: TextAlign.center,
-          ),
+          Builder(
+            builder: (context) {
+              final double baseSize = AppFonts.labelSmall.fontSize ?? 12;
+              final double responsiveSize = context.responsive(baseSize - 2, baseSize);
+
+              final bool isPositive = gainedMerit >= 0;
+              final String amount = gainedMerit.toInt().abs().toString();
+              final String unit = isPositive ? "merits" : "demerits";
+              
+              final Color normalColor = isPositive 
+                  ? AppColors.onSurfaceVariant 
+                  : AppColors.accent2.withValues(alpha: 0.8);
+              final Color highlightColor = isPositive 
+                  ? AppColors.correctColor
+                  : AppColors.accent2;
+
+              return Padding(
+                padding: EdgeInsets.symmetric(horizontal: context.r(16)),
+                child: RichText(
+                  textAlign: TextAlign.center,
+                  text: TextSpan(
+                    style: AppFonts.labelSmall.copyWith(
+                      fontSize: responsiveSize,
+                      color: normalColor,
+                    ),
+                    children: [
+                      TextSpan(text: isPositive ? "You earned " : "You gained "),
+                      
+                      TextSpan(
+                        text: amount,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: highlightColor,
+                        ),
+                      ),
+                      
+                      const TextSpan(text: " "),
+                      
+                      TextSpan(
+                        text: unit,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: highlightColor,
+                        ),
+                      ),
+                      
+                      TextSpan(
+                        text: isPositive 
+                          ? " based on your number of attempts." 
+                          : " due to failing to guess correctly."
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            },
+          )
         ],
       ),
     );

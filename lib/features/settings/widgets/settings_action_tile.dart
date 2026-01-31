@@ -22,11 +22,10 @@ class SettingsActionTile extends StatelessWidget {
     return SelectButtonWrapper(
       onTap: onTap,
       child: Container(
-        padding: EdgeInsets.all(context.responsive(16, 20)),
+        padding: EdgeInsets.all(AppLayout.settingsPadding),
         decoration: BoxDecoration(
           color: AppColors.surfaceVariant,
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: AppColors.surface.withValues(alpha: 0.6)),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

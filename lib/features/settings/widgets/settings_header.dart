@@ -1,3 +1,4 @@
+import 'package:uniordle/shared/exports/app_exports.dart';
 import 'package:uniordle/shared/exports/settings_exports.dart';
 
 class SettingsHeader extends StatelessWidget {
@@ -10,7 +11,7 @@ class SettingsHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 12),
+      padding: EdgeInsets.only(top: context.r(32), bottom: context.r(8)),
       child: Text(
         title.toUpperCase(),
         style: AppFonts.labelMedium

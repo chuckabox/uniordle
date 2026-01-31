@@ -33,21 +33,21 @@ class LevelCard extends StatelessWidget {
             ],
           ),
           
-          SizedBox(height: context.r(16)),
+          SizedBox(height: context.r(8)),
           
           // The Progress Bar
           ClipRRect(
             borderRadius: BorderRadius.circular(12),
             child: LinearProgressIndicator(
               value: progress,
-              minHeight: 12,
+              minHeight: context.r(16),
               backgroundColor: AppColors.onSurfaceVariant,
               borderRadius: BorderRadius.circular(12),
               valueColor: const AlwaysStoppedAnimation<Color>(AppColors.accent),
             ),
           ),
           
-          const SizedBox(height: 12),
+          SizedBox(height: context.r(8)),
           
           // X/Y SOLVES TO LEVEL Z Badge
           LayoutBuilder(
@@ -56,23 +56,21 @@ class LevelCard extends StatelessWidget {
 
               return Stack(
                 children: [
-                  const SizedBox(height: 30, width: double.infinity),
+                  SizedBox(height: context.r(40), width: double.infinity),
                   Positioned(
                     left: progress * constraints.maxWidth,
                     child: FractionalTranslation(
                       translation: Offset(xTranslation, 0),
                       child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                        padding: EdgeInsets.symmetric(horizontal: context.r(8), vertical: context.r(4)),
                         decoration: BoxDecoration(
                           color: AppColors.accent,
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: BorderRadius.circular(16),
                         ),
-                        child: Text(
+                        child: context.autoText(
                           progressLabel,
                           style: AppFonts.labelSmall.copyWith(
                             color: Colors.white, 
-                            fontWeight: FontWeight.bold,
-                            fontSize: 10,
                           ),
                         ),
                       ),
@@ -105,6 +103,7 @@ class _LevelInfo extends StatelessWidget {
         context.autoText(
           level,
           style: AppFonts.headline,
+          reduction: 8,
         ),
       ],
     );

@@ -108,3 +108,4 @@ Latest release:
 * **IMPROVE APPEARANCE AND DESIGN AFTER ADDING LOGIC**
 * **IMPORTANT: ensure widths 360 to 512 are handled properly**
 * check headers/footers are same size
+* change level up pop up 

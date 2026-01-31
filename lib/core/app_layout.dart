@@ -33,6 +33,7 @@ abstract class AppLayout {
   static const double cardRounding = 16.0; // not fully used
   static const double dialogPadding = 32.0;
   static const double dialogRounding = 16.0; // unused
+  static const double settingsPadding = 16;
 
   static const double settingsTileHeight = 60.0;
   static const int flipSpeedMs = 300;
