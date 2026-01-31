@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:uniordle/shared/layout/base_dialog.dart';
 
 
-Future<T?> baseShowDialog<T>({
+Future<T?> showBaseDialog<T>({
   required BuildContext context,
   required Widget child,
   bool barrierDismissible = true,

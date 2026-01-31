@@ -2,7 +2,7 @@ import 'package:uniordle/core/app_icons.dart';
 import 'package:uniordle/shared/buttons/primary_button.dart';
 import 'package:uniordle/shared/exports/end_game_exports.dart';
 import 'package:uniordle/shared/exports/profile_exports.dart';
-import 'package:uniordle/shared/layout/base_show_dialog.dart';
+import 'package:uniordle/shared/layout/show_base_dialog.dart';
 
 class RankPathway extends StatelessWidget {
   final int currentLevel;
@@ -98,7 +98,7 @@ class RankPathway extends StatelessWidget {
                 color: Colors.orange,
                 width: 260,
                 onPressed: () {
-                  baseShowDialog(
+                  showBaseDialog(
                     context: context,
                     child: const ThankYouDialog(),
                   );

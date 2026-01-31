@@ -1,11 +1,11 @@
 import 'package:uniordle/core/app_icons.dart';
 import 'package:uniordle/shared/exports/end_game_exports.dart';
 import 'package:uniordle/shared/exports/profile_exports.dart';
-import 'package:uniordle/shared/layout/base_show_dialog.dart';
+import 'package:uniordle/shared/layout/show_base_dialog.dart';
 
 class DataResetService {
   static Future<void> showDialog(BuildContext context) async {
-    final bool? firstConfirm = await baseShowDialog<bool>(
+    final bool? firstConfirm = await showBaseDialog<bool>(
       context: context,
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -37,7 +37,7 @@ class DataResetService {
     if (firstConfirm != true) return;
     if (!context.mounted) return;
 
-    final bool? secondConfirm = await baseShowDialog<bool>(
+    final bool? secondConfirm = await showBaseDialog<bool>(
       context: context,
       child: Column(
         mainAxisSize: MainAxisSize.min,

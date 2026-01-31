@@ -15,7 +15,6 @@ class AbandonGameDialog extends StatelessWidget {
     );
 
     return BaseDialog(
-      padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 24),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -24,13 +23,15 @@ class AbandonGameDialog extends StatelessWidget {
             color: AppColors.accent2,
             size: AppLayout.dialogIcon,
           ),
-          const SizedBox(height: 16),
-          Text(
+          SizedBox(height: context.r(8)),
+          context.autoText(
             "ABANDON GAME?",
             style: AppFonts.displayLarge,
             textAlign: TextAlign.center,
+            reduction: 4,
+            maxLines: 2,
           ),
-          const SizedBox(height: AppLayout.titleToSubtitle),
+          SizedBox(height: context.r(16)),
           Text.rich(
             TextSpan(
               style: AppFonts.labelMedium,
@@ -52,7 +53,7 @@ class AbandonGameDialog extends StatelessWidget {
             ),
             textAlign: TextAlign.center,
           ),
-          const SizedBox(height: AppLayout.size2XL),
+          SizedBox(height: context.r(32)),
           Row(
             children: [
               Expanded(

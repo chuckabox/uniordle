@@ -16,7 +16,7 @@ class SummaryCard extends StatelessWidget {
   @override
 Widget build(BuildContext context) {
   return Container(
-    height: context.responsive(100, 150),
+    height: context.responsive(100, 160),
     decoration: BoxDecoration(
       color: AppColors.surfaceVariant, 
       borderRadius: BorderRadius.circular(24),
@@ -36,6 +36,7 @@ Widget build(BuildContext context) {
         context.autoText(
           value,
           style: AppFonts.headline,
+          reduction: 4,
         ),
       ],
     ),

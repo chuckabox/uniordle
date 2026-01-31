@@ -2,7 +2,7 @@ import 'package:uniordle/features/home/data/major_data.dart';
 import 'package:uniordle/features/home/widgets/unlock_major_dialog.dart';
 import 'package:uniordle/shared/exports/game_exports.dart';
 import 'package:uniordle/shared/exports/help_exports.dart';
-import 'package:uniordle/shared/layout/base_show_dialog.dart';
+import 'package:uniordle/shared/layout/show_base_dialog.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -11,7 +11,7 @@ class HomeScreen extends StatelessWidget {
     if (stats.unlockedIds.contains(sub.id)) {
       Navigator.of(context).pushNamed('/setup', arguments: sub);
     } else {
-      baseShowDialog(
+      showBaseDialog(
         context: context,
         child: UnlockMajorDialog(
           major: sub,

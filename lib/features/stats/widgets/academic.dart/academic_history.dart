@@ -2,7 +2,7 @@ import 'package:uniordle/features/stats/widgets/academic.dart/history_item_card.
 import 'package:uniordle/features/stats/widgets/academic.dart/academic_transcript_content.dart';
 import 'package:uniordle/shared/buttons/simple_button.dart';
 import 'package:uniordle/shared/exports/game_exports.dart';
-import 'package:uniordle/shared/layout/base_show_dialog.dart';
+import 'package:uniordle/shared/layout/show_base_dialog.dart';
 
 class AcademicHistory extends StatelessWidget {
   final UserStats stats;
@@ -20,11 +20,11 @@ class AcademicHistory extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            context.autoText("History", style: AppFonts.labelLarge),
+            context.autoText("Transcript", style: AppFonts.labelLarge),
             if (stats.gameHistory.length > 3)
               SimpleButton(
                 text: "VIEW ALL",
-                onTap: () => baseShowDialog(
+                onTap: () => showBaseDialog(
                   context: context,
                   barrierDismissible: true,
                   child: AcademicTranscriptContent(stats: stats),
@@ -46,18 +46,17 @@ class AcademicHistory extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
-        color: AppColors.surfaceVariant.withValues(alpha: 0.3),
+        color: AppColors.surfaceVariant,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: AppColors.onSurface.withValues(alpha: 0.05)),
       ),
       child: Column(
         children: [
           Icon(LucideIcons.scrollText, color: AppColors.onSurfaceVariant, size: 32),
-          const SizedBox(height: 8),
+          SizedBox(height: 8),
           Text(
             "No academic records found.\nComplete a game to start your transcript.",
             textAlign: TextAlign.center,
-            style: AppFonts.labelMedium.copyWith(color: AppColors.onSurfaceVariant),
+            style: AppFonts.labelMedium,
           ),
         ],
       ),

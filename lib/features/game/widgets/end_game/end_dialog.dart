@@ -1,6 +1,6 @@
 import 'package:uniordle/core/app_icons.dart';
 import 'package:uniordle/shared/exports/end_game_exports.dart';
-import 'package:uniordle/shared/layout/base_show_dialog.dart';
+import 'package:uniordle/shared/layout/show_base_dialog.dart';
 
 class EndDialog extends StatelessWidget {
   final bool won;
@@ -33,7 +33,7 @@ class EndDialog extends StatelessWidget {
     );
 
     Navigator.pop(context);
-    baseShowDialog(
+    showBaseDialog(
       context: context,
       child: LevelUpDialog(
         startingLevel: prevState.$1,
