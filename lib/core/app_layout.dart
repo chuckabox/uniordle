@@ -84,12 +84,13 @@ extension ResponsiveLayout on BuildContext {
     required TextStyle style,
     double? minSize, 
     double? maxSize,
+    double reduction = 2,
     int maxLines = 1,
     TextAlign textAlign = TextAlign.center,
   }) {
     final double effectiveMax = maxSize ?? style.fontSize ?? 14;
     
-    final double effectiveMin = minSize ?? effectiveMax - 2;
+    final double effectiveMin = minSize ?? (effectiveMax - reduction);
 
     return AutoSizeText(
       text,

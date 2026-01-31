@@ -1,3 +1,4 @@
+import 'package:uniordle/shared/exports/game_exports.dart';
 import 'package:uniordle/shared/exports/stats_exports.dart';
 
 class StatCard extends StatelessWidget {
@@ -10,27 +11,28 @@ class StatCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
+      height: context.responsive(80, 120),
       decoration: BoxDecoration(
         color: AppColors.surfaceVariant,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(AppLayout.cardRounding),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
+          context.autoText(
             value,
             style: AppFonts.displayMedium.copyWith(
               color: color,
             ),
+            reduction: 8,
           ),
-          const SizedBox(height: 4),
-          Text(
+          context.autoText(
             label.toUpperCase(),
             textAlign: TextAlign.center,
             style: AppFonts.labelSmall.copyWith(
               color: AppColors.onSurfaceVariant,
             ),
+            maxLines: 2
           ),
         ],
       ),

@@ -37,15 +37,14 @@ Widget build(BuildContext context) {
             child: Column(
               children: [
                 HomeHero(stats: stats),
-                const SizedBox(height: AppLayout.badgeToContent),
+                
+                SizedBox(height: context.r(16)),
 
                 DisciplineGrid(
                   disciplines: sortedDisciplines,
                   unlockedIds: stats.unlockedIds,
                   onSubjectTap: (sub) => _onDisciplineTap(context, sub, stats),
                 ),
-                
-                const SizedBox(height: 32),
               ],
             ),
           ),

@@ -28,57 +28,56 @@ class StatsScreen extends StatelessWidget {
               Center(
                 child: Column(
                   children: [
-                    AutoSizeText("Academic Performance", style: AppFonts.displayLarge, maxLines: 1),
-                    const SizedBox(height: AppLayout.titleToSubtitle),
-                    Text("Your learning journey analytics", textAlign: TextAlign.center, style: AppFonts.labelMedium),
-                    const SizedBox(height: 12),
+                    context.autoText("Performance", style: AppFonts.displayLarge, maxLines: 1),
+                    SizedBox(height: context.r(8)),
+                    context.autoText("Your learning journey analytics", textAlign: TextAlign.center, style: AppFonts.labelMedium),
+                    SizedBox(height: context.r(8)),
                   ],
                 ),
               ),
-              
-              const SizedBox(height: AppLayout.badgeToContent),
+
+              SizedBox(height: context.r(16)),
 
               IntrinsicHeight(
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Expanded(child: StatCard(value: "${stats.totalGames}", label: "Total\nGames")),
-                    const SizedBox(width: 12),
-                    Expanded(child: StatCard(value: stats.winPercentage, label: "Win\n%", color: winColor)),
-                    const SizedBox(width: 12),
+                    SizedBox(width: context.r(8)),
+                    Expanded(child: StatCard(value: stats.winPercentage, label: "Win\nRate", color: winColor)),
+                    SizedBox(width: context.r(8)),
                     Expanded(child: StatCard(value: "${stats.streak}", label: "Current\nStreak", color: Colors.orange)),
-                    const SizedBox(width: 12),
+                    SizedBox(width: context.r(8)),
                     Expanded(child: StatCard(value: "${stats.maxStreak}", label: "Best\nStreak", color: Colors.deepOrange)),
                   ],
                 ),
               ),
               
-              const SizedBox(height: 12),
+              SizedBox(height: context.r(16)),
 
-              Text(
-                "CORRECT GUESSES", 
+              context.autoText(
+                "Correct Guesses", 
                 style: AppFonts.labelLarge
               ),
 
-              const SizedBox(height: 12),
+              SizedBox(height: context.r(8)),
 
               GuessDistributionChart(distribution: stats.guessDistribution),
               
-              const SizedBox(height: 16),
+              SizedBox(height: context.r(16)),
 
-              Text(
-                "GAMES PLAYED", 
+              context.autoText(
+                "Games Played", 
                 style: AppFonts.labelLarge
               ),
 
-              const SizedBox(height: 12),
+              SizedBox(height: context.r(8)),
 
               // This Heatmap-style grid shows Word Length vs Max Attempts
               ModeAnalyticsChart(modeFrequency: stats.modeFrequency),
 
-              const SizedBox(height: 24),
+              SizedBox(height: context.r(16)),
               AcademicHistory(stats: stats),
-              const SizedBox(height: 32),
             ],
           ),
         );

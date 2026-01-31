@@ -20,7 +20,7 @@ class AcademicHistory extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text("Academic Record", style: AppFonts.headline),
+            context.autoText("History", style: AppFonts.labelLarge),
             if (stats.gameHistory.length > 3)
               SimpleButton(
                 text: "VIEW ALL",
@@ -31,7 +31,7 @@ class AcademicHistory extends StatelessWidget {
               ),
           ],
         ),
-        const SizedBox(height: 8),
+        SizedBox(height: context.r(8)),
         if (recentGames.isEmpty)
           _buildEmptyHistory()
         else

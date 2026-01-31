@@ -1,4 +1,3 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:uniordle/core/app_icons.dart';
 import 'package:uniordle/shared/exports/game_exports.dart';
 import 'package:uniordle/shared/layout/base_badge.dart';
@@ -18,14 +17,14 @@ class HomeHero extends StatelessWidget {
 
     return Column(
       children: [
-        AutoSizeText('Select a Major', style: AppFonts.displayLarge, maxLines: 1,),
-        const SizedBox(height: AppLayout.titleToSubtitle),
-        Text(
+        context.autoText('Select a Major', style: AppFonts.displayLarge, maxLines: 1,),
+        SizedBox(height: context.r(8)),
+        context.autoText(
           'Master your academic vocabulary.',
           textAlign: TextAlign.center,
           style: AppFonts.labelMedium,
         ),
-        const SizedBox(height: 12),
+        SizedBox(height: context.r(16)),
         BaseBadge(
           label: "${stats.availableCredits} ${stats.availableCredits == 1 ? 'CREDIT' : 'CREDITS'}",
           icon: AppIcons.credits,
