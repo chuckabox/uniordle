@@ -134,7 +134,7 @@ class _GameScreenState extends State<GameScreen> {
             Expanded(
               child: Center(
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: AppLayout.sidePadding),
+                  padding: const EdgeInsets.symmetric(vertical: AppLayout.pagePadding),
                   child: Board(
                     board: _controller.board, 
                     flipCardKeys: _controller.flipCardKeys

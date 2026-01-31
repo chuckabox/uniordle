@@ -28,7 +28,8 @@ abstract class AppLayout {
 
   // Common layout constants
   static const double marginHeight = 64.0; // header/footers
-  static const double sidePadding = 24.0;
+  static const double pagePadding = 24.0;
+
   static const double settingsTileHeight = 60.0;
   static const int flipSpeedMs = 300;
   static const double dialogIcon = 64.0;

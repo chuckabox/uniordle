@@ -29,7 +29,7 @@ class BaseFooter extends StatelessWidget {
       child: SafeArea(
         top: false,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: AppLayout.sidePadding),
+          padding: const EdgeInsets.symmetric(horizontal: AppLayout.pagePadding),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,

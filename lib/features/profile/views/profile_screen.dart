@@ -17,7 +17,7 @@ class ProfileScreen extends StatelessWidget {
         final int rBonus = (stats.currentLevel ~/ 10) * 10;
 
         return SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
+          padding: const EdgeInsets.all(AppLayout.pagePadding),
           child: Column(
             children: [
               const SizedBox(height: 16),

@@ -33,7 +33,7 @@ Widget build(BuildContext context) {
         backgroundColor: AppColors.surface,
         body: SafeArea(
           child: SingleChildScrollView(
-            padding: EdgeInsets.all(AppLayout.sidePadding),
+            padding: EdgeInsets.all(AppLayout.pagePadding),
             child: Column(
               children: [
                 HomeHero(stats: stats),

@@ -31,7 +31,7 @@ class SettingsScreen extends StatelessWidget {
                 valueListenable: controller.state,
                 builder: (context, state, _) {
                   return ListView(
-                    padding: const EdgeInsets.symmetric(horizontal: AppLayout.sidePadding),
+                    padding: const EdgeInsets.symmetric(horizontal: AppLayout.pagePadding),
                     children: [
                       const SettingsHeader(title: 'PREFERENCES'),
                       SettingsToggleTile(

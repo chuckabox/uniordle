@@ -38,7 +38,7 @@ class BaseHeader extends StatelessWidget {
         ),
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: AppLayout.sidePadding),
+        padding: const EdgeInsets.symmetric(horizontal: AppLayout.pagePadding),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
